@@ -28,7 +28,8 @@ class TDeviceUtils {
   }
 
   static void setFullScreen(bool enable) {
-    SystemChrome.setEnabledSystemUIMode(enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+    SystemChrome.setEnabledSystemUIMode(
+        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
   }
 
   static double getScreenHeight() {
@@ -66,7 +67,8 @@ class TDeviceUtils {
   }
 
   static Future<bool> isPhysicalDevice() async {
-    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+    return defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS;
   }
 
   static void vibrate(Duration duration) {
@@ -74,7 +76,8 @@ class TDeviceUtils {
     Future.delayed(duration, () => HapticFeedback.vibrate());
   }
 
-  static Future<void> setPreferredOrientations(List<DeviceOrientation> orientations) async {
+  static Future<void> setPreferredOrientations(
+      List<DeviceOrientation> orientations) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -83,7 +86,8 @@ class TDeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 
   static Future<bool> hasInternetConnection() async {
@@ -107,10 +111,9 @@ class TDeviceUtils {
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
     } else {
-      throw 'Could not launch $url';
+      throw 'Іске қосу мүмкін болмады $url';
     }
   }
-
 
 // Add more device utility methods as per your specific requirements.
 }

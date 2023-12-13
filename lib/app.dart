@@ -17,7 +17,10 @@ class App extends StatelessWidget {
       // initialBinding: GeneralBindings(),
       home: const Scaffold(
         body: Center(
-          child: Text('Awesome Project Structure is setup and running. \n Happy T Coding 🎊', textAlign: TextAlign.center,),
+          child: Text(
+            'Керемет жоба құрылымы орнатылды және іске қосылды 🎊',
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

@@ -1,15 +1,14 @@
-
 class TValidator {
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Email is required.';
+      return 'Электрондық пошта қажет.';
     }
 
     // Regular expression for email validation
-    final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    final emailRegExp = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     if (!emailRegExp.hasMatch(value)) {
-      return 'Invalid email address.';
+      return 'Электрондық пошта мекенжайы дұрыс емес.';
     }
 
     return null;
@@ -17,27 +16,27 @@ class TValidator {
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required.';
+      return 'Құпия сөз қажет.';
     }
 
     // Check for minimum password length
     if (value.length < 6) {
-      return 'Password must be at least 6 characters long.';
+      return 'Құпия сөздің ұзындығы кемінде 6 таңба болуы керек.';
     }
 
     // Check for uppercase letters
     if (!value.contains(RegExp(r'[A-Z]'))) {
-      return 'Password must contain at least one uppercase letter.';
+      return 'Құпия сөзде кем дегенде бір бас әріп болуы керек.';
     }
 
     // Check for numbers
     if (!value.contains(RegExp(r'[0-9]'))) {
-      return 'Password must contain at least one number.';
+      return 'Құпия сөзде кем дегенде бір сан болуы керек.';
     }
 
     // Check for special characters
     if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'Password must contain at least one special character.';
+      return 'Құпия сөзде кем дегенде бір арнайы таңба болуы керек.';
     }
 
     return null;
@@ -45,14 +44,14 @@ class TValidator {
 
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Phone number is required.';
+      return 'Телефон нөмірі қажет.';
     }
 
-    // Regular expression for phone number validation (assuming a 10-digit US phone number format)
-    final phoneRegExp = RegExp(r'^\d{10}$');
+    // Regular expression for phone number validation
+    final phoneRegExp = RegExp(r'^87\d{9}$');
 
     if (!phoneRegExp.hasMatch(value)) {
-      return 'Invalid phone number format (10 digits required).';
+      return 'Жарамсыз телефон нөмірінің форматы. 87xxxxxxxxx пайдаланыңыз';
     }
 
     return null;
