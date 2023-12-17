@@ -15,7 +15,7 @@ class TElevatedButtonTheme {
       disabledForegroundColor: TColors.darkGrey,
       disabledBackgroundColor: TColors.buttonDisabled,
       side: const BorderSide(color: TColors.primary),
-      padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
+      padding: EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       textStyle: const TextStyle(
           fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w600),
       shape: RoundedRectangleBorder(
@@ -32,7 +32,7 @@ class TElevatedButtonTheme {
       disabledForegroundColor: TColors.darkGrey,
       disabledBackgroundColor: TColors.darkerGrey,
       side: const BorderSide(color: TColors.primary),
-      padding: const EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
+      padding: EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       textStyle: const TextStyle(
           fontSize: 16, color: TColors.textWhite, fontWeight: FontWeight.w600),
       shape: RoundedRectangleBorder(

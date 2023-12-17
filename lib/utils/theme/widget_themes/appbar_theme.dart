@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import '../../constants/colors.dart';
 
 class TAppBarTheme {
   TAppBarTheme._();
 
-  static const lightAppBarTheme = AppBarTheme(
+  static final lightAppBarTheme = AppBarTheme(
     elevation: 0,
     centerTitle: false,
     scrolledUnderElevation: 0,
@@ -14,9 +15,9 @@ class TAppBarTheme {
     iconTheme: IconThemeData(color: TColors.black, size: TSizes.iconMd),
     actionsIconTheme: IconThemeData(color: TColors.black, size: TSizes.iconMd),
     titleTextStyle: TextStyle(
-        fontSize: 18.0, fontWeight: FontWeight.w600, color: TColors.black),
+        fontSize: 18.0.sp, fontWeight: FontWeight.w600, color: TColors.black),
   );
-  static const darkAppBarTheme = AppBarTheme(
+  static final darkAppBarTheme = AppBarTheme(
     elevation: 0,
     centerTitle: false,
     scrolledUnderElevation: 0,
@@ -25,6 +26,6 @@ class TAppBarTheme {
     iconTheme: IconThemeData(color: TColors.black, size: TSizes.iconMd),
     actionsIconTheme: IconThemeData(color: TColors.white, size: TSizes.iconMd),
     titleTextStyle: TextStyle(
-        fontSize: 18.0, fontWeight: FontWeight.w600, color: TColors.white),
+        fontSize: 18.0.sp, fontWeight: FontWeight.w600, color: TColors.white),
   );
 }

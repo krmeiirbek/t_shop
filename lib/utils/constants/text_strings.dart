@@ -5,7 +5,7 @@ class TTexts {
   static const String skip = "Өткізіп жіберу";
   static const String done = "Аяқталды";
   static const String submit = "Жіберу";
-  static const String appName = "ZhetysaiKeruen";
+  static const String appName = "ZhetysaiBazaar";
   static const String tContinue = "Жалғастыру";
 
   // -- OnBoarding Texts
@@ -28,7 +28,7 @@ class TTexts {
   static const String newPassword = "Жаңа құпия сөз";
   static const String username = "Пайдаланушы аты";
   static const String phoneNo = "Телефон нөмірі";
-  static const String rememberMe = "Мені есте сақтау";
+  static const String rememberMe = "Есте сақтау";
   static const String forgetPassword = "Құпия сөзді ұмыттыңыз ба?";
   static const String signIn = "Кіру";
   static const String createAccount = "Тіркелгі жасау";
@@ -42,9 +42,9 @@ class TTexts {
   static const String resendEmailIn = "Электрондық поштаны қайта жіберу";
 
   // -- Authentication Headings
-  static const String loginTitle = "Қош келдіңіз қайта,";
+  static const String loginTitle = "Қош келдіңіз";
   static const String loginSubTitle =
-      "Шексіз таңдауларды және теңдессіз ыңғайлылықты ашыңыз.";
+      "Шексіз таңдау мен теңдесі жоқ ыңғайлылықты ашыңыз.";
   static const String signupTitle = "Келіңіз, тіркелгіңізді жасайық";
   static const String forgetPasswordTitle = "Құпия сөзді ұмытыңыз ба?";
   static const String forgetPasswordSubTitle =
