@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 
+import 'widgets/home_appbar.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -14,7 +16,9 @@ class HomeScreen extends StatelessWidget {
             TCurvedEdgeWidget(
               child: TPrimaryHeaderContainer(
                 child: Column(
-                  children: [],
+                  children: [
+                    THomeAppbar(),
+                  ],
                 ),
               ),
             ),
@@ -24,3 +28,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+

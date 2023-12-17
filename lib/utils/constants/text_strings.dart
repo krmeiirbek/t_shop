@@ -69,5 +69,5 @@ class TTexts {
 
   // -- Home
   static const String homeAppbarTitle = "Сауда жасау үшін жақсы күн";
-  static const String homeAppbarSubTitle = "Пәленше Төленшеұлы";
+  static const String homeAppbarSubTitle = "Жеткізу мекенжайын көрсетіңіз 📍";
 }
