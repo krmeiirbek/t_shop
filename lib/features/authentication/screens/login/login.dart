@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:t_store/common/styles/spacing_styles.dart';
-import 'package:t_store/common/widgets/login_signup/form_divider.dart';
-import 'package:t_store/common/widgets/login_signup/social_buttons.dart';
-import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 
 import 'widgets/login_form.dart';
 import 'widgets/login_header.dart';
@@ -18,20 +13,10 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: TSpacingStyle.paddingWithAppbarHeight,
-          child: Column(
+          child: const Column(
             children: [
-              /// Logo, Title, Sub-Title
-              const TLoginHeader(),
-
-              /// Form
-              const TLoginForm(),
-
-              ///Divider
-              TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
-              SizedBox(height: TSizes.spaceBtwSections),
-
-              /// Footer
-              const TSocialButtons(),
+              TLoginHeader(),
+              TLoginForm(),
             ],
           ),
         ),

@@ -15,43 +15,13 @@ class TLoginForm extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
         child: Column(
           children: [
-            /// Email
+
+            /// Phone
             TextFormField(
               decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: TTexts.email,
+                prefixIcon: Icon(Iconsax.call),
+                labelText: TTexts.phoneNo,
               ),
-            ),
-            SizedBox(height: TSizes.spaceBtwInputFields),
-
-            /// Password
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: TTexts.password,
-                suffixIcon: Icon(Iconsax.eye_slash),
-              ),
-            ),
-            SizedBox(height: TSizes.spaceBtwInputFields / 2),
-
-            /// Remember me & Forgot password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                /// Remember me
-                Row(
-                  children: [
-                    Checkbox(value: true, onChanged: (value) {}),
-                    const Text(TTexts.rememberMe),
-                  ],
-                ),
-
-                /// Forgot password
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(TTexts.forgetPassword),
-                ),
-              ],
             ),
             SizedBox(height: TSizes.spaceBtwSections),
 
@@ -60,17 +30,7 @@ class TLoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text(TTexts.signIn),
-              ),
-            ),
-            SizedBox(height: TSizes.spaceBtwItems),
-
-            /// Create account button
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () {},
-                child: const Text(TTexts.createAccount),
+                child: const Text(TTexts.tContinue),
               ),
             ),
             SizedBox(height: TSizes.spaceBtwSections),
