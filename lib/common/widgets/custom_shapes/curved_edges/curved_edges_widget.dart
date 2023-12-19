@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'curved_edges.dart';
 
-class TCurvedEdgeWidget extends StatelessWidget {
-  const TCurvedEdgeWidget({
+class TCurvedEdgesWidget extends StatelessWidget {
+  const TCurvedEdgesWidget({
     super.key,
     required this.child,
   });
