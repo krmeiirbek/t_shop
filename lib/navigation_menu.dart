@@ -3,16 +3,18 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
 import 'package:t_store/features/shop/screens/store/store.dart';
+import 'package:t_store/features/shop/screens/wishlist/wishlist.dart';
 
 import 'utils/constants/colors.dart';
 import 'utils/helpers/helper_functions.dart';
 
 class NavigationController extends GetxController {
+  static NavigationController get instance => Get.find();
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
     const StoreScreen(),
-    Container(),
+    const FavoriteScreen(),
     Container(),
   ];
 }
