@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:t_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
@@ -21,17 +20,16 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TCurvedEdgeWidget(
-              child: TPrimaryHeaderContainer(
-                child: Column(
-                  children: [
-                    const THomeAppbar(),
-                    SizedBox(height: TSizes.spaceBtwSections),
-                    const TSearchContainer(text: 'Дүкеннен іздеу'),
-                    SizedBox(height: TSizes.spaceBtwSections),
-                    const THomeCategories(),
-                  ],
-                ),
+            TPrimaryHeaderContainer(
+              child: Column(
+                children: [
+                  const THomeAppbar(),
+                  SizedBox(height: TSizes.spaceBtwSections),
+                  const TSearchContainer(text: 'Дүкеннен іздеу'),
+                  SizedBox(height: TSizes.spaceBtwSections),
+                  const THomeCategories(),
+                  SizedBox(height: TSizes.spaceBtwSections),
+                ],
               ),
             ),
             Padding(
