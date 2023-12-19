@@ -4,6 +4,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/search_container
 import 'package:t_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -45,9 +46,13 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: TSizes.spaceBtwSections),
+                  
+                  TSectionHeading(title: 'Танымал өнімдер', onPressed: (){},),
+                  SizedBox(height: TSizes.spaceBtwItems),
+                  
                   TGridLayout(
                     itemBuilder: (_, index) => const TProductCardVertical(),
-                    itemCount: 5,
+                    itemCount: 4,
                   ),
                 ],
               ),
