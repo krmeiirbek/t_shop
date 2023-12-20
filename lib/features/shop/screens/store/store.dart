@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/search_container
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/screens/brand/all_brands.dart';
 import 'package:t_store/features/shop/screens/cart/cart.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -55,7 +56,7 @@ class StoreScreen extends StatelessWidget {
                     SizedBox(height: TSizes.spaceBtwSections),
                     TSectionHeading(
                       title: 'Таңдаулы брендтер',
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => const AllBrandsScreen()),
                     ),
                     SizedBox(height: TSizes.spaceBtwItems / 1.5),
                     TGridLayout(
