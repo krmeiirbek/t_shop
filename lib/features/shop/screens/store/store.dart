@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/appbar/tabbar.dart';
 import 'package:t_store/common/widgets/brand/brand_card.dart';
@@ -6,6 +7,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/search_container
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/screens/cart/cart.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -23,7 +25,9 @@ class StoreScreen extends StatelessWidget {
         appBar: TAppBar(
           title:
               Text('Дүкен', style: Theme.of(context).textTheme.headlineMedium),
-          actions: [TCartCounterIcon(onPressed: () {})],
+          actions: [
+            TCartCounterIcon(onPressed: () => Get.to(() => const CartScreen())),
+          ],
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) => [
