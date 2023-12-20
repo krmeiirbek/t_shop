@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -23,7 +25,8 @@ class SettingsScreen extends StatelessWidget {
                   TAppBar(
                     title: Text(
                       'Профиль',
-                      style: Theme.of(context)
+                      style: Theme
+                          .of(context)
                           .textTheme
                           .headlineMedium!
                           .apply(color: TColors.white),
@@ -46,13 +49,13 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home,
                     title: 'Менің мекенжайларым',
                     subTitle: 'Жеткізу мекенжайын орнатыңыз',
-                    onTap: () {},
+                    onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
                   const TSettingsMenuTile(
                     icon: Iconsax.shopping_cart,
                     title: 'Менің қоржыным',
                     subTitle:
-                        'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
+                    'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
@@ -79,7 +82,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.security_card,
                     title: 'Құпиялық саясаты & Пайдаланушы келісімі',
                     subTitle:
-                        'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
+                    'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
                   ),
 
                   /// --- App Settings
@@ -104,7 +107,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.image,
                     title: 'HD сурет сапасы',
                     subTitle:
-                        'Көрінетін сурет сапасын орнатыңыз, бұл қосулы болса жүктелуде кідіріс болуы мүмкін',
+                    'Көрінетін сурет сапасын орнатыңыз, бұл қосулы болса жүктелуде кідіріс болуы мүмкін',
                     trailing: Switch(value: false, onChanged: (value) {}),
                   ),
 
