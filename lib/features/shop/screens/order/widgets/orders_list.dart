@@ -37,13 +37,13 @@ class TOrderListItems extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Processing',
+                        'Өңделуде',
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge!
                             .apply(color: TColors.primary, fontWeightDelta: 1),
                       ),
-                      Text('07 Nov 2024',
+                      Text('07 қараша 2024 ж',
                           style: Theme.of(context).textTheme.headlineSmall),
                     ],
                   ),
@@ -77,7 +77,7 @@ class TOrderListItems extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Order',
+                            Text('Тапсырыс',
                                 style: Theme.of(context).textTheme.labelMedium),
                             Text('[#2566f2]',
                                 style: Theme.of(context).textTheme.titleMedium),
@@ -100,9 +100,9 @@ class TOrderListItems extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Shipping Date',
+                            Text('Жеткізу күні',
                                 style: Theme.of(context).textTheme.labelMedium),
-                            Text('03 Feb 2024',
+                            Text('03 ақпан 2024 ж',
                                 style: Theme.of(context).textTheme.titleMedium),
                           ],
                         ),

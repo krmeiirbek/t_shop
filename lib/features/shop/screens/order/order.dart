@@ -12,14 +12,14 @@ class OrderScreen extends StatelessWidget {
       /// -- AppBar
       appBar: TAppBar(
         title:
-            Text('My Orders', style: Theme.of(context).textTheme.headlineSmall),
+            Text('Менің тапсырыстарым', style: Theme.of(context).textTheme.headlineSmall),
         showBackArrow: true,
       ),
       body: Padding(
         padding: EdgeInsets.all(TSizes.defaultSpace),
 
         /// -- Orders
-        child: TOrderListItems(),
+        child: const TOrderListItems(),
       ),
     );
   }
