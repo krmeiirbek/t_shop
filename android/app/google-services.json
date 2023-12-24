@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "544021806700",
+    "project_id": "zhet-market-777",
+    "storage_bucket": "zhet-market-777.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544021806700:android:847131e475acc7d089a249",
+        "android_client_info": {
+          "package_name": "com.example.t_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAokCp04CqaEYUUqbsdstV0tKwLXsMt9Xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
