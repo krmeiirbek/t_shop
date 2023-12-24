@@ -26,6 +26,10 @@ class TLocalStorage {
     await _storage.remove(key);
   }
 
+  Future<void> writeIfNull(String key, value) async {
+    await _storage.writeIfNull(key, value);
+  }
+
   // Clear all data in storage
   Future<void> clearAll() async {
     await _storage.erase();

@@ -1,13 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/authentication/screens/login/login.dart';
+import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  final localStorage = TLocalStorage();
+  final deviceStorage = TLocalStorage();
   final verificationId = ''.obs;
 
   User? get authUser => _auth.currentUser;
@@ -15,7 +18,22 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() {
     FlutterNativeSplash.remove();
+    screenRedirect();
     super.onReady();
+  }
+
+  screenRedirect() async {
+    // Local Storage
+
+    if (kDebugMode) {
+      print('==================== GET STORAGE Auth Repo ====================');
+      print(deviceStorage.readData('IsFirstTime'));
+    }
+
+    deviceStorage.writeIfNull('IsFirstTime', true);
+    deviceStorage.readData('IsFirstTime') != true
+        ? Get.offAll(() => const LoginScreen())
+        : Get.offAll(() => const OnBoardingScreen());
   }
 
   Future<void> phoneAuthentication(String phoneNumber) async {

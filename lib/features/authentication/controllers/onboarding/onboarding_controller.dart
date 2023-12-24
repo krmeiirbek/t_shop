@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
+import 'package:t_store/utils/local_storage/storage_utility.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance => Get.find();
@@ -21,6 +23,15 @@ class OnBoardingController extends GetxController {
   /// Update current index & jump to next page
   void nextPage() {
     if (currentPageIndex.value == 2) {
+      final storage = TLocalStorage();
+
+      if (kDebugMode) {
+        print(
+            '==================== GET STORAGE Auth Repo ====================');
+        print(storage.readData('IsFirstTime'));
+      }
+
+      storage.saveData('IsFirstTime', false);
       Get.offAll(() => const LoginScreen());
     } else {
       currentPageIndex.value++;
