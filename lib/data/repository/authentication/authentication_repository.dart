@@ -13,6 +13,7 @@ class AuthenticationRepository extends GetxController {
   final _auth = FirebaseAuth.instance;
   final deviceStorage = TLocalStorage();
   final verificationId = ''.obs;
+  final loading = false.obs;
 
   User? get authUser => _auth.currentUser;
 
@@ -38,41 +39,50 @@ class AuthenticationRepository extends GetxController {
   }
 
   Future<void> phoneAuthentication(String phoneNumber) async {
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (credential) async {
-        await _auth.signInWithCredential(credential);
-        if (kDebugMode) {
-          print('verificationCompleted');
-        }
-      },
-      verificationFailed: (e) {
-        if (e.code == 'invalid-phone-number') {
-          Get.snackbar('Error', 'The provided phone number is not valid');
-        } else {
-          Get.snackbar(e.code, e.message.toString());
+    try {
+      loading.value = true;
+      await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (credential) async {
+          await _auth.signInWithCredential(credential);
           if (kDebugMode) {
-            print(e.code);
-            print(e.message.toString());
+            print('verificationCompleted');
           }
-        }
-      },
-      codeSent: (verificationId, resendToken) {
-        this.verificationId.value = verificationId;
-        Get.to(() => const OTPScreen(), arguments: phoneNumber);
-        if (kDebugMode) {
-          print('codeSent');
-          print(resendToken);
-          print(verificationId);
-        }
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId.value = verificationId;
-        if (kDebugMode) {
-          print('codeAutoRetrievalTimeout');
-        }
-      },
-    );
+        },
+        verificationFailed: (e) {
+          loading.value = false;
+          if (e.code == 'invalid-phone-number') {
+            Get.snackbar('Error', 'The provided phone number is not valid');
+          } else {
+            Get.snackbar(e.code, e.message.toString());
+            if (kDebugMode) {
+              print(e.code);
+              print(e.message.toString());
+            }
+          }
+        },
+        codeSent: (verificationId, resendToken) {
+          this.verificationId.value = verificationId;
+          loading.value = false;
+          Get.to(() => const OTPScreen(), arguments: phoneNumber);
+          if (kDebugMode) {
+            print('codeSent');
+            print(resendToken);
+            print(verificationId);
+          }
+        },
+        codeAutoRetrievalTimeout: (verificationId) {
+          this.verificationId.value = verificationId;
+          if (kDebugMode) {
+            print('codeAutoRetrievalTimeout');
+          }
+        },
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 
   Future<bool> verifyOTP(String otp) async {

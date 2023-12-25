@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/data/repository/authentication/authentication_repository.dart';
 import 'package:t_store/features/authentication/controllers/login/login_controller.dart';
+import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/validators/validation.dart';
@@ -38,11 +41,21 @@ class TLoginForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if(controller.loginFormKey.currentState!.validate()){
+                  if (controller.loginFormKey.currentState!.validate() &
+                      !AuthenticationRepository.instance.loading.value) {
                     controller.phoneAuthentication();
                   }
                 },
-                child: const Text(TTexts.tContinue),
+                child: Obx(() {
+                  if (AuthenticationRepository.instance.loading.value) {
+                    return const Center(
+                        child: CupertinoActivityIndicator(
+                      color: TColors.white,
+                    ));
+                  } else {
+                    return const Text(TTexts.tContinue);
+                  }
+                }),
               ),
             ),
             SizedBox(height: TSizes.spaceBtwSections),
