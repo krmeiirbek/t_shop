@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
+import 'package:t_store/features/authentication/screens/login/otp.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 
@@ -41,29 +42,52 @@ class AuthenticationRepository extends GetxController {
       phoneNumber: phoneNumber,
       verificationCompleted: (credential) async {
         await _auth.signInWithCredential(credential);
+        if (kDebugMode) {
+          print('verificationCompleted');
+        }
       },
       verificationFailed: (e) {
         if (e.code == 'invalid-phone-number') {
           Get.snackbar('Error', 'The provided phone number is not valid');
         } else {
-          Get.snackbar('Error', 'Something went wrong. Try again.');
+          Get.snackbar(e.code, e.message.toString());
+          if (kDebugMode) {
+            print(e.code);
+            print(e.message.toString());
+          }
         }
       },
       codeSent: (verificationId, resendToken) {
         this.verificationId.value = verificationId;
+        Get.to(() => const OTPScreen(), arguments: phoneNumber);
+        if (kDebugMode) {
+          print('codeSent');
+          print(resendToken);
+          print(verificationId);
+        }
       },
       codeAutoRetrievalTimeout: (verificationId) {
         this.verificationId.value = verificationId;
+        if (kDebugMode) {
+          print('codeAutoRetrievalTimeout');
+        }
       },
     );
   }
 
   Future<bool> verifyOTP(String otp) async {
-    final credential =
-        await _auth.signInWithCredential(PhoneAuthProvider.credential(
-      verificationId: verificationId.value,
-      smsCode: otp,
-    ));
-    return credential.user != null;
+    try {
+      final credential =
+          await _auth.signInWithCredential(PhoneAuthProvider.credential(
+        verificationId: verificationId.value,
+        smsCode: otp,
+      ));
+      return credential.user != null;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return false;
+    }
   }
 }

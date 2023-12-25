@@ -20,8 +20,8 @@ class LoginController extends GetxController {
     super.dispose();
   }
 
-  void phoneAuthentication() {
-    AuthenticationRepository.instance
-        .phoneAuthentication(phoneNumberController.text.trim());
+  void phoneAuthentication() async {
+    await AuthenticationRepository.instance
+        .phoneAuthentication("+7${phoneNumberController.text.trim()}");
   }
 }

@@ -11,7 +11,9 @@ class TTextFormFieldTheme {
     suffixIconColor: TColors.darkGrey,
     // constraints: const BoxConstraints.expand(height: TSizes.inputFieldHeight),
     labelStyle: const TextStyle()
-        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.black),
+        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.black, fontWeight: FontWeight.normal),
+    prefixStyle: const TextStyle()
+        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.black, fontWeight: FontWeight.w500),
     hintStyle: const TextStyle()
         .copyWith(fontSize: TSizes.fontSizeSm, color: TColors.black),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
@@ -45,7 +47,9 @@ class TTextFormFieldTheme {
     suffixIconColor: TColors.darkGrey,
     // constraints: const BoxConstraints.expand(height: TSizes.inputFieldHeight),
     labelStyle: const TextStyle()
-        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.white),
+        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.white, fontWeight: FontWeight.normal),
+    prefixStyle: const TextStyle()
+        .copyWith(fontSize: TSizes.fontSizeMd, color: TColors.white, fontWeight: FontWeight.w500),
     hintStyle: const TextStyle()
         .copyWith(fontSize: TSizes.fontSizeSm, color: TColors.white),
     floatingLabelStyle:

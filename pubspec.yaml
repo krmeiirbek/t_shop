@@ -38,6 +38,9 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
   firebase_storage: ^11.5.6
+  pinput: ^3.0.1
+  google_fonts: ^6.1.0
+  lottie: ^2.7.0
 
 
 
@@ -56,6 +59,7 @@ flutter:
   #--------------- LOCAL ASSETS ------------------#
   assets:
     - assets/logos/
+    - assets/lottie/
     - assets/icons/brands/
     - assets/images/content/
     - assets/images/banners/
@@ -68,7 +72,7 @@ flutter:
 
   #--------------- LOCAL FONTS ------------------#
   fonts:
-    - family: Poppins
+    - family: NotoSans
       fonts:
         - asset: assets/fonts/Poppins-Light.ttf
           weight: 300

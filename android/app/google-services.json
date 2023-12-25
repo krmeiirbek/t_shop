@@ -12,7 +12,20 @@
           "package_name": "com.example.t_shop"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "544021806700-pgk1n2bhqtahknpbpp2iomi26ksvqnr3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.t_shop",
+            "certificate_hash": "6be5613a44b5f1a6c985f8b02acbb6b634f683a6"
+          }
+        },
+        {
+          "client_id": "544021806700-qv6psv19hbmpph854belr1g48ehfe2l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAokCp04CqaEYUUqbsdstV0tKwLXsMt9Xg"
@@ -20,7 +33,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544021806700-qv6psv19hbmpph854belr1g48ehfe2l5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544021806700-28n48oj8de0os5vssunvhhcnp6aii5se.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.krmeiirbek.zhetmarketmanager.zhetMarketManager.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544021806700:android:d54d8f89838bb2bc89a249",
+        "android_client_info": {
+          "package_name": "com.krmeiirbek.zhetmarketmanager.zhet_market_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544021806700-qv6psv19hbmpph854belr1g48ehfe2l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAokCp04CqaEYUUqbsdstV0tKwLXsMt9Xg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544021806700-qv6psv19hbmpph854belr1g48ehfe2l5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "544021806700-28n48oj8de0os5vssunvhhcnp6aii5se.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.krmeiirbek.zhetmarketmanager.zhetMarketManager.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }
