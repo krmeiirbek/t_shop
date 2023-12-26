@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/theme/theme.dart';
 
+import 'bindings/general_bindings.dart';
 import 'utils/constants/colors.dart';
 
 class App extends StatelessWidget {
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
             theme: TAppTheme.lightTheme,
             darkTheme: TAppTheme.darkTheme,
             debugShowCheckedModeBanner: false,
-            // initialBinding: GeneralBindings(),
+            initialBinding: GeneralBindings(),
             home: const Scaffold(
               backgroundColor: TColors.primary,
               body: Center(

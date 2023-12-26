@@ -1,27 +1,46 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/authentication/authentication_repository.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/utils/helpers/network_manager.dart';
+import 'package:t_store/utils/popups/full_screen_loader.dart';
+import 'package:t_store/utils/popups/loaders.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
-  late TextEditingController phoneNumberController;
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
-  @override
-  void onInit() {
-    phoneNumberController = TextEditingController();
-    super.onInit();
-  }
+  void signInWithGoogle() async {
+    if (AuthenticationRepository.instance.loading.value) {
+      return;
+    }
+    try {
+      TFullScreenLoader.openLoadingDialog(
+        "Жүктелуде...",
+        TImages.loading,
+      );
 
-  @override
-  void dispose() {
-    phoneNumberController.dispose();
-    super.dispose();
-  }
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
-  void phoneAuthentication() async {
-    await AuthenticationRepository.instance
-        .phoneAuthentication("+7${phoneNumberController.text.trim()}");
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      await userController.saveUserRecord(userCredentials);
+
+      TFullScreenLoader.stopLoading();
+
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(
+        title: "О, Жоқ",
+        message: e.toString(),
+      );
+    }
   }
 }

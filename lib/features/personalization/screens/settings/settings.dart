@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_c
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -16,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -26,8 +28,7 @@ class SettingsScreen extends StatelessWidget {
                   TAppBar(
                     title: Text(
                       'Профиль',
-                      style: Theme
-                          .of(context)
+                      style: Theme.of(context)
                           .textTheme
                           .headlineMedium!
                           .apply(color: TColors.white),
@@ -56,7 +57,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.shopping_cart,
                     title: 'Менің қоржыным',
                     subTitle:
-                    'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
+                        'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
@@ -83,7 +84,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.security_card,
                     title: 'Құпиялық саясаты & Пайдаланушы келісімі',
                     subTitle:
-                    'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
+                        'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
                   ),
 
                   /// --- App Settings
@@ -108,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.image,
                     title: 'HD сурет сапасы',
                     subTitle:
-                    'Көрінетін сурет сапасын орнатыңыз, бұл қосулы болса жүктелуде кідіріс болуы мүмкін',
+                        'Көрінетін сурет сапасын орнатыңыз, бұл қосулы болса жүктелуде кідіріс болуы мүмкін',
                     trailing: Switch(value: false, onChanged: (value) {}),
                   ),
 
@@ -117,7 +118,7 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () => controller.logoutAccount(),
                       child: const Text('Шығу'),
                     ),
                   ),

@@ -41,6 +41,9 @@ dependencies:
   pinput: ^3.0.1
   google_fonts: ^6.1.0
   lottie: ^2.7.0
+  google_sign_in: ^6.2.1
+  connectivity_plus: ^5.0.2
+  cloud_firestore: ^4.13.6
 
 
 

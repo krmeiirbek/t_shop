@@ -14,6 +14,9 @@ class TImages {
   static const String appLogo =
       "assets/logos/Logo.png";
 
+  static const String loading =
+      "assets/lottie/loading.json";
+
   // -- Social Logos
   static const String google = "assets/logos/google-icon.png";
   static const String facebook = "assets/logos/facebook-icon.png";

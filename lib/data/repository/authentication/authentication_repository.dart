@@ -1,10 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
-import 'package:t_store/features/authentication/screens/login/otp.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:t_store/navigation_menu.dart';
+import 'package:t_store/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:t_store/utils/exceptions/firebase_exceptions.dart';
+import 'package:t_store/utils/exceptions/format_exceptions.dart';
+import 'package:t_store/utils/exceptions/platform_exceptions.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -12,7 +18,6 @@ class AuthenticationRepository extends GetxController {
 
   final _auth = FirebaseAuth.instance;
   final deviceStorage = TLocalStorage();
-  final verificationId = ''.obs;
   final loading = false.obs;
 
   User? get authUser => _auth.currentUser;
@@ -25,79 +30,56 @@ class AuthenticationRepository extends GetxController {
   }
 
   screenRedirect() async {
-    // Local Storage
-
-    if (kDebugMode) {
-      print('==================== GET STORAGE Auth Repo ====================');
-      print(deviceStorage.readData('IsFirstTime'));
-    }
-
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.readData('IsFirstTime') != true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(() => const OnBoardingScreen());
-  }
-
-  Future<void> phoneAuthentication(String phoneNumber) async {
-    try {
-      loading.value = true;
-      await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        verificationCompleted: (credential) async {
-          await _auth.signInWithCredential(credential);
-          if (kDebugMode) {
-            print('verificationCompleted');
-          }
-        },
-        verificationFailed: (e) {
-          loading.value = false;
-          if (e.code == 'invalid-phone-number') {
-            Get.snackbar('Error', 'The provided phone number is not valid');
-          } else {
-            Get.snackbar(e.code, e.message.toString());
-            if (kDebugMode) {
-              print(e.code);
-              print(e.message.toString());
-            }
-          }
-        },
-        codeSent: (verificationId, resendToken) {
-          this.verificationId.value = verificationId;
-          loading.value = false;
-          Get.to(() => const OTPScreen(), arguments: phoneNumber);
-          if (kDebugMode) {
-            print('codeSent');
-            print(resendToken);
-            print(verificationId);
-          }
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
-          this.verificationId.value = verificationId;
-          if (kDebugMode) {
-            print('codeAutoRetrievalTimeout');
-          }
-        },
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+    if (authUser != null) {
+      Get.offAll(() => const NavigationMenu());
+    } else {
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      deviceStorage.readData('IsFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(() => const OnBoardingScreen());
     }
   }
 
-  Future<bool> verifyOTP(String otp) async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
-      final credential =
-          await _auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
-        smsCode: otp,
-      ));
-      return credential.user != null;
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+      return await _auth.signInWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions().message;
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      return false;
+      if (kDebugMode) print('Бірдеңе дұрыс болмады:$e');
+      return null;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await GoogleSignIn().signOut();
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions().message;
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Бірдеңе дұрыс болмады, қайталап көріңіз';
     }
   }
 }
