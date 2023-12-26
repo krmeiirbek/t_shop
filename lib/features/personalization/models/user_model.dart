@@ -3,7 +3,7 @@ import 'package:t_store/utils/formatters/formatter.dart';
 
 class UserModel {
   final String id;
-  final String name;
+  String name;
   String phoneNumber;
 
   UserModel({

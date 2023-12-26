@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:t_store/data/repository/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:t_store/navigation_menu.dart';
@@ -41,6 +42,7 @@ class AuthenticationRepository extends GetxController {
   }
 
   Future<UserCredential?> signInWithGoogle() async {
+    loading.value = true;
     try {
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
@@ -62,6 +64,8 @@ class AuthenticationRepository extends GetxController {
     } catch (e) {
       if (kDebugMode) print('Бірдеңе дұрыс болмады:$e');
       return null;
+    } finally {
+      loading.value = false;
     }
   }
 
@@ -70,6 +74,23 @@ class AuthenticationRepository extends GetxController {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions().message;
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Бірдеңе дұрыс болмады, қайталап көріңіз';
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {

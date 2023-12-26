@@ -13,9 +13,9 @@ class TFormatter {
   }
 
   static String formatPhoneNumber(String phoneNumber) {
-    // Assuming a 11-digit KZ phone number format: 8(7xx) xxx-xxxx
-    if (phoneNumber.length == 11) {
-      return '+7(${phoneNumber.substring(1, 4)}) ${phoneNumber.substring(4, 7)} ${phoneNumber.substring(7)}';
+    // Assuming a 10-digit KZ phone number format: (7xx) xxx-xxxx
+    if (phoneNumber.length == 10) {
+      return '+7(${phoneNumber.substring(0, 3)}) ${phoneNumber.substring(3, 6)} ${phoneNumber.substring(6)}';
     }
     // Add more custom phone number formatting logic for different formats if needed.
     return phoneNumber;
