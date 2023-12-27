@@ -15,8 +15,7 @@ class CategoryRepository extends GetxController {
   Future<List<CategoryModel>> getCategories() async {
     try {
       final snapshot = await _db.collection('Categories').get();
-      final list = snapshot.docs.map(CategoryModel.fromSnapshot).toList();
-      return list;
+      return snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {

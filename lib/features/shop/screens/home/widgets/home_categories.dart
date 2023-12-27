@@ -7,6 +7,7 @@ import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/sub_category/sub_category.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class THomeCategories extends StatelessWidget {
   const THomeCategories({
@@ -35,7 +36,9 @@ class THomeCategories extends StatelessWidget {
                 child: Text(
                   'Ешнәрсе табылмады',
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color: Colors.white,
+                        color: THelperFunctions.isDarkMode(context)
+                            ? TColors.light
+                            : TColors.dark,
                       ),
                 ),
               );

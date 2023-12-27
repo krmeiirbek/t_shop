@@ -27,8 +27,8 @@ class TPromoSlider extends StatelessWidget {
             'Ешнәрсе табылмады',
             style: Theme.of(context).textTheme.bodyMedium!.apply(
                   color: THelperFunctions.isDarkMode(context)
-                      ? TColors.dark
-                      : TColors.light,
+                      ? TColors.light
+                      : TColors.dark,
                 ),
           ),
         );

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/data/repository/products/product_repository.dart';
+import 'package:t_store/utils/constants/enums.dart';
+import 'package:t_store/utils/popups/loaders.dart';
 import '../../../utils/constants/sizes.dart';
 import '../models/product_model.dart';
 import '../models/product_variation_model.dart';
 import 'cart_controller.dart';
-import 'dummy_data.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();
 
   // Variables used to keep the selected features.
-  final products = <ProductModel>[].obs;
+  final isLoading = false.obs;
+  final productRepository = Get.put(ProductRepository());
+  final featuredProducts = <ProductModel>[].obs;
   RxInt cartQuantity = 0.obs;
   RxString variationStockStatus = ''.obs;
   RxMap selectedAttributes = {}.obs;
@@ -24,8 +28,20 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     // Initialize your products from Firestore, SQL, Firebase, Local Storage etc
-    products.value = TDummyData.products;
+    fetchFeaturedProducts();
     super.onInit();
+  }
+
+  void fetchFeaturedProducts() async {
+    try {
+      isLoading.value = true;
+      final products = await productRepository.getFeaturedProducts();
+      featuredProducts.assignAll(products);
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   /// -- Initialize already added Item's Count in the cart.
@@ -93,7 +109,7 @@ class ProductController extends GetxController {
                 child: SizedBox(
                   width: 150,
                   child: OutlinedButton(
-                      onPressed: () => Get.back(), child: const Text('Close')),
+                      onPressed: () => Get.back(), child: const Text('Жабу')),
                 ),
               ),
             ],
@@ -109,13 +125,17 @@ class ProductController extends GetxController {
     double largestPrice = 0.0;
 
     // If no variation exist return simple price OR sale price
-    if (product.productVariations == null) {
-      return (product.salePrice ?? product.price).toString();
+    if (product.productType == ProductType.single.toString()) {
+      return (product.salePrice > 0 ? product.salePrice : product.price)
+          .toString();
     } else {
       // Calculate the smallest and largest prices
       for (var variation in product.productVariations!) {
         // Check if sale price exist
-        double priceToConsider = variation.salePrice ?? variation.price;
+        double priceToConsider =
+            (variation.salePrice != null && variation.salePrice != 0)
+                ? variation.salePrice!
+                : variation.price;
 
         if (priceToConsider < smallestPrice) {
           smallestPrice = priceToConsider;
@@ -129,7 +149,7 @@ class ProductController extends GetxController {
       if (smallestPrice.isEqual(largestPrice)) {
         return largestPrice.toString();
       } else {
-        return '$smallestPrice - \$$largestPrice';
+        return '$smallestPrice ₸ - $largestPrice';
       }
     }
   }
@@ -145,14 +165,14 @@ class ProductController extends GetxController {
 
   /// -- Check Product Stock Status
   String getProductStockStatus(ProductModel product) {
-    return product.stock > 0 ? 'In Stock' : 'Out of Stock';
+    return product.stock > 0 ? 'Қоймада бар' : 'Қоймада жоқ';
   }
 
   /// -- Check Product Variation Stock Status
   void getProductVariationStockStatus() {
     // Use GetX .obs variable to keep updated the stock status when selected variation changes.
     variationStockStatus.value =
-        selectedVariation.value.stock > 0 ? 'In Stock' : 'Out of Stock';
+        selectedVariation.value.stock > 0 ? 'Қоймада бар' : 'Қоймада жоқ';
   }
 
   /// -- Select Attribute, and Variation
@@ -265,6 +285,8 @@ class ProductController extends GetxController {
 
   /// Method to get the list of favorite products
   List<ProductModel> favoriteProducts() {
-    return products.where((product) => isFavourite(product.id)).toList();
+    return featuredProducts
+        .where((product) => isFavourite(product.id))
+        .toList();
   }
 }

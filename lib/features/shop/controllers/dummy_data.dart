@@ -505,6 +505,7 @@ class TDummyData {
             image: TImages.productImage21,
             attributeValues: {'Color': 'Red', 'Size': 'EU 32'}),
       ],
+      productType: 'ProductType.variable',
     ),
     ProductModel(
       id: '002',
@@ -528,6 +529,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '003',
@@ -552,6 +554,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '004',
@@ -631,6 +634,7 @@ class TDummyData {
             image: TImages.productImage63,
             attributeValues: {'Color': 'Blue', 'Size': 'EU 34'}),
       ],
+      productType: 'ProductType.variable',
     ),
 
     ///Products after banner
@@ -705,6 +709,7 @@ class TDummyData {
             image: TImages.productImage8,
             attributeValues: {'Color': 'Orange', 'Size': 'EU 32'}),
       ],
+      productType: 'ProductType.variable',
     ),
     ProductModel(
       id: '006',
@@ -729,6 +734,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '007',
@@ -747,6 +753,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //008 after 040
     ProductModel(
@@ -772,6 +779,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '010',
@@ -795,6 +803,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '011',
@@ -819,6 +828,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '012',
@@ -843,6 +853,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '013',
@@ -867,6 +878,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //Track suits
     ProductModel(
@@ -892,6 +904,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '015',
@@ -915,6 +928,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '016',
@@ -938,6 +952,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '017',
@@ -961,6 +976,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //Sports Equipments
     ProductModel(
@@ -986,6 +1002,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '019',
@@ -1009,6 +1026,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '020',
@@ -1032,6 +1050,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '021',
@@ -1055,6 +1074,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
 
     ///Furniture
@@ -1125,6 +1145,7 @@ class TDummyData {
             image: TImages.productImage44,
             attributeValues: {'Color': 'Grey', 'Size': 'EU 32'}),
       ],
+      productType: 'ProductType.variable',
     ),
     ProductModel(
       id: '023',
@@ -1142,6 +1163,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '024',
@@ -1159,6 +1181,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '025',
@@ -1176,6 +1199,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //Kitchen
     ProductModel(
@@ -1194,6 +1218,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '027',
@@ -1211,6 +1236,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '028',
@@ -1228,6 +1254,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //Office
     ProductModel(
@@ -1246,6 +1273,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '030',
@@ -1263,6 +1291,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '031',
@@ -1280,6 +1309,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '032',
@@ -1297,6 +1327,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
 
     ///Electronics
@@ -1365,6 +1396,7 @@ class TDummyData {
             image: TImages.productImage59,
             attributeValues: {'Ram': '16', 'hard': '2 tb'}),
       ],
+      productType: 'ProductType.variable',
     ),
     ProductModel(
       id: '034',
@@ -1382,6 +1414,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '035',
@@ -1399,6 +1432,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '036',
@@ -1416,6 +1450,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     //Mobiles
     ProductModel(
@@ -1434,6 +1469,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '038',
@@ -1451,6 +1487,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '039',
@@ -1468,6 +1505,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
     ProductModel(
       id: '040',
@@ -1546,6 +1584,7 @@ class TDummyData {
             image: TImages.productImage73,
             attributeValues: {'Color': 'Black', 'Storage': '256 gb'}),
       ],
+      productType: 'ProductType.variable',
     ),
     ProductModel(
       id: '008',
@@ -1570,6 +1609,7 @@ class TDummyData {
         ProductAttributeModel(name: 'Size', values: ['EU34', 'EU32']),
         ProductAttributeModel(name: 'Color', values: ['Green', 'Red', 'Blue']),
       ],
+      productType: 'ProductType.single',
     ),
   ];
 
