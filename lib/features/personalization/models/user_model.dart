@@ -1,15 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:t_store/utils/formatters/formatter.dart';
 
+import 'address_model.dart';
+
 class UserModel {
-  final String id;
+  final String? id;
   String name;
   String phoneNumber;
+  final List<AddressModel>? addresses;
 
   UserModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.phoneNumber,
+    this.addresses,
   });
 
   Map<String, dynamic> toJson() {

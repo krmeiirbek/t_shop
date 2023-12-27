@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/images/t_circular_image.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -11,10 +12,12 @@ class TVerticalImageText extends StatelessWidget {
     this.textColor = TColors.white,
     this.backgroundColor,
     this.onTap,
+    this.isNetworkImage = true,
   });
 
   final String image, title;
   final Color textColor;
+  final bool isNetworkImage;
   final Color? backgroundColor;
   final void Function()? onTap;
 
@@ -27,22 +30,13 @@ class TVerticalImageText extends StatelessWidget {
         padding: EdgeInsets.only(right: TSizes.spaceBtwItems),
         child: Column(
           children: [
-            Container(
-              width: 56,
-              height: 56,
-              padding: EdgeInsets.all(TSizes.sm),
-              decoration: BoxDecoration(
-                color:
-                backgroundColor ?? (dark ? TColors.black : TColors.white),
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                  color: dark ? TColors.light : TColors.dark,
-                ),
-              ),
+            TCircularImage(
+              image: image,
+              fit: BoxFit.fitWidth,
+              padding: TSizes.sm * 1.4,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundColor,
+              overlayColor: dark ? TColors.light : TColors.dark,
             ),
             SizedBox(height: TSizes.spaceBtwItems / 2),
             SizedBox(
@@ -50,8 +44,8 @@ class TVerticalImageText extends StatelessWidget {
               child: Text(
                 title,
                 style: Theme.of(context).textTheme.labelMedium!.apply(
-                  color: textColor,
-                ),
+                      color: textColor,
+                    ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
