@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:t_store/routes/app_routes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/theme/theme.dart';
 
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
             darkTheme: TAppTheme.darkTheme,
             debugShowCheckedModeBanner: false,
             initialBinding: GeneralBindings(),
+            getPages: AppRoutes.pages,
             home: const Scaffold(
               backgroundColor: TColors.primary,
               body: Center(

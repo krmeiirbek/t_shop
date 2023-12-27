@@ -1,3 +1,6 @@
+import 'package:t_store/features/shop/models/banner_model.dart';
+import 'package:t_store/routes/routes.dart';
+
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../../personalization/models/address_model.dart';
@@ -32,6 +35,49 @@ class TDummyData {
       ),
     ],
   );
+
+  static final List<BannerModel> banners = [
+    BannerModel(
+      imageURL: TImages.banner1,
+      active: false,
+      targetScreen: TRoutes.order,
+    ),
+    BannerModel(
+      imageURL: TImages.banner2,
+      active: true,
+      targetScreen: TRoutes.cart,
+    ),
+    BannerModel(
+      imageURL: TImages.banner3,
+      active: true,
+      targetScreen: TRoutes.favourites,
+    ),
+    BannerModel(
+      imageURL: TImages.banner4,
+      active: true,
+      targetScreen: TRoutes.search,
+    ),
+    BannerModel(
+      imageURL: TImages.banner5,
+      active: true,
+      targetScreen: TRoutes.settings,
+    ),
+    BannerModel(
+      imageURL: TImages.banner6,
+      active: true,
+      targetScreen: TRoutes.userAddress,
+    ),
+    BannerModel(
+      imageURL: TImages.banner7,
+      active: true,
+      targetScreen: TRoutes.order,
+    ),
+    BannerModel(
+      imageURL: TImages.banner8,
+      active: false,
+      targetScreen: TRoutes.checkout,
+    ),
+  ];
 
   /// -- Cart
   static final CartModel cart = CartModel(

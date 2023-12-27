@@ -5,8 +5,8 @@ import 'package:t_store/features/shop/screens/product_reviews/widgets/rating_pro
 import 'package:t_store/features/shop/screens/product_reviews/widgets/user_review_card.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-class ProductReviewScreen extends StatelessWidget {
-  const ProductReviewScreen({Key? key}) : super(key: key);
+class ProductReviewsScreen extends StatelessWidget {
+  const ProductReviewsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
