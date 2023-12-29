@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/shimmer/shimmer.dart';
 
 class TRoundedImage extends StatelessWidget {
   const TRoundedImage({
@@ -49,6 +50,10 @@ class TRoundedImage extends StatelessWidget {
               ? CachedNetworkImage(
                   imageUrl: imageUrl,
                   fit: fit,
+                  progressIndicatorBuilder: (_, __, ___) => TShimmerEffect(
+                    width: width ?? double.infinity,
+                    height: height ?? 158,
+                  ),
                   errorWidget: (_, __, ___) => const Icon(Icons.error),
                 )
               : Image(

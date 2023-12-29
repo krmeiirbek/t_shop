@@ -4,7 +4,7 @@ class ProductVariationModel {
   String image;
   String? description;
   double price;
-  double? salePrice;
+  double salePrice;
   int stock;
   Map<String, String> attributeValues;
 
@@ -14,7 +14,7 @@ class ProductVariationModel {
     this.image = '',
     this.description = '',
     this.price = 0.0,
-    this.salePrice,
+    this.salePrice = 0.0,
     this.stock = 0,
     required this.attributeValues,
   });

@@ -10,10 +10,12 @@ import 'package:t_store/features/shop/screens/product_details/widgets/product_de
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:t_store/features/shop/screens/product_reviews/product_review.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
+  const ProductDetailScreen({Key? key, required this.product})
+      : super(key: key);
 
   final ProductModel product;
 
@@ -25,7 +27,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             /// - Product Image Slider
-            const TProductImageSlider(),
+            TProductImageSlider(product: product),
 
             /// - Product Details
             Padding(
@@ -40,11 +42,13 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingAndShare(),
 
                   /// -- Price, Title, Stock, & Brand
-                  const TProductMetaData(),
+                  TProductMetaData(product: product),
 
                   /// -- Attributes
-                  const TProductAttributes(),
-                  SizedBox(height: TSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString())
+                    TProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString())
+                    SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(
@@ -60,16 +64,16 @@ class ProductDetailScreen extends StatelessWidget {
                   const TSectionHeading(
                       title: 'Сипаттамасы', showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwSections),
-                  const ReadMoreText(
-                    'Бұл экрандағы өнімге арналған өнім сипаттамасы. Бұл демо сипаттамасы. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque matis nulla ante, sed bibendum justo laoreet sed. Etiam nulla enim, consectetur id nulla in, lacinia tempor ipsum.',
+                  ReadMoreText(
+                    product.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: ' Толығырақ көрсету',
                     trimExpandedText: ' Аз көрсету',
-                    moreStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   /// -- Reviews
