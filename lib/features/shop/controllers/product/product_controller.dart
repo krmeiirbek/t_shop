@@ -42,6 +42,15 @@ class ProductController extends GetxController {
     }
   }
 
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+      return await productRepository.getAllFeaturedProducts();
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      return [];
+    }
+  }
+
   /// -- Initialize already added Item's Count in the cart.
   void initializeAlreadyAddedProductCount(ProductModel product) {
     // If product has no variations then calculate cartEntries and display total number.

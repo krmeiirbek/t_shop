@@ -37,6 +37,7 @@ class TProductCardVertical extends GetView<ProductController> {
           color: dark ? TColors.darkGrey : TColors.white,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TRoundedContainer(
               height: 180,
@@ -48,6 +49,7 @@ class TProductCardVertical extends GetView<ProductController> {
                     imageUrl: product.thumbnail,
                     isNetworkImage: true,
                   ),
+                  if(salePercentage != null)
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
