@@ -31,6 +31,7 @@ class AllProducts extends StatelessWidget {
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: FutureBuilder(
             future: futureMethod ?? controller.fetchProductsByQuery(query),
+            initialData: const <ProductModel>[],
             builder: (context, snapshot) {
               const loader = TVerticalProductShimmer();
               final widget = TCloudHelperFunctions.checkMultiRecordState(

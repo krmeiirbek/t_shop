@@ -80,7 +80,7 @@ class ProductController extends GetxController {
     if (product.productType == ProductType.single.toString()) {
       return (product.salePrice > 0 ? product.salePrice : product.price)
           .toString();
-    } else {
+    } else if (product.productType == ProductType.variable.toString()) {
       // Calculate the smallest and largest prices
       for (var variation in product.productVariations!) {
         // Check if sale price exist
@@ -101,6 +101,8 @@ class ProductController extends GetxController {
       } else {
         return '$smallestPrice ₸ - $largestPrice';
       }
+    } else{
+      return 'Қате ProductType';
     }
   }
 
