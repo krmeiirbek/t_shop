@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/categories/category_repository.dart';
+import 'package:t_store/data/repository/products/product_repository.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
@@ -37,15 +38,6 @@ class CategoryController extends GetxController {
   }
 
   /// -- Load selected category data
-  List<CategoryModel> getFeaturedCategories(int take) {
-    // Get Featured Brands from your data source
-    return TDummyData.categories
-        .where((category) => category.isFeatured)
-        .take(take)
-        .toList();
-  }
-
-  /// -- Load selected category data
   List<CategoryModel> getSubCategories(String categoryId) {
     // Fetch all categories where ParentId = categoryId;
     final subCategories = TDummyData.categories
@@ -55,12 +47,11 @@ class CategoryController extends GetxController {
   }
 
   /// -- Get Sub-Category Products
-  List<ProductModel> getSubCategoryProducts(String subCategoryId, int take) {
+  Future<List<ProductModel>> getCategoryProducts(
+      {required String categoryId, int limit = 4}) async {
     // Fetch limited (4) products against each subCategory;
-    final products = TDummyData.products
-        .where((product) => product.categoryId == subCategoryId)
-        .take(take)
-        .toList();
+    final products = await ProductRepository.instance
+        .getProductsForCategory(categoryId: categoryId, limit: limit);
     return products;
   }
 }

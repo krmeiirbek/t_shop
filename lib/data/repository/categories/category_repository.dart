@@ -12,6 +12,7 @@ class CategoryRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
+
   Future<List<CategoryModel>> getCategories() async {
     try {
       final snapshot = await _db.collection('Categories').get();
@@ -50,4 +51,5 @@ class CategoryRepository extends GetxController {
       throw e.toString();
     }
   }
+
 }

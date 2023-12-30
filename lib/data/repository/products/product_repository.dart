@@ -137,4 +137,39 @@ class ProductRepository extends GetxController {
       throw e.toString();
     }
   }
+
+  Future<List<ProductModel>> getProductsForCategory({
+    required String categoryId,
+    int limit = -1,
+  }) async {
+    try {
+      final querySnapshot = limit == -1
+          ? await _db
+              .collection('ProductCategory')
+              .where('CategoryId', isEqualTo: categoryId)
+              .get()
+          : await _db
+              .collection('ProductCategory')
+              .where('CategoryId', isEqualTo: categoryId)
+              .limit(limit)
+              .get();
+      List<String> productIds =
+          querySnapshot.docs.map((doc) => doc['ProductId'] as String).toList();
+      final productsQuery = await _db
+          .collection('Products')
+          .where(FieldPath.documentId, whereIn: productIds)
+          .get();
+      return productsQuery.docs
+          .map((doc) => ProductModel.fromSnapshot(doc))
+          .toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }
