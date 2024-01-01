@@ -2,10 +2,8 @@ import 'package:get/get.dart';
 import 'package:t_store/data/repository/categories/category_repository.dart';
 import 'package:t_store/data/repository/products/product_repository.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/popups/loaders.dart';
-
-import '../models/product_model.dart';
-import 'dummy_data.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();
@@ -35,15 +33,6 @@ class CategoryController extends GetxController {
     } finally {
       isLoading.value = false;
     }
-  }
-
-  /// -- Load selected category data
-  List<CategoryModel> getSubCategories(String categoryId) {
-    // Fetch all categories where ParentId = categoryId;
-    final subCategories = TDummyData.categories
-        .where((category) => category.parentId == categoryId)
-        .toList();
-    return subCategories;
   }
 
   /// -- Get Sub-Category Products

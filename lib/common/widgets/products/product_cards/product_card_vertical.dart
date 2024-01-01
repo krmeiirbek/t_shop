@@ -9,6 +9,7 @@ import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/controllers/wishlist_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -45,33 +46,46 @@ class TProductCardVertical extends GetView<ProductController> {
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  TRoundedImage(
-                    imageUrl: product.thumbnail,
-                    isNetworkImage: true,
-                  ),
-                  if(salePercentage != null)
-                  Positioned(
-                    top: 12,
-                    child: TRoundedContainer(
-                      radius: TSizes.sm,
-                      backgroundColor: TColors.secondary.withOpacity(0.8),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: TSizes.sm, vertical: TSizes.xs),
-                      child: Text(
-                        '$salePercentage%',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .apply(color: TColors.black),
-                      ),
+                  const Row(children: [SizedBox()]),
+                  Center(
+                    child: TRoundedImage(
+                      imageUrl: product.thumbnail,
+                      isNetworkImage: true,
                     ),
                   ),
-                  const Positioned(
+                  if (salePercentage != null)
+                    Positioned(
+                      top: 12,
+                      child: TRoundedContainer(
+                        radius: TSizes.sm,
+                        backgroundColor: TColors.secondary.withOpacity(0.8),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: TSizes.sm, vertical: TSizes.xs),
+                        child: Text(
+                          '$salePercentage%',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge!
+                              .apply(color: TColors.black),
+                        ),
+                      ),
+                    ),
+                  Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
+                    child: InkWell(
+                      onTap: () => WishListController.instance
+                          .addOrRemoveWishlistProductId(product.id),
+                      child: Obx(() {
+                        if (WishListController.instance.isLoading.value) {}
+                        return TCircularIcon(
+                          icon: Iconsax.heart5,
+                          color: WishListController.instance.wishlistProductIds
+                                  .contains(product.id)
+                              ? Colors.red
+                              : Colors.grey,
+                        );
+                      }),
                     ),
                   ),
                 ],
