@@ -3,6 +3,7 @@ import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -33,7 +34,8 @@ class SubCategoriesScreen extends StatelessWidget {
               Column(
                 children: [
                   /// Heading
-                  TSectionHeading(title: 'Спорттық көйлектер', onPressed: () {}),
+                  TSectionHeading(
+                      title: 'Спорттық көйлектер', onPressed: () {}),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
 
                   SizedBox(
@@ -43,8 +45,9 @@ class SubCategoriesScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (context, index) =>
                           SizedBox(width: TSizes.spaceBtwItems),
-                      itemBuilder: (context, index) =>
-                          const TProductCardHorizontal(),
+                      itemBuilder: (context, index) => TProductCardHorizontal(
+                        product: ProductModel.empty(),
+                      ),
                     ),
                   ),
                 ],

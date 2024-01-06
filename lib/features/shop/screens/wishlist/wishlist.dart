@@ -4,18 +4,21 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
+import 'package:t_store/common/widgets/loaders/animation_loader.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:t_store/features/shop/controllers/wishlist_controller.dart';
+import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
+import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
 import 'package:t_store/navigation_menu.dart';
-import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/helpers/helper_functions.dart';
+import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 
-class FavouriteScreen extends GetView<WishListController> {
+class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = FavouritesController.instance;
     return Scaffold(
       appBar: TAppBar(
         title: Text(
@@ -26,41 +29,41 @@ class FavouriteScreen extends GetView<WishListController> {
           TCircularIcon(
             icon: Iconsax.add,
             onPressed: () =>
-                NavigationController.instance.selectedIndex.value = 0,
+                NavigationController.instance.selectedIndex.value = 1,
           ),
         ],
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (controller.wishlistProducts.isEmpty) {
-          return Center(
-            child: Text(
-              'Ешнәрсе табылмады',
-              style: Theme.of(context).textTheme.bodyMedium!.apply(
-                    color: THelperFunctions.isDarkMode(context)
-                        ? TColors.light
-                        : TColors.dark,
-                  ),
-            ),
-          );
-        }
-        return SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(TSizes.defaultSpace),
-            child: Column(
-              children: [
-                TGridLayout(
-                  itemCount: controller.wishlistProducts.length,
-                  itemBuilder: (_, index) => TProductCardVertical(
-                      product: controller.wishlistProducts[index]),
-                ),
-              ],
-            ),
-          ),
-        );
-      }),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(TSizes.defaultSpace),
+          child: Obx(() => FutureBuilder(
+              future: controller.favouriteProducts(),
+              builder: (context, snapshot) {
+                const loader = TVerticalProductShimmer(itemCount: 6);
+                final emptyWidget = TAnimationLoaderWidget(
+                  text: 'Упс, таңдаулылар тізімі бос екен',
+                  animation: TImages.shoppingOptions,
+                  showAction: true,
+                  actionText: 'Кеттік бірнәрсе қосайық',
+                  onActionPressed: () =>
+                      NavigationController.instance.selectedIndex.value = 1,
+                );
+                final widget = TCloudHelperFunctions.checkMultiRecordState(
+                    snapshot: snapshot,
+                    loader: loader,
+                    nothingFound: emptyWidget);
+                if (widget != null) {
+                  return widget;
+                }
+                final products = snapshot.data!;
+                return TGridLayout(
+                  itemCount: products.length,
+                  itemBuilder: (_, index) =>
+                      TProductCardVertical(product: products[index]),
+                );
+              })),
+        ),
+      ),
     );
   }
 }

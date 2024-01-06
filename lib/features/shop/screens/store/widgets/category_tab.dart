@@ -50,7 +50,7 @@ class TCategoryTab extends GetView<CategoryController> {
                           showActionButton: true,
                           onPressed: () => Get.to(
                             () => AllProducts(
-                              title: category.name,
+                              title: category.nameKZ,
                               futureMethod: controller.getCategoryProducts(
                                 categoryId: category.id,
                                 limit: -1,

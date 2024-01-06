@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:t_store/data/repository/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
@@ -18,7 +19,7 @@ class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  final deviceStorage = TLocalStorage();
+  final deviceStorage = GetStorage();
   final loading = false.obs;
 
   User? get authUser => _auth.currentUser;
@@ -30,13 +31,14 @@ class AuthenticationRepository extends GetxController {
     super.onReady();
   }
 
-  screenRedirect() async {
-    if (authUser != null) {
-
+  void screenRedirect() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      await TLocalStorage.init(user.uid);
       Get.offAll(() => const NavigationMenu());
     } else {
       deviceStorage.writeIfNull('IsFirstTime', true);
-      deviceStorage.readData('IsFirstTime') != true
+      deviceStorage.read('IsFirstTime') != true
           ? Get.offAll(() => const LoginScreen())
           : Get.offAll(() => const OnBoardingScreen());
     }

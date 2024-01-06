@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
+import 'package:t_store/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
-import 'package:t_store/features/shop/controllers/wishlist_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -73,20 +72,7 @@ class TProductCardVertical extends GetView<ProductController> {
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: InkWell(
-                      onTap: () => WishListController.instance
-                          .addOrRemoveWishlistProductId(product.id),
-                      child: Obx(() {
-                        if (WishListController.instance.isLoading.value) {}
-                        return TCircularIcon(
-                          icon: Iconsax.heart5,
-                          color: WishListController.instance.wishlistProductIds
-                                  .contains(product.id)
-                              ? Colors.red
-                              : Colors.grey,
-                        );
-                      }),
-                    ),
+                    child: TFavouriteIcon(productId: product.id),
                   ),
                 ],
               ),

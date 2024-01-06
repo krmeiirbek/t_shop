@@ -16,6 +16,8 @@ class TImages {
 
   static const String loading =
       "assets/lottie/loading.json";
+  static const String shoppingOptions =
+      "assets/lottie/shopping-options.json";
 
   // -- Social Logos
   static const String google = "assets/logos/google-icon.png";

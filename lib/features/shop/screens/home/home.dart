@@ -7,7 +7,6 @@ import 'package:t_store/common/widgets/products/product_cards/product_card_verti
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
-import 'package:t_store/features/shop/controllers/wishlist_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -23,7 +22,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
-    Get.put(WishListController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

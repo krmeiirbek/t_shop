@@ -53,7 +53,7 @@ class THomeCategories extends StatelessWidget {
                   final category = controller.featuredCategories[index];
                   return TVerticalImageText(
                     image: category.image,
-                    title: category.name,
+                    title: category.nameKZ,
                     onTap: () => Get.to(() => const SubCategoriesScreen()),
                   );
                 },

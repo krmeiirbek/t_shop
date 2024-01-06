@@ -34,7 +34,7 @@ class CategoryRepository extends GetxController {
       for (var category in categories) {
         final file = await storage.getImageDataFromAssets(category.image);
         final url =
-            await storage.uploadImageData('Categories', file, category.name);
+            await storage.uploadImageData('Categories', file, category.nameRU);
         category.image = url;
         await _db
             .collection("Categories")

@@ -106,7 +106,7 @@ class StoreScreen extends StatelessWidget {
               ),
               bottom: TTabBar(
                 tabs: categories
-                    .map((category) => Tab(child: Text(category.name)))
+                    .map((category) => Tab(child: Text(category.nameKZ)))
                     .toList(),
               ),
             ),

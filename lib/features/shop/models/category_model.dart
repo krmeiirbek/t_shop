@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryModel {
   String id;
-  String name;
+  String nameRU;
+  String nameKZ;
   String image;
   String parentId;
   bool isFeatured;
 
   CategoryModel({
     required this.id,
-    required this.name,
+    required this.nameRU,
+    required this.nameKZ,
     required this.image,
     required this.isFeatured,
     this.parentId = '',
@@ -17,13 +19,15 @@ class CategoryModel {
 
   static CategoryModel empty() => CategoryModel(
         id: '',
-        name: '',
+        nameRU: '',
+        nameKZ: '',
         image: '',
         isFeatured: false,
       );
 
   Map<String, dynamic> toJson() => {
-        'Name': name,
+        'Name_RU': nameRU,
+        'Name_KZ': nameKZ,
         'Image': image,
         'IsFeatured': isFeatured,
         'ParentId': parentId,
@@ -36,7 +40,8 @@ class CategoryModel {
 
       return CategoryModel(
         id: document.id,
-        name: data['Name'] ?? '',
+        nameKZ: data['Name_KZ'] ?? '',
+        nameRU: data['Name_RU'] ?? '',
         image: data['Image'] ?? '',
         isFeatured: data['IsFeatured'] ?? false,
         parentId: data['ParentId'] ?? '',
