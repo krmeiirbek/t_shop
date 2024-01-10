@@ -9,7 +9,7 @@ import 'package:t_store/features/shop/screens/checkout/checkout.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/features/shop/screens/product_reviews/product_review.dart';
-import 'package:t_store/features/shop/screens/store/store.dart';
+import 'package:t_store/features/shop/screens/catalog/catalog.dart';
 import 'package:t_store/features/shop/screens/wishlist/wishlist.dart';
 
 import 'routes.dart';
@@ -17,7 +17,7 @@ import 'routes.dart';
 class AppRoutes {
   static final pages = [
     GetPage(name: TRoutes.home, page: () => const HomeScreen()),
-    GetPage(name: TRoutes.store, page: () => const StoreScreen()),
+    GetPage(name: TRoutes.store, page: () => const CatalogScreen()),
     GetPage(name: TRoutes.favourites, page: () => const FavouriteScreen()),
     GetPage(name: TRoutes.settings, page: () => const SettingsScreen()),
     GetPage(name: TRoutes.productReviews, page: () => const ProductReviewsScreen()),

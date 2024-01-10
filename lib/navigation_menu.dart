@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/personalization/screens/settings/settings.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
-import 'package:t_store/features/shop/screens/store/store.dart';
+import 'package:t_store/features/shop/screens/catalog/catalog.dart';
 import 'package:t_store/features/shop/screens/wishlist/wishlist.dart';
 
 import 'utils/constants/colors.dart';
@@ -14,7 +14,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    const StoreScreen(),
+    const CatalogScreen(),
     const FavouriteScreen(),
     const SettingsScreen(),
   ];
@@ -41,7 +41,7 @@ class NavigationMenu extends StatelessWidget {
               controller.selectedIndex.value = index,
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Басты'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Дүкен'),
+            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Каталог'),
             NavigationDestination(
                 icon: Icon(Iconsax.heart), label: 'Таңдаулылар'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Профиль'),

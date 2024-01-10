@@ -23,11 +23,12 @@ class CategoryController extends GetxController {
     try {
       isLoading.value = true;
       final categories = await _categoryRepository.getCategories();
+      // for (var c in categories) {
+      //   var sc = await getSubCategories(c.id);
+      //   allCategories.add(c.copyWith(subCategories: sc));
+      // }
       allCategories.assignAll(categories);
-      featuredCategories.assignAll(allCategories
-          .where((category) => category.isFeatured && category.parentId.isEmpty)
-          .take(8)
-          .toList());
+      featuredCategories.assignAll(allCategories.where((category) => category.isFeatured && category.parentId.isEmpty).take(8).toList());
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
     } finally {
@@ -35,12 +36,20 @@ class CategoryController extends GetxController {
     }
   }
 
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try {
+      final subCategories = await _categoryRepository.getSubCategories(categoryId);
+      return subCategories;
+    } catch (e) {
+      // TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      return [];
+    }
+  }
+
   /// -- Get Sub-Category Products
-  Future<List<ProductModel>> getCategoryProducts(
-      {required String categoryId, int limit = 4}) async {
+  Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async {
     // Fetch limited (4) products against each subCategory;
-    final products = await ProductRepository.instance
-        .getProductsForCategory(categoryId: categoryId, limit: limit);
+    final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
     return products;
   }
 }

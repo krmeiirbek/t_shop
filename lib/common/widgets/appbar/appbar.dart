@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/app_bar_container.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/device/device_utility.dart';
@@ -11,13 +12,14 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.title,
     this.showBackArrow = false,
+    this.usePrimaryBG = false,
     this.leadingIcon,
     this.actions,
     this.leadingOnPressed,
   });
 
   final Widget? title;
-  final bool showBackArrow;
+  final bool showBackArrow, usePrimaryBG;
   final IconData? leadingIcon;
   final List<Widget>? actions;
   final VoidCallback? leadingOnPressed;
@@ -25,31 +27,59 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: TSizes.md),
-      child: AppBar(
-        automaticallyImplyLeading: false,
-        leading: showBackArrow
-            ? IconButton(
-                onPressed: () => Get.back(),
-                icon: Icon(
-                  Iconsax.arrow_left,
-                  color: dark ? TColors.light : TColors.dark,
-                ),
-              )
-            : leadingIcon != null
-                ? IconButton(
-                    onPressed: leadingOnPressed,
-                    icon: Icon(
-                      leadingIcon,
-                      color: dark ? TColors.light : TColors.dark,
-                    ),
-                  )
-                : null,
-        title: title,
-        actions: actions,
-      ),
-    );
+    return usePrimaryBG
+        ? TAppBarContainer(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: TSizes.md),
+              child: AppBar(
+                automaticallyImplyLeading: false,
+                leading: showBackArrow
+                    ? IconButton(
+                        onPressed: () => Get.back(),
+                        icon: Icon(
+                          Iconsax.arrow_left,
+                          color: dark ? TColors.light : TColors.dark,
+                        ),
+                      )
+                    : leadingIcon != null
+                        ? IconButton(
+                            onPressed: leadingOnPressed,
+                            icon: Icon(
+                              leadingIcon,
+                              color: dark ? TColors.light : TColors.dark,
+                            ),
+                          )
+                        : null,
+                title: title,
+                actions: actions,
+              ),
+            ),
+          )
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: TSizes.md),
+            child: AppBar(
+              automaticallyImplyLeading: false,
+              leading: showBackArrow
+                  ? IconButton(
+                      onPressed: () => Get.back(),
+                      icon: Icon(
+                        Iconsax.arrow_left,
+                        color: dark ? TColors.light : TColors.dark,
+                      ),
+                    )
+                  : leadingIcon != null
+                      ? IconButton(
+                          onPressed: leadingOnPressed,
+                          icon: Icon(
+                            leadingIcon,
+                            color: dark ? TColors.light : TColors.dark,
+                          ),
+                        )
+                      : null,
+              title: title,
+              actions: actions,
+            ),
+          );
   }
 
   @override

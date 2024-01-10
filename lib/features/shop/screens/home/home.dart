@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
@@ -10,9 +11,9 @@ import 'package:t_store/features/shop/controllers/product/product_controller.dar
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
-import 'widgets/home_appbar.dart';
 import 'widgets/home_categories.dart';
 import 'widgets/promo_slider.dart';
 
@@ -23,13 +24,44 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
     return Scaffold(
+      appBar: TAppBar(
+        usePrimaryBG: true,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              TTexts.homeAppbarTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium!
+                  .apply(color: TColors.grey),
+            ),
+            Text(
+              TTexts.homeAppbarSubTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .apply(color: TColors.white),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.support_agent_outlined,
+              color: TColors.white,
+              size: 28,
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             TPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  const THomeAppbar(),
                   SizedBox(height: TSizes.spaceBtwSections),
                   const TSearchContainer(text: 'Дүкеннен іздеу'),
                   SizedBox(height: TSizes.spaceBtwSections),

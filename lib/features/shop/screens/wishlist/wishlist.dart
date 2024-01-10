@@ -8,6 +8,7 @@ import 'package:t_store/common/widgets/loaders/animation_loader.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -38,6 +39,7 @@ class FavouriteScreen extends StatelessWidget {
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Obx(() => FutureBuilder(
               future: controller.favouriteProducts(),
+              initialData: const <ProductModel>[],
               builder: (context, snapshot) {
                 const loader = TVerticalProductShimmer(itemCount: 6);
                 final emptyWidget = TAnimationLoaderWidget(
@@ -51,7 +53,8 @@ class FavouriteScreen extends StatelessWidget {
                 final widget = TCloudHelperFunctions.checkMultiRecordState(
                     snapshot: snapshot,
                     loader: loader,
-                    nothingFound: emptyWidget);
+                    nothingFound: emptyWidget,
+                );
                 if (widget != null) {
                   return widget;
                 }

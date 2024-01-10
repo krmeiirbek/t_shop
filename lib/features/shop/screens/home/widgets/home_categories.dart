@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.da
 import 'package:t_store/common/widgets/shimmer/category_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
-import 'package:t_store/features/shop/screens/sub_category/sub_category.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -54,7 +53,6 @@ class THomeCategories extends StatelessWidget {
                   return TVerticalImageText(
                     image: category.image,
                     title: category.nameKZ,
-                    onTap: () => Get.to(() => const SubCategoriesScreen()),
                   );
                 },
               ),

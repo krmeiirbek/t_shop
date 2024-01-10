@@ -6,6 +6,7 @@ class CategoryModel {
   String nameKZ;
   String image;
   String parentId;
+  List<CategoryModel>? subCategories;
   bool isFeatured;
 
   CategoryModel({
@@ -14,6 +15,7 @@ class CategoryModel {
     required this.nameKZ,
     required this.image,
     required this.isFeatured,
+    this.subCategories,
     this.parentId = '',
   });
 
@@ -25,6 +27,24 @@ class CategoryModel {
         isFeatured: false,
       );
 
+  CategoryModel copyWith({
+    String? id,
+    String? nameRU,
+    String? nameKZ,
+    String? image,
+    String? parentId,
+    List<CategoryModel>? subCategories,
+    bool? isFeatured,
+  }) =>
+      CategoryModel(
+        id: id ?? this.id,
+        nameRU: nameRU ?? this.nameRU,
+        nameKZ: nameKZ ?? this.nameKZ,
+        image: image ?? this.image,
+        subCategories: subCategories ?? this.subCategories,
+        isFeatured: isFeatured ?? this.isFeatured,
+      );
+
   Map<String, dynamic> toJson() => {
         'Name_RU': nameRU,
         'Name_KZ': nameKZ,
@@ -33,8 +53,7 @@ class CategoryModel {
         'ParentId': parentId,
       };
 
-  factory CategoryModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+  factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
 
