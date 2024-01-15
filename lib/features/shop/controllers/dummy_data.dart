@@ -3,8 +3,6 @@ import 'package:t_store/routes/routes.dart';
 
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/image_strings.dart';
-import '../../personalization/models/address_model.dart';
-import '../../personalization/models/user_model.dart';
 import '../models/brand_category_model.dart';
 import '../models/brand_model.dart';
 import '../models/cart_item_model.dart';
@@ -18,24 +16,6 @@ import '../models/product_review_model.dart';
 import '../models/product_variation_model.dart';
 
 class TDummyData {
-  /// -- User
-  static final UserModel user = UserModel(
-    name: 'Kazybek',
-    phoneNumber: '7475551101',
-    addresses: [
-      AddressModel(
-        id: '1',
-        name: 'Kazybek',
-        phoneNumber: '7475551101',
-        street: 'Tổ 13 Phố Yên Lộ ',
-        city: 'Hà Nội',
-        state: 'Việt',
-        postalCode: '100000',
-        country: 'Việt Nam',
-      ),
-    ],
-  );
-
   static final List<BannerModel> banners = [
     BannerModel(
       imageURL: TImages.banner1,

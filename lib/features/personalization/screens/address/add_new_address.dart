@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
+import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/validators/validation.dart';
 
-class AddNewAddressScreen extends StatelessWidget {
+class AddNewAddressScreen extends GetView<AddressController> {
   const AddNewAddressScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,9 +20,12 @@ class AddNewAddressScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Form(
+            key: controller.addressFormKey,
             child: Column(
               children: [
                 TextFormField(
+                  validator: (value) => TValidator.validateEmptyText('Name', value),
+                  controller: controller.name,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.user),
                     labelText: 'Аты',
@@ -27,6 +33,8 @@ class AddNewAddressScreen extends StatelessWidget {
                 ),
                 SizedBox(height: TSizes.spaceBtwInputFields),
                 TextFormField(
+                  validator: TValidator.validatePhoneNumber,
+                  controller: controller.phoneNumber,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.mobile),
                     labelText: 'Телефон нөмірі',
@@ -37,6 +45,8 @@ class AddNewAddressScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) => TValidator.validateEmptyText('Street', value),
+                        controller: controller.street,
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.building_31),
                           labelText: 'Көше',
@@ -46,9 +56,11 @@ class AddNewAddressScreen extends StatelessWidget {
                     SizedBox(width: TSizes.spaceBtwInputFields),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) => TValidator.validateEmptyText('HouseNumber', value),
+                        controller: controller.houseNumber,
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.code),
-                          labelText: 'Пошталық индекс',
+                          labelText: 'Үй нөмері',
                         ),
                       ),
                     ),
@@ -59,35 +71,32 @@ class AddNewAddressScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) => TValidator.validateEmptyText('CityOrVillage', value),
+                        controller: controller.cityOrVillage,
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.building),
-                          labelText: 'Қала',
+                          labelText: 'Қала н/е ауыл',
                         ),
                       ),
                     ),
                     SizedBox(width: TSizes.spaceBtwInputFields),
                     Expanded(
                       child: TextFormField(
+                        validator: (value) => TValidator.validateEmptyText('District', value),
+                        controller: controller.district,
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Iconsax.activity),
-                          labelText: 'Облыс',
+                          labelText: 'Аудан',
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: TSizes.spaceBtwInputFields),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.global),
-                    labelText: 'Ел',
-                  ),
-                ),
                 SizedBox(height: TSizes.defaultSpace),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => controller.addNewAddresses(),
                     child: const Text('Сақтау'),
                   ),
                 )

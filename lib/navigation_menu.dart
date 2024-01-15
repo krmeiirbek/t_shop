@@ -1,7 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/personalization/screens/settings/settings.dart';
+import 'package:t_store/features/shop/screens/cart/cart.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
 import 'package:t_store/features/shop/screens/catalog/catalog.dart';
 import 'package:t_store/features/shop/screens/wishlist/wishlist.dart';
@@ -15,6 +17,7 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const CatalogScreen(),
+    const CartScreen(),
     const FavouriteScreen(),
     const SettingsScreen(),
   ];
@@ -29,24 +32,26 @@ class NavigationMenu extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
-        () => NavigationBar(
-          height: 80,
-          elevation: 0,
-          backgroundColor: dark ? TColors.black : TColors.white,
-          indicatorColor: dark
-              ? TColors.white.withOpacity(0.1)
-              : TColors.black.withOpacity(0.1),
-          selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
-          destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Басты'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Каталог'),
-            NavigationDestination(
-                icon: Icon(Iconsax.heart), label: 'Таңдаулылар'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Профиль'),
-          ],
-        ),
+        () => CurvedNavigationBar(
+            index: controller.selectedIndex.value,
+            height: 75.0,
+            items: const <Widget>[
+              Icon(Iconsax.home),
+              Icon(Iconsax.shop),
+              Icon(Iconsax.shopping_cart),
+              Icon(Iconsax.heart),
+              Icon(Iconsax.user),
+            ],
+            color: dark ? TColors.black : TColors.white,
+            buttonBackgroundColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeOut,
+            animationDuration: const Duration(milliseconds: 400),
+            onTap: (index) {
+              controller.selectedIndex.value = index;
+            },
+            letIndexChange: (index) => true,
+          ),
       ),
       body: Obx(() => controller.screens[controller.selectedIndex.value]),
     );

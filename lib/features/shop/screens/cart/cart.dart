@@ -12,7 +12,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TAppBar(
-        showBackArrow: true,
+        showBackArrow: false,
         title: Text('Себет', style: Theme.of(context).textTheme.headlineSmall),
       ),
       body: Padding(
