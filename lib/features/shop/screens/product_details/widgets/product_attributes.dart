@@ -18,139 +18,121 @@ class TProductAttributes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(VariationController());
+    final controller = VariationController.instance;
     final dark = THelperFunctions.isDarkMode(context);
 
-    return Obx(() => Column(
-          children: [
-            /// -- Selected Attribute Pricing & Description
-            if (controller.selectedVariation.value.id.isNotEmpty)
-              TRoundedContainer(
-                padding: EdgeInsets.all(TSizes.md),
-                backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
-                child: Column(
-                  children: [
-                    /// Title, Price, & Stock Status
-                    Row(
-                      children: [
-                        const TSectionHeading(
-                          title: 'Өзгеріс',
-                          showActionButton: false,
-                        ),
-                        SizedBox(width: TSizes.spaceBtwItems),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const TProductTitleText(
-                                  title: 'Бағасы : ',
-                                  smallSize: true,
-                                ),
+    return Obx(
+      () => Column(
+        children: [
+          /// -- Selected Attribute Pricing & Description
+          if (controller.selectedVariation.value.id.isNotEmpty)
+            TRoundedContainer(
+              padding: EdgeInsets.all(TSizes.md),
+              backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
+              child: Column(
+                children: [
+                  /// Title, Price, & Stock Status
+                  Row(
+                    children: [
+                      const TSectionHeading(
+                        title: 'Өзгеріс',
+                        showActionButton: false,
+                      ),
+                      SizedBox(width: TSizes.spaceBtwItems),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const TProductTitleText(
+                                title: 'Бағасы : ',
+                                smallSize: true,
+                              ),
 
-                                /// Actual Price
-                                if (controller
-                                        .selectedVariation.value.salePrice >
-                                    0)
-                                  Text(
-                                    '${controller.selectedVariation.value.price} ₸',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .apply(
-                                            decoration:
-                                                TextDecoration.lineThrough),
-                                  ),
-                                if (controller
-                                        .selectedVariation.value.salePrice >
-                                    0)
-                                  SizedBox(width: TSizes.spaceBtwItems),
-
-                                /// Sale Price
-                                TProductPriceText(
-                                    price: controller.getVariationPrice()),
-                              ],
-                            ),
-
-                            /// Stock
-                            Row(
-                              children: [
-                                const TProductTitleText(
-                                  title: 'Статус : ',
-                                  smallSize: true,
-                                ),
+                              /// Actual Price
+                              if (controller.selectedVariation.value.salePrice > 0)
                                 Text(
-                                  controller.variationStockStatus.value,
-                                  style:
-                                      Theme.of(context).textTheme.titleMedium,
+                                  '${controller.selectedVariation.value.price} ₸',
+                                  style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+                              if (controller.selectedVariation.value.salePrice > 0) SizedBox(width: TSizes.spaceBtwItems),
 
-                    /// Variation Description
-                    TProductTitleText(
-                      title:
-                          controller.selectedVariation.value.description ?? '',
-                      smallSize: true,
-                      maxLines: 4,
-                    ),
-                  ],
-                ),
+                              /// Sale Price
+                              TProductPriceText(price: controller.getVariationPrice()),
+                            ],
+                          ),
+
+                          /// Stock
+                          Row(
+                            children: [
+                              const TProductTitleText(
+                                title: 'Статус : ',
+                                smallSize: true,
+                              ),
+                              Text(
+                                controller.variationStockStatus.value,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  /// Variation Description
+                  TProductTitleText(
+                    title: controller.selectedVariation.value.description ?? '',
+                    smallSize: true,
+                    maxLines: 4,
+                  ),
+                ],
               ),
-            SizedBox(height: TSizes.spaceBtwItems),
-
-            /// -- Attributes
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: product.productAttributes!
-                  .map(
-                    (attribute) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TSectionHeading(
-                          title: attribute.name ?? '',
-                          showActionButton: false,
-                        ),
-                        SizedBox(width: TSizes.spaceBtwItems / 2),
-                        Obx(() => Wrap(
-                              spacing: 8,
-                              children: attribute.values!.map(
-                                (attributeValue) {
-                                  final isSelected = controller
-                                          .selectedAttributes[attribute.name] ==
-                                      attributeValue;
-                                  final available = controller
-                                      .getAttributesAvailabilityInVariation(
-                                          product.productVariations!,
-                                          attribute.name!)
-                                      .contains(attributeValue);
-                                  return TChoiceChip(
-                                    text: attributeValue,
-                                    selected: isSelected,
-                                    onSelected: available
-                                        ? (selectedValue) {
-                                            if (selectedValue && available) {
-                                              controller.onAttributeSelected(
-                                                  product,
-                                                  attribute.name ?? '',
-                                                  attributeValue);
-                                            }
-                                          }
-                                        : null,
-                                  );
-                                },
-                              ).toList(),
-                            )),
-                      ],
-                    ),
-                  )
-                  .toList(),
             ),
-          ],
-        ));
+          SizedBox(height: TSizes.spaceBtwItems),
+
+          /// -- Attributes
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: product.productAttributes!
+                .map(
+                  (attribute) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TSectionHeading(
+                        title: attribute.name ?? '',
+                        showActionButton: false,
+                      ),
+                      SizedBox(width: TSizes.spaceBtwItems / 2),
+                      Obx(
+                        () => Wrap(
+                          spacing: 8,
+                          children: attribute.values!.map(
+                            (attributeValue) {
+                              final isSelected = controller.selectedAttributes[attribute.name] == attributeValue;
+                              final available = controller.getAttributesAvailabilityInVariation(product.productVariations!, attribute.name!).contains(attributeValue);
+                              return TChoiceChip(
+                                text: attributeValue,
+                                selected: isSelected,
+                                onSelected: available
+                                    ? (selectedValue) {
+                                        if (selectedValue && available) {
+                                          controller.onAttributeSelected(product, attribute.name ?? '', attributeValue);
+                                        }
+                                      }
+                                    : null,
+                              );
+                            },
+                          ).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
+    );
   }
 }

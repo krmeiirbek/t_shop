@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -14,7 +15,6 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
-import 'widgets/home_categories.dart';
 import 'widgets/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
+    Get.put(CartController());
     return Scaffold(
       appBar: TAppBar(
         usePrimaryBG: true,
@@ -31,17 +32,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text(
               TTexts.homeAppbarTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium!
-                  .apply(color: TColors.grey),
+              style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey),
             ),
             Text(
               TTexts.homeAppbarSubTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .apply(color: TColors.white),
+              style: Theme.of(context).textTheme.titleMedium!.apply(color: TColors.white),
             ),
           ],
         ),
@@ -65,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections),
                   const TSearchContainer(text: 'Дүкеннен іздеу'),
                   SizedBox(height: TSizes.spaceBtwSections),
-                  const THomeCategories(),
+                  // const THomeCategories(),
                   SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
@@ -95,16 +90,13 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           'Ешнәрсе табылмады',
                           style: Theme.of(context).textTheme.bodyMedium!.apply(
-                                color: THelperFunctions.isDarkMode(context)
-                                    ? TColors.light
-                                    : TColors.dark,
+                                color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.dark,
                               ),
                         ),
                       );
                     }
                     return TGridLayout(
-                      itemBuilder: (_, index) => TProductCardVertical(
-                          product: controller.featuredProducts[index]),
+                      itemBuilder: (_, index) => TProductCardVertical(product: controller.featuredProducts[index]),
                       itemCount: controller.featuredProducts.length,
                     );
                   }),

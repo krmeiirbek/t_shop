@@ -23,10 +23,6 @@ class CategoryController extends GetxController {
     try {
       isLoading.value = true;
       final categories = await _categoryRepository.getCategories();
-      // for (var c in categories) {
-      //   var sc = await getSubCategories(c.id);
-      //   allCategories.add(c.copyWith(subCategories: sc));
-      // }
       allCategories.assignAll(categories);
       featuredCategories.assignAll(allCategories.where((category) => category.isFeatured && category.parentId.isEmpty).take(8).toList());
     } catch (e) {

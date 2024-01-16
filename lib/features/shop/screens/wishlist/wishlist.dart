@@ -29,8 +29,7 @@ class FavouriteScreen extends StatelessWidget {
         actions: [
           TCircularIcon(
             icon: Iconsax.add,
-            onPressed: () =>
-                NavigationController.instance.selectedIndex.value = 1,
+            onPressed: () => NavigationController.instance.selectedIndex.value = 1,
           ),
         ],
       ),
@@ -47,13 +46,12 @@ class FavouriteScreen extends StatelessWidget {
                   animation: TImages.shoppingOptions,
                   showAction: true,
                   actionText: 'Кеттік бірнәрсе қосайық',
-                  onActionPressed: () =>
-                      NavigationController.instance.selectedIndex.value = 1,
+                  onActionPressed: () => NavigationController.instance.selectedIndex.value = 0,
                 );
                 final widget = TCloudHelperFunctions.checkMultiRecordState(
-                    snapshot: snapshot,
-                    loader: loader,
-                    nothingFound: emptyWidget,
+                  snapshot: snapshot,
+                  loader: loader,
+                  nothingFound: emptyWidget,
                 );
                 if (widget != null) {
                   return widget;
@@ -61,8 +59,7 @@ class FavouriteScreen extends StatelessWidget {
                 final products = snapshot.data!;
                 return TGridLayout(
                   itemCount: products.length,
-                  itemBuilder: (_, index) =>
-                      TProductCardVertical(product: products[index]),
+                  itemBuilder: (_, index) => TProductCardVertical(product: products[index]),
                 );
               })),
         ),

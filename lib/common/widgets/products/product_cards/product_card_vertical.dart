@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
@@ -16,6 +15,8 @@ import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
+import 'add_to_cart_button.dart';
+
 class TProductCardVertical extends GetView<ProductController> {
   const TProductCardVertical({super.key, required this.product});
 
@@ -23,8 +24,7 @@ class TProductCardVertical extends GetView<ProductController> {
 
   @override
   Widget build(BuildContext context) {
-    final salePercentage =
-        controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetailScreen(product: product)),
@@ -58,14 +58,10 @@ class TProductCardVertical extends GetView<ProductController> {
                       child: TRoundedContainer(
                         radius: TSizes.sm,
                         backgroundColor: TColors.secondary.withOpacity(0.8),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: TSizes.sm, vertical: TSizes.xs),
+                        padding: EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
                         child: Text(
                           '$salePercentage%',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge!
-                              .apply(color: TColors.black),
+                          style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),
                         ),
                       ),
                     ),
@@ -99,42 +95,22 @@ class TProductCardVertical extends GetView<ProductController> {
                 Flexible(
                   child: Column(
                     children: [
-                      if (product.productType ==
-                              ProductType.single.toString() &&
-                          product.salePrice > 0)
+                      if (product.productType == ProductType.single.toString() && product.salePrice > 0)
                         Padding(
                           padding: EdgeInsets.only(left: TSizes.sm),
                           child: Text(
                             product.price.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium!
-                                .apply(decoration: TextDecoration.lineThrough),
+                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           ),
                         ),
                       Padding(
                         padding: EdgeInsets.only(left: TSizes.sm),
-                        child: TProductPriceText(
-                            price: controller.getProductPrice(product)),
+                        child: TProductPriceText(price: controller.getProductPrice(product)),
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: TColors.dark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(TSizes.cardRadiusMd),
-                      bottomRight: Radius.circular(TSizes.productImageRadius),
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: TSizes.iconLg * 1.2,
-                    height: TSizes.iconLg * 1.2,
-                    child: const Center(
-                        child: Icon(Iconsax.add, color: TColors.white)),
-                  ),
-                ),
+                ProductCardAddToCartButton(product: product),
               ],
             ),
           ],

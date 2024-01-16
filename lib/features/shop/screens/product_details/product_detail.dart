@@ -14,15 +14,14 @@ import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({Key? key, required this.product})
-      : super(key: key);
+  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
 
   final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -45,10 +44,8 @@ class ProductDetailScreen extends StatelessWidget {
                   TProductMetaData(product: product),
 
                   /// -- Attributes
-                  if (product.productType == ProductType.variable.toString())
-                    TProductAttributes(product: product),
-                  if (product.productType == ProductType.variable.toString())
-                    SizedBox(height: TSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString()) TProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString()) SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Checkout Button
                   SizedBox(
@@ -61,8 +58,7 @@ class ProductDetailScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Description
-                  const TSectionHeading(
-                      title: 'Сипаттамасы', showActionButton: false),
+                  const TSectionHeading(title: 'Сипаттамасы', showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwSections),
                   ReadMoreText(
                     product.description ?? '',
@@ -70,10 +66,8 @@ class ProductDetailScreen extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: ' Толығырақ көрсету',
                     trimExpandedText: ' Аз көрсету',
-                    moreStyle: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   /// -- Reviews
@@ -82,12 +76,10 @@ class ProductDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const TSectionHeading(
-                          title: 'Пікірлер(199)', showActionButton: false),
+                      const TSectionHeading(title: 'Пікірлер(199)', showActionButton: false),
                       IconButton(
                         icon: const Icon(Iconsax.arrow_right_3, size: 18),
-                        onPressed: () =>
-                            Get.to(() => const ProductReviewsScreen()),
+                        onPressed: () => Get.to(() => const ProductReviewsScreen()),
                       ),
                     ],
                   ),

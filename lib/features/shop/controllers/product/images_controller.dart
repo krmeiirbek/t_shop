@@ -9,25 +9,15 @@ class ImagesController extends GetxController {
   final selectedProductImage = ''.obs;
 
   List<String> getAllProductImages(ProductModel product) {
-    // Use Set to add unique images only
     Set<String> images = {};
-
-    // Load thumbnail image
     images.add(product.thumbnail);
-    // Assign Thumbnail as Selected Image
     selectedProductImage.value = product.thumbnail;
-
-    // Get all images from the Product Model if not null.
     if (product.images != null) {
       images.addAll(product.images!);
     }
-
-    // Get all images from the Product Variations if not null.
     if (product.productVariations != null) {
-      images.addAll(
-          product.productVariations!.map((variation) => variation.image));
+      images.addAll(product.productVariations!.map((variation) => variation.image));
     }
-
     return images.toList();
   }
 
@@ -41,9 +31,7 @@ class ImagesController extends GetxController {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: TSizes.defaultSpace * 2,
-                  horizontal: TSizes.defaultSpace),
+              padding: EdgeInsets.symmetric(vertical: TSizes.defaultSpace * 2, horizontal: TSizes.defaultSpace),
               child: CachedNetworkImage(imageUrl: image),
             ),
             SizedBox(height: TSizes.spaceBtwSections),

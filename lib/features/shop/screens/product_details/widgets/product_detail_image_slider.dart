@@ -21,7 +21,6 @@ class TProductImageSlider extends StatelessWidget {
     final controller = Get.put(ImagesController());
     final images = controller.getAllProductImages(product);
     final dark = THelperFunctions.isDarkMode(context);
-
     return TCurvedEdgesWidget(
       child: Container(
         color: dark ? TColors.darkerGrey : TColors.light,
@@ -39,8 +38,7 @@ class TProductImageSlider extends StatelessWidget {
                       onTap: () => controller.showEnlargedImage(image),
                       child: CachedNetworkImage(
                         imageUrl: image,
-                        progressIndicatorBuilder: (_, __, downloadProgress) =>
-                            CircularProgressIndicator(
+                        progressIndicatorBuilder: (_, __, downloadProgress) => CircularProgressIndicator(
                           value: downloadProgress.progress,
                           color: TColors.primary,
                         ),
@@ -63,21 +61,16 @@ class TProductImageSlider extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  separatorBuilder: (_, __) =>
-                      SizedBox(width: TSizes.spaceBtwItems),
+                  separatorBuilder: (_, __) => SizedBox(width: TSizes.spaceBtwItems),
                   itemBuilder: (_, index) => Obx(() {
-                    final imageSelected =
-                        controller.selectedProductImage.value == images[index];
+                    final imageSelected = controller.selectedProductImage.value == images[index];
                     return TRoundedImage(
                       width: 80,
-                      onPressed: () =>
-                          controller.selectedProductImage.value = images[index],
+                      onPressed: () => controller.selectedProductImage.value = images[index],
                       backgroundColor: dark ? TColors.dark : TColors.white,
                       padding: EdgeInsets.all(TSizes.sm),
                       border: Border.all(
-                        color: imageSelected
-                            ? TColors.primary
-                            : Colors.transparent,
+                        color: imageSelected ? TColors.primary : Colors.transparent,
                       ),
                       imageUrl: images[index],
                       isNetworkImage: true,

@@ -21,8 +21,7 @@ class FavouritesController extends GetxController {
     final json = TLocalStorage.instance().readData('favourites');
     if (json != null) {
       final storedFavourites = jsonDecode(json) as Map<String, dynamic>;
-      favourites.assignAll(
-          storedFavourites.map((key, value) => MapEntry(key, value as bool)));
+      favourites.assignAll(storedFavourites.map((key, value) => MapEntry(key, value as bool)));
     }
   }
 
@@ -31,7 +30,7 @@ class FavouritesController extends GetxController {
   }
 
   void toggleFavouriteProduct(String productId) {
-    if(favourites.containsKey(productId)){
+    if (favourites.containsKey(productId)) {
       TLocalStorage.instance().removeData(productId);
       favourites.remove(productId);
       saveFavouritesToStorage();
@@ -46,7 +45,7 @@ class FavouritesController extends GetxController {
 
   void saveFavouritesToStorage() {
     final encodedFavourites = json.encode(favourites);
-    TLocalStorage.instance().saveData('favourites', encodedFavourites);
+    TLocalStorage.instance().writeData('favourites', encodedFavourites);
   }
 
   Future<List<ProductModel>> favouriteProducts() async {

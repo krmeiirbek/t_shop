@@ -18,7 +18,7 @@ class TLocalStorage {
   }
 
   // Generic method to save data
-  Future<void> saveData<T>(String key, T value) async {
+  Future<void> writeData<T>(String key, T value) async {
     await _storage.write(key, value);
   }
 
@@ -30,10 +30,6 @@ class TLocalStorage {
   // Generic method to remove data
   Future<void> removeData(String key) async {
     await _storage.remove(key);
-  }
-
-  Future<void> writeIfNull(String key, value) async {
-    await _storage.writeIfNull(key, value);
   }
 
   // Clear all data in storage

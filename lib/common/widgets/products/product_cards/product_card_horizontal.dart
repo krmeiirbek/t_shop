@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/products/favourite_icon/favourite_icon.dart';
+import 'package:t_store/common/widgets/products/product_cards/add_to_cart_button.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
@@ -16,16 +16,14 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class TProductCardHorizontal extends GetView<ProductController> {
-  const TProductCardHorizontal({Key? key, required this.product})
-      : super(key: key);
+  const TProductCardHorizontal({Key? key, required this.product}) : super(key: key);
 
   final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    final salePercentage =
-        controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetailScreen(product: product)),
       child: Container(
@@ -59,14 +57,10 @@ class TProductCardHorizontal extends GetView<ProductController> {
                       child: TRoundedContainer(
                         radius: TSizes.sm,
                         backgroundColor: TColors.secondary.withOpacity(0.8),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: TSizes.sm, vertical: TSizes.xs),
+                        padding: EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
                         child: Text(
                           '$salePercentage%',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge!
-                              .apply(color: TColors.black),
+                          style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),
                         ),
                       ),
                     ),
@@ -94,8 +88,7 @@ class TProductCardHorizontal extends GetView<ProductController> {
                           smallSize: true,
                         ),
                         SizedBox(height: TSizes.spaceBtwItems / 2),
-                        TBrandTitleWithVerifiedIcon(
-                            title: '${product.brand?.name}'),
+                        TBrandTitleWithVerifiedIcon(title: '${product.brand?.name}'),
                       ],
                     ),
                     const Spacer(),
@@ -106,51 +99,24 @@ class TProductCardHorizontal extends GetView<ProductController> {
                         Flexible(
                           child: Column(
                             children: [
-                              if (product.productType ==
-                                      ProductType.single.toString() &&
-                                  product.salePrice > 0)
+                              if (product.productType == ProductType.single.toString() && product.salePrice > 0)
                                 Padding(
                                   padding: EdgeInsets.only(left: TSizes.sm),
                                   child: Text(
                                     product.price.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium!
-                                        .apply(
-                                            decoration:
-                                                TextDecoration.lineThrough),
+                                    style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                                   ),
                                 ),
                               Padding(
                                 padding: EdgeInsets.only(left: TSizes.sm),
-                                child: TProductPriceText(
-                                    price: controller.getProductPrice(product)),
+                                child: TProductPriceText(price: controller.getProductPrice(product)),
                               ),
                             ],
                           ),
                         ),
 
                         /// Add to Cart Button
-                        Container(
-                          decoration: BoxDecoration(
-                            color: TColors.dark,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(TSizes.cardRadiusMd),
-                              bottomRight:
-                                  Radius.circular(TSizes.productImageRadius),
-                            ),
-                          ),
-                          child: SizedBox(
-                            width: TSizes.iconLg * 1.2,
-                            height: TSizes.iconLg * 1.2,
-                            child: const Center(
-                              child: Icon(
-                                Iconsax.add,
-                                color: TColors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        ProductCardAddToCartButton(product: product),
                       ],
                     )
                   ],

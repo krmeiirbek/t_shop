@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
+import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
-class TBottomAddToCart extends StatelessWidget {
-  const TBottomAddToCart({Key? key}) : super(key: key);
+class TBottomAddToCart extends GetView<CartController> {
+  const TBottomAddToCart({Key? key, required this.product}) : super(key: key);
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-
+    controller.updateAlreadyAddedProductCount(product);
     return Container(
       padding: EdgeInsets.only(
         left: TSizes.defaultSpace,
@@ -26,41 +31,43 @@ class TBottomAddToCart extends StatelessWidget {
           topRight: Radius.circular(TSizes.cardRadiusLg),
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+      child: Obx(() => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TCircularIcon(
-                icon: Iconsax.minus,
-                backgroundColor: TColors.darkGrey,
-                width: 40,
-                height: 40,
-                color: TColors.white,
+              Row(
+                children: [
+                  TCircularIcon(
+                    icon: Iconsax.minus,
+                    backgroundColor: TColors.darkGrey,
+                    width: 40,
+                    height: 40,
+                    color: TColors.white,
+                    onPressed: () => controller.productQuantityInCart.value < 1 ? null : controller.productQuantityInCart.value--,
+                  ),
+                  SizedBox(width: TSizes.spaceBtwItems),
+                  Text(controller.productQuantityInCart.value.toString(), style: Theme.of(context).textTheme.titleSmall),
+                  SizedBox(width: TSizes.spaceBtwItems),
+                  TCircularIcon(
+                    icon: Iconsax.add,
+                    backgroundColor: TColors.black,
+                    width: 40,
+                    height: 40,
+                    color: TColors.white,
+                    onPressed: () => controller.productQuantityInCart.value++,
+                  ),
+                ],
               ),
-              SizedBox(width: TSizes.spaceBtwItems),
-              Text('2', style: Theme.of(context).textTheme.titleSmall),
-              SizedBox(width: TSizes.spaceBtwItems),
-              const TCircularIcon(
-                icon: Iconsax.add,
-                backgroundColor: TColors.black,
-                width: 40,
-                height: 40,
-                color: TColors.white,
+              ElevatedButton(
+                onPressed: controller.productQuantityInCart.value < 1 ? null : () => controller.addToCart(product),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(TSizes.md),
+                  backgroundColor: TColors.black,
+                  side: const BorderSide(color: TColors.black),
+                ),
+                child: const Text('Себетке қосу'),
               ),
             ],
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.all(TSizes.md),
-              backgroundColor: TColors.black,
-              side: const BorderSide(color: TColors.black),
-            ),
-            child: const Text('Себетке қосу'),
-          ),
-        ],
-      ),
+          )),
     );
   }
 }
