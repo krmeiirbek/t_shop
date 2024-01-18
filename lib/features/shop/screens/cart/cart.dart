@@ -30,17 +30,14 @@ class CartScreen extends GetView<CartController> {
         if (controller.cartItems.isEmpty) {
           return emptyWidget;
         } else {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
+          return Padding(
+            padding: EdgeInsets.all(TSizes.defaultSpace),
 
-              /// Items in Cart
-              child: const TCartItems(),
-            ),
+            /// Items in Cart
+            child: const TCartItems(),
           );
         }
       }),
-
       /// Checkout Button
       bottomNavigationBar: controller.cartItems.isEmpty
           ? const SizedBox()

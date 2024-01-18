@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/helpers/pricing_calculator.dart';
 
-class TBillingAmountSection extends StatelessWidget {
+class TBillingAmountSection extends GetView<CartController> {
   const TBillingAmountSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final subTotal = controller.totalCartPrice.value;
     return Column(
       children: [
         /// Subtotal
@@ -13,7 +17,7 @@ class TBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Жиынтық', style: Theme.of(context).textTheme.bodyMedium),
-            Text('256.0 ₸', style: Theme.of(context).textTheme.bodyMedium),
+            Text('$subTotal ₸', style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -23,7 +27,7 @@ class TBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Жеткізу ақысы', style: Theme.of(context).textTheme.bodyMedium),
-            Text('6.0 ₸', style: Theme.of(context).textTheme.labelLarge),
+            Text('${TPricingCalculator.calculateShippingCost(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -33,7 +37,7 @@ class TBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Салық алымы', style: Theme.of(context).textTheme.bodyMedium),
-            Text('6.0 ₸', style: Theme.of(context).textTheme.labelLarge),
+            Text('${TPricingCalculator.calculateTax(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -43,7 +47,7 @@ class TBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Тапсырыс жиынтығы', style: Theme.of(context).textTheme.bodyMedium),
-            Text('256.0 ₸', style: Theme.of(context).textTheme.titleMedium),
+            Text('${TPricingCalculator.calculateTotalPrice(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
       ],

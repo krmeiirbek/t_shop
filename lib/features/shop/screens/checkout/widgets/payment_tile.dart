@@ -6,7 +6,7 @@ import '../../../../../common/widgets/custom_shapes/containers/rounded_container
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
-import '../../../controllers/checkout_controller.dart';
+import '../../../controllers/product/checkout_controller.dart';
 import '../../../models/payment_method_model.dart';
 
 class TPaymentTile extends StatelessWidget {

@@ -1,47 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-class TBillingAddressSection extends StatelessWidget {
+class TBillingAddressSection extends GetView<AddressController> {
   const TBillingAddressSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TSectionHeading(
-          title: 'Жеткізу мекенжайы',
-          buttonTitle: 'Өзгерту',
-          onPressed: () {},
-        ),
-        Text('Kazybek Meiirbek', style: Theme.of(context).textTheme.bodyLarge),
-        SizedBox(height: TSizes.spaceBtwItems / 2),
-        Row(
+    return Obx(() => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.phone, color: Colors.grey, size: 16),
-            SizedBox(width: TSizes.spaceBtwItems),
-            Text(
-              '+7 (747) 555 11 01',
-              style: Theme.of(context).textTheme.bodyMedium,
+            TSectionHeading(
+              title: 'Жеткізу мекенжайы',
+              buttonTitle: 'Өзгерту',
+              onPressed: () => controller.selectNewAddressPopup(context),
             ),
+            controller.selectedAddress.value.id.isNotEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(controller.selectedAddress.value.name, style: Theme.of(context).textTheme.bodyLarge),
+                      SizedBox(height: TSizes.spaceBtwItems / 2),
+                      Row(
+                        children: [
+                          const Icon(Icons.phone, color: Colors.grey, size: 16),
+                          SizedBox(width: TSizes.spaceBtwItems),
+                          Text(
+                            controller.selectedAddress.value.phoneNumber,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: TSizes.spaceBtwItems / 2),
+                      Row(
+                        children: [
+                          const Icon(Icons.location_history, color: Colors.grey, size: 16),
+                          SizedBox(width: TSizes.spaceBtwItems),
+                          Expanded(
+                            child: Text(
+                              controller.selectedAddress.value.toString(),
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                : Text('Жеткізу мекенжайын таңдаңыз', style: Theme.of(context).textTheme.bodyMedium),
           ],
-        ),
-        SizedBox(height: TSizes.spaceBtwItems / 2),
-        Row(
-          children: [
-            const Icon(Icons.location_history, color: Colors.grey, size: 16),
-            SizedBox(width: TSizes.spaceBtwItems),
-            Expanded(
-              child: Text(
-                'Жетісай қаласы, ул Кожанова, 6',
-                style: Theme.of(context).textTheme.bodyMedium,
-                softWrap: true,
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
+        ));
   }
 }

@@ -11,8 +11,7 @@ class OrderScreen extends StatelessWidget {
     return Scaffold(
       /// -- AppBar
       appBar: TAppBar(
-        title:
-            Text('Менің тапсырыстарым', style: Theme.of(context).textTheme.headlineSmall),
+        title: Text('Менің тапсырыстарым', style: Theme.of(context).textTheme.headlineSmall),
         showBackArrow: true,
       ),
       body: Padding(
