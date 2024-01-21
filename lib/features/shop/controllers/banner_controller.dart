@@ -8,28 +8,22 @@ class BannerController extends GetxController {
 
   final isLoading = false.obs;
   final carousalCurrentIndex = 0.obs;
-  final banners = <BannerModel>[].obs;
   final _bannerRepository = Get.put(BannerRepository());
 
   void updatePageIndicator(int index) {
     carousalCurrentIndex.value = index;
   }
 
-  Future<void> fetchBanners() async {
+  Future<List<BannerModel>> fetchBannersWithIds(List<String> bannerIds) async {
     try {
       isLoading.value = true;
-      final banners = await _bannerRepository.fetchBanners();
-      this.banners.assignAll(banners);
+      final banners = await _bannerRepository.fetchBannersWithIds(bannerIds);
+      return banners;
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      return [];
     } finally {
       isLoading.value = false;
     }
-  }
-
-  @override
-  void onInit() {
-    fetchBanners();
-    super.onInit();
   }
 }

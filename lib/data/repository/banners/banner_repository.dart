@@ -12,15 +12,10 @@ class BannerRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
-  Future<List<BannerModel>> fetchBanners() async {
+  Future<List<BannerModel>> fetchBannersWithIds(List<String> bannerIds) async {
     try {
-      final result = await _db
-          .collection('Banners')
-          .where('Active', isEqualTo: true)
-          .get();
-      return result.docs
-          .map((documentSnapshot) => BannerModel.fromSnapshot(documentSnapshot))
-          .toList();
+      final result = await _db.collection('Banners').where(FieldPath.documentId, whereIn: bannerIds).get();
+      return result.docs.map((documentSnapshot) => BannerModel.fromSnapshot(documentSnapshot)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
@@ -37,8 +32,7 @@ class BannerRepository extends GetxController {
       final storage = Get.put(TFirebaseStorageService());
       for (var banner in banners) {
         final file = await storage.getImageDataFromAssets(banner.imageURL);
-        final url =
-            await storage.uploadImageData('Banners', file, banner.imageURL);
+        final url = await storage.uploadImageData('Banners', file, banner.imageURL);
         banner.imageURL = url;
         await _db.collection("Banners").doc().set(banner.toJson());
       }

@@ -13,12 +13,11 @@ import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends GetView<UserController> {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UserController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

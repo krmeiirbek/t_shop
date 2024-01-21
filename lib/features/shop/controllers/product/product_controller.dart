@@ -38,6 +38,15 @@ class ProductController extends GetxController {
     }
   }
 
+  Future<List<ProductModel>> fetchAllProductsWithProductIds(List<String> productIds) async {
+    try {
+      return await productRepository.getAllProductsWithProductIds(productIds);
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      return [];
+    }
+  }
+
   /// -- Get Single Price Or Price Range in case of variations $5 - $29.99
   String getProductPrice(ProductModel product) {
     double smallestPrice = double.infinity;

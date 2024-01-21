@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/products/favourite_icon/favourite_icon.dart';
@@ -27,25 +28,24 @@ class TProductCardHorizontal extends GetView<ProductController> {
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetailScreen(product: product)),
       child: Container(
-        width: 310,
+        width: 180,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
+          boxShadow: [TShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-          color: dark ? TColors.darkerGrey : TColors.softGrey,
+          color: dark ? TColors.darkGrey : TColors.white,
         ),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Thumbnail
             TRoundedContainer(
-              height: 120,
+              height: 180,
               padding: EdgeInsets.all(TSizes.sm),
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  /// -- Thumbnail Image
-                  SizedBox(
-                    height: 120,
-                    width: 120,
+                  const Row(children: [SizedBox()]),
+                  Center(
                     child: TRoundedImage(
                       imageUrl: product.thumbnail,
                       isNetworkImage: true,
@@ -72,57 +72,46 @@ class TProductCardHorizontal extends GetView<ProductController> {
                 ],
               ),
             ),
-
-            /// Details
-            SizedBox(
-              width: 172,
-              child: Padding(
-                padding: EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
-                child: Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TProductTitleText(
-                          title: product.title,
-                          smallSize: true,
-                        ),
-                        SizedBox(height: TSizes.spaceBtwItems / 2),
-                        TBrandTitleWithVerifiedIcon(title: '${product.brand?.name}'),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        /// Pricing
-                        Flexible(
-                          child: Column(
-                            children: [
-                              if (product.productType == ProductType.single.toString() && product.salePrice > 0)
-                                Padding(
-                                  padding: EdgeInsets.only(left: TSizes.sm),
-                                  child: Text(
-                                    product.price.toString(),
-                                    style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
-                                  ),
-                                ),
-                              Padding(
-                                padding: EdgeInsets.only(left: TSizes.sm),
-                                child: TProductPriceText(price: controller.getProductPrice(product)),
-                              ),
-                            ],
+            SizedBox(height: TSizes.spaceBtwItems / 2),
+            Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TProductTitleText(
+                    title: product.title,
+                    smallSize: true,
+                  ),
+                  SizedBox(height: TSizes.spaceBtwItems / 2),
+                  TBrandTitleWithVerifiedIcon(title: '${product.brand?.name}'),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Column(
+                    children: [
+                      if (product.productType == ProductType.single.toString() && product.salePrice > 0)
+                        Padding(
+                          padding: EdgeInsets.only(left: TSizes.sm),
+                          child: Text(
+                            product.price.toString(),
+                            style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           ),
                         ),
-
-                        /// Add to Cart Button
-                        ProductCardAddToCartButton(product: product),
-                      ],
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(left: TSizes.sm),
+                        child: TProductPriceText(price: controller.getProductPrice(product)),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
+                ProductCardAddToCartButton(product: product),
+              ],
+            ),
           ],
         ),
       ),

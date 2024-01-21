@@ -3,28 +3,31 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:t_store/common/widgets/layouts/grid_layout.dart';
-import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
-import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/features/shop/controllers/banner_controller.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
+import 'package:t_store/features/shop/controllers/home_controller.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
+import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
-import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
-import 'package:t_store/utils/helpers/helper_functions.dart';
 
-import 'widgets/promo_slider.dart';
+import 'widgets/home_items.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductController());
+    Get.put(HomeController());
+    Get.put(BannerController());
+    Get.put(ProductController());
     Get.put(CartController());
+    Get.put(CategoryController());
+    Get.put(FavouritesController());
+    Get.put(UserController());
     Get.put(CategoryController());
     return Scaffold(
       appBar: TAppBar(
@@ -69,41 +72,7 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(TSizes.defaultSpace),
-              child: Column(
-                children: [
-                  const TPromoSlider(),
-                  SizedBox(height: TSizes.spaceBtwSections),
-                  TSectionHeading(
-                    title: 'Танымал өнімдер',
-                    onPressed: () => Get.to(
-                      () => AllProducts(
-                        title: 'Танымал өнімдер',
-                        futureMethod: controller.fetchAllFeaturedProducts(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: TSizes.spaceBtwItems),
-                  Obx(() {
-                    if (controller.isLoading.value) {
-                      return const TVerticalProductShimmer();
-                    }
-                    if (controller.featuredProducts.isEmpty) {
-                      return Center(
-                        child: Text(
-                          'Ешнәрсе табылмады',
-                          style: Theme.of(context).textTheme.bodyMedium!.apply(
-                                color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.dark,
-                              ),
-                        ),
-                      );
-                    }
-                    return TGridLayout(
-                      itemBuilder: (_, index) => TProductCardVertical(product: controller.featuredProducts[index]),
-                      itemCount: controller.featuredProducts.length,
-                    );
-                  }),
-                ],
-              ),
+              child: const HomeItems(),
             ),
           ],
         ),
