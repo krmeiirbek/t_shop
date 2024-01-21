@@ -39,7 +39,10 @@ class HomeController extends GetxController {
       case 'banners':
         return Column(
           children: [
-            TPromoSlider(futureMethod: BannerController.instance.fetchBannersWithIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList())),
+            TPromoSlider(
+              futureMethod: BannerController.instance.fetchBannersWithIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
+              carousalCurrentIndex: 0.obs,
+            ),
             SizedBox(height: TSizes.spaceBtwSections),
           ],
         );

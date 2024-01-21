@@ -35,9 +35,11 @@ class AddNewAddressScreen extends GetView<AddressController> {
                 TextFormField(
                   validator: TValidator.validatePhoneNumber,
                   controller: controller.phoneNumber,
+                  keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Iconsax.mobile),
                     labelText: 'Телефон нөмірі',
+                    prefixText: '+7',
                   ),
                 ),
                 SizedBox(height: TSizes.spaceBtwInputFields),

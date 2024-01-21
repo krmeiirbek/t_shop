@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/shimmer/shimmer.dart';
-import 'package:t_store/features/shop/controllers/banner_controller.dart';
 import 'package:t_store/features/shop/models/banner_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -12,13 +11,13 @@ import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class TPromoSlider extends StatelessWidget {
-  const TPromoSlider({super.key, this.futureMethod});
+  const TPromoSlider({super.key, this.futureMethod, required this.carousalCurrentIndex});
 
   final Future<List<BannerModel>>? futureMethod;
+  final RxInt carousalCurrentIndex;
 
   @override
   Widget build(BuildContext context) {
-    final controller = BannerController.instance;
     return FutureBuilder<List<BannerModel>>(
       future: futureMethod,
       initialData: const [],
@@ -54,7 +53,7 @@ class TPromoSlider extends StatelessWidget {
                   .toList(),
               options: CarouselOptions(
                 viewportFraction: 1,
-                onPageChanged: (index, _) => controller.carousalCurrentIndex(index),
+                onPageChanged: (index, _) => carousalCurrentIndex(index),
               ),
             ),
             SizedBox(height: TSizes.spaceBtwItems),
@@ -67,7 +66,7 @@ class TPromoSlider extends StatelessWidget {
                       height: 4,
                       width: 20,
                       margin: const EdgeInsets.only(right: 10),
-                      backgroundColor: controller.carousalCurrentIndex.value == i ? TColors.primary : TColors.grey,
+                      backgroundColor: carousalCurrentIndex.value == i ? TColors.primary : TColors.grey,
                     ),
                 ],
               ),

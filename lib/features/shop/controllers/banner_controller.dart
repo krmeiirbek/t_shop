@@ -7,12 +7,7 @@ class BannerController extends GetxController {
   static BannerController get instance => Get.find();
 
   final isLoading = false.obs;
-  final carousalCurrentIndex = 0.obs;
   final _bannerRepository = Get.put(BannerRepository());
-
-  void updatePageIndicator(int index) {
-    carousalCurrentIndex.value = index;
-  }
 
   Future<List<BannerModel>> fetchBannersWithIds(List<String> bannerIds) async {
     try {

@@ -27,6 +27,12 @@ class AddressController extends GetxController {
   final addressRepository = Get.put(AddressRepository());
   final selectedAddress = AddressModel.empty().obs;
 
+  @override
+  void onInit() async {
+    await getAllUserAddresses();
+    super.onInit();
+  }
+
   Future<List<AddressModel>> getAllUserAddresses() async {
     try {
       final addresses = await addressRepository.fetchUserAddresses();

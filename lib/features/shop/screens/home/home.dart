@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/shop/controllers/banner_controller.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
@@ -29,21 +30,37 @@ class HomeScreen extends StatelessWidget {
     Get.put(FavouritesController());
     Get.put(UserController());
     Get.put(CategoryController());
+    final addressController = Get.put(AddressController());
     return Scaffold(
       appBar: TAppBar(
         usePrimaryBG: true,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              TTexts.homeAppbarTitle,
-              style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey),
+        title: Obx(
+          () => InkWell(
+            onTap: () => addressController.selectNewAddressPopup(context),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                addressController.selectedAddress.value.id.isNotEmpty
+                    ? Row(
+                        children: [
+                          const Icon(Icons.location_on_outlined, color: Colors.yellowAccent, size: 24),
+                          SizedBox(width: TSizes.spaceBtwItems),
+                          Expanded(
+                            child: Text(
+                              addressController.selectedAddress.value.toString(),
+                              style: Theme.of(context).textTheme.titleMedium!.apply(color: TColors.white),
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      )
+                    : Text(
+                        TTexts.homeAppbarSubTitle,
+                        style: Theme.of(context).textTheme.titleMedium!.apply(color: TColors.white),
+                      ),
+              ],
             ),
-            Text(
-              TTexts.homeAppbarSubTitle,
-              style: Theme.of(context).textTheme.titleMedium!.apply(color: TColors.white),
-            ),
-          ],
+          ),
         ),
         actions: [
           IconButton(

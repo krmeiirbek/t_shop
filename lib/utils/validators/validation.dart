@@ -12,10 +12,10 @@ class TValidator {
     }
 
     // Regular expression for phone number validation
-    final phoneRegExp = RegExp(r'^87\d{9}$');
+    final phoneRegExp = RegExp(r'^7\d{9}$');
 
     if (!phoneRegExp.hasMatch(value)) {
-      return 'Жарамсыз телефон нөмірінің форматы. 87xxxxxxxxx пайдаланыңыз';
+      return 'Жарамсыз телефон нөмірінің форматы. +77xxxxxxxxx пайдаланыңыз';
     }
 
     return null;

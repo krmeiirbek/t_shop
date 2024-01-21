@@ -38,16 +38,18 @@ class CartScreen extends GetView<CartController> {
           );
         }
       }),
+
       /// Checkout Button
-      bottomNavigationBar: controller.cartItems.isEmpty
-          ? const SizedBox()
-          : Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
-              child: ElevatedButton(
-                onPressed: () => Get.to(() => const CheckoutScreen()),
-                child: Obx(() => Text('Төлем ${controller.totalCartPrice.value} ₸')),
-              ),
-            ),
+      bottomNavigationBar: Obx(() {
+        if (controller.cartItems.isEmpty) return const SizedBox();
+        return Padding(
+          padding: EdgeInsets.all(TSizes.defaultSpace),
+          child: ElevatedButton(
+            onPressed: () => Get.to(() => const CheckoutScreen()),
+            child: Obx(() => Text('Төлем ${controller.totalCartPrice.value} ₸')),
+          ),
+        );
+      }),
     );
   }
 }
