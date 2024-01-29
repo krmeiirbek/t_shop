@@ -7,7 +7,6 @@ import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/sub_catalog/sub_catalog.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
-
 class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();
 
@@ -52,20 +51,20 @@ class CategoryController extends GetxController {
     return products;
   }
 
-  Future<void> goToSubCategoryOrProductsScreen(String categoryId) async {
+  Future<void> goToSubCategoryOrProductsScreen(CategoryModel category) async {
     try {
       isLoading.value = true;
-      final subCategories = await getSubCategories(categoryId);
+      final subCategories = await getSubCategories(category.id);
       if (subCategories.isNotEmpty) {
         Get.to(
-          () => SubCatalogScreen(categoryId: categoryId, subCategories: subCategories),
+          () => SubCatalogScreen(categoryId: category.id, subCategories: subCategories),
           preventDuplicates: false,
         );
       } else {
         Get.to(
           () => AllProducts(
-            title: categoryId,
-            futureMethod: ProductRepository.instance.getProductsWithCategoryId(categoryId),
+            title: category.nameKZ,
+            futureMethod: ProductRepository.instance.getProductsWithCategoryId(category.id),
           ),
         );
       }

@@ -40,7 +40,7 @@ class SubCatalogScreen extends GetView<CategoryController> {
                   itemCount: subCategories.length,
                   itemBuilder: (_, index) => CatalogItem(
                     category: subCategories[index],
-                    onTap: () => controller.goToSubCategoryOrProductsScreen(subCategories[index].id),
+                    onTap: () => controller.goToSubCategoryOrProductsScreen(subCategories[index]),
                   ),
                   separatorBuilder: (_, index) => const Divider(indent: 35),
                 ),

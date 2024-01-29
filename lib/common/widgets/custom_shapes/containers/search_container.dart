@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/shop/controllers/search_controller.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/device/device_utility.dart';
@@ -25,8 +27,9 @@ class TSearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+    final controller = Get.put(ZhetSearchController());
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => controller.openSearchBar(context),
       child: Padding(
         padding: padding,
         child: Container(
