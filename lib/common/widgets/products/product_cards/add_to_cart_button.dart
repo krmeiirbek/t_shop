@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
@@ -44,7 +44,7 @@ class ProductCardAddToCartButton extends StatelessWidget {
             child: Center(
               child: productQuantityInCart > 0
                   ? Text(productQuantityInCart.toString(), style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.white))
-                  : const Icon(Iconsax.add, color: TColors.white),
+                  : const Icon(Iconsax.add_outline, color: TColors.white),
             ),
           ),
         );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/features/personalization/screens/address/add_new_address.dart';
@@ -20,7 +20,7 @@ class UserAddressScreen extends StatelessWidget {
         onPressed: () => Get.to(() => const AddNewAddressScreen()),
         backgroundColor: TColors.primary,
         child: const Icon(
-          Iconsax.add,
+          Iconsax.add_outline,
           color: TColors.white,
         ),
       ),

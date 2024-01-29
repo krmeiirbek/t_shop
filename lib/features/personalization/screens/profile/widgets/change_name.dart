@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/update_name_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -48,7 +48,7 @@ class ChangeName extends StatelessWidget {
                       expands: false,
                       decoration: const InputDecoration(
                         labelText: TTexts.firstName,
-                        prefixIcon: Icon(Iconsax.user),
+                        prefixIcon: Icon(Iconsax.user_outline),
                       ),
                     ),
                   ],

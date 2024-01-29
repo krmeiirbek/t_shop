@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -45,7 +45,7 @@ class TLoaders {
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(20),
       icon: const Icon(
-        Iconsax.warning_2,
+        Iconsax.warning_2_outline,
         color: TColors.white,
       ),
     );
@@ -63,7 +63,7 @@ class TLoaders {
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
       icon: const Icon(
-        Iconsax.check,
+        Iconsax.check_outline,
         color: TColors.white,
       ),
     );
@@ -81,7 +81,7 @@ class TLoaders {
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(20),
       icon: const Icon(
-        Iconsax.warning_2,
+        Iconsax.warning_2_outline,
         color: TColors.white,
       ),
     );

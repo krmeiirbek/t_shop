@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
@@ -39,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TCircularIcon(
-                      icon: Iconsax.user,
+                      icon: Iconsax.user_outline,
                       size: 30,
                       width: 50,
                       height: 50,

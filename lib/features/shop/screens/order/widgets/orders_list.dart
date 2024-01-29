@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/loaders/animation_loader.dart';
 import 'package:t_store/features/shop/controllers/product/order_controller.dart';
@@ -51,7 +51,7 @@ class TOrderListItems extends StatelessWidget {
                   Row(
                     children: [
                       /// 1 - Icon
-                      const Icon(Iconsax.ship),
+                      const Icon(Iconsax.ship_outline),
                       SizedBox(width: TSizes.spaceBtwItems / 2),
 
                       /// 2 - Status & Date
@@ -73,7 +73,7 @@ class TOrderListItems extends StatelessWidget {
                       IconButton(
                         onPressed: () {},
                         icon: Icon(
-                          Iconsax.arrow_right_34,
+                          Iconsax.arrow_right_3_outline,
                           size: TSizes.iconSm,
                         ),
                       ),
@@ -88,7 +88,7 @@ class TOrderListItems extends StatelessWidget {
                         child: Row(
                           children: [
                             /// 1 - Icon
-                            const Icon(Iconsax.tag),
+                            const Icon(Iconsax.tag_outline),
                             SizedBox(width: TSizes.spaceBtwItems / 2),
 
                             /// 2 - Status & Date
@@ -109,7 +109,7 @@ class TOrderListItems extends StatelessWidget {
                         child: Row(
                           children: [
                             /// 1 - Icon
-                            const Icon(Iconsax.calendar),
+                            const Icon(Iconsax.calendar_outline),
                             SizedBox(width: TSizes.spaceBtwItems / 2),
 
                             /// 2 - Status & Date

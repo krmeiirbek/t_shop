@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 
 class CatalogItem extends StatelessWidget {
@@ -23,13 +23,13 @@ class CatalogItem extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  const Icon(Iconsax.triangle),
+                  const Icon(Iconsax.triangle_outline),
                   const SizedBox(width: 15),
                   Expanded(child: Text(category.nameKZ, overflow: TextOverflow.clip)),
                 ],
               ),
             ),
-            const Icon(Iconsax.arrow_right),
+            const Icon(Iconsax.arrow_right_outline),
           ],
         ),
       ),

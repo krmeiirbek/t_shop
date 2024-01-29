@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -22,7 +22,7 @@ class TProductQuantityWithAddRemoveButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         TCircularIcon(
-          icon: Iconsax.minus,
+          icon: Iconsax.minus_outline,
           width: 32,
           height: 32,
           size: TSizes.md,
@@ -34,7 +34,7 @@ class TProductQuantityWithAddRemoveButton extends StatelessWidget {
         Text(quantity.toString(), style: Theme.of(context).textTheme.titleSmall),
         SizedBox(width: TSizes.spaceBtwItems),
         TCircularIcon(
-          icon: Iconsax.add,
+          icon: Iconsax.add_outline,
           width: 32,
           height: 32,
           size: TSizes.md,

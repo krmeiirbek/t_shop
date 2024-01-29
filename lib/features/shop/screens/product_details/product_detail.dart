@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
@@ -114,7 +114,7 @@ class ProductDetailScreen extends StatelessWidget {
                       children: [
                         TSectionHeading(title: 'Пікірлер(${reviewsController.productReviews.length})', showActionButton: false),
                         IconButton(
-                          icon: const Icon(Iconsax.arrow_right_3, size: 18),
+                          icon: const Icon(Iconsax.arrow_right_3_outline, size: 18),
                           onPressed: () => Get.to(() => const ProductReviewsScreen()),
                         ),
                       ],

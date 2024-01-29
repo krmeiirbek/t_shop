@@ -22,7 +22,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
 
   # Icons
-  iconsax: ^0.0.8
+  icons_plus: ^5.0.0
   cupertino_icons: ^1.0.2
 
   # State Management

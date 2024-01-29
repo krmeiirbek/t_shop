@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/update_phone_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -43,7 +43,7 @@ class ChangePhone extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     decoration: const InputDecoration(
                       labelText: 'Телефон нөмері',
-                      prefixIcon: Icon(Iconsax.user_edit),
+                      prefixIcon: Icon(Iconsax.user_edit_outline),
                       prefixText: '+7',
                     ),
                   ),

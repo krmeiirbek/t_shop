@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -39,7 +39,7 @@ class TBrandTitleWithVerifiedIcon extends StatelessWidget {
         ),
         SizedBox(width: TSizes.xs),
         Icon(
-          Iconsax.verify5,
+          Iconsax.verify_outline,
           color: iconColor,
           size: TSizes.iconXs,
         ),

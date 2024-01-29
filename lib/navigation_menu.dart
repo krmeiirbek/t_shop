@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/features/personalization/screens/settings/settings.dart';
 import 'package:t_store/features/shop/screens/cart/cart.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
@@ -36,11 +36,11 @@ class NavigationMenu extends StatelessWidget {
             index: controller.selectedIndex.value,
             height: 75.0,
             items: const <Widget>[
-              Icon(Iconsax.home),
-              Icon(Iconsax.shop),
-              Icon(Iconsax.shopping_cart),
-              Icon(Iconsax.heart),
-              Icon(Iconsax.user),
+              Icon(Iconsax.home_outline),
+              Icon(Iconsax.shop_outline),
+              Icon(Iconsax.shopping_cart_outline),
+              Icon(Iconsax.heart_outline),
+              Icon(Iconsax.user_outline),
             ],
             color: dark ? TColors.black : TColors.white,
             buttonBackgroundColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),

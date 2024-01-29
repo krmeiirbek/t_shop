@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -27,7 +27,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   validator: (value) => TValidator.validateEmptyText('Name', value),
                   controller: controller.name,
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.user),
+                    prefixIcon: Icon(Iconsax.user_outline),
                     labelText: 'Аты',
                   ),
                 ),
@@ -37,7 +37,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   controller: controller.phoneNumber,
                   keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.mobile),
+                    prefixIcon: Icon(Iconsax.mobile_outline),
                     labelText: 'Телефон нөмірі',
                     prefixText: '+7',
                   ),
@@ -50,7 +50,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                         validator: (value) => TValidator.validateEmptyText('Street', value),
                         controller: controller.street,
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.building_31),
+                          prefixIcon: Icon(Iconsax.building_3_outline),
                           labelText: 'Көше',
                         ),
                       ),
@@ -61,7 +61,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                         validator: (value) => TValidator.validateEmptyText('HouseNumber', value),
                         controller: controller.houseNumber,
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.code),
+                          prefixIcon: Icon(Iconsax.code_outline),
                           labelText: 'Үй нөмері',
                         ),
                       ),
@@ -76,7 +76,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                         validator: (value) => TValidator.validateEmptyText('CityOrVillage', value),
                         controller: controller.cityOrVillage,
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.building),
+                          prefixIcon: Icon(Iconsax.building_outline),
                           labelText: 'Қала н/е ауыл',
                         ),
                       ),
@@ -87,7 +87,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                         validator: (value) => TValidator.validateEmptyText('District', value),
                         controller: controller.district,
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.activity),
+                          prefixIcon: Icon(Iconsax.activity_outline),
                           labelText: 'Аудан',
                         ),
                       ),

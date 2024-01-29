@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
@@ -28,7 +28,7 @@ class FavouriteScreen extends StatelessWidget {
         ),
         actions: [
           TCircularIcon(
-            icon: Iconsax.add,
+            icon: Iconsax.add_outline,
             onPressed: () => NavigationController.instance.selectedIndex.value = 1,
           ),
         ],

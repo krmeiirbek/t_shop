@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/features/shop/controllers/all_products_controller.dart';
@@ -34,7 +34,7 @@ class TSortableProducts extends StatelessWidget {
           onChanged: (value) {
             controller.sortProducts(value!);
           },
-          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
+          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort_outline)),
         ),
         SizedBox(height: TSizes.spaceBtwSections),
 

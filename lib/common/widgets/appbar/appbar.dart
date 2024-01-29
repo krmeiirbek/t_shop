@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/app_bar_container.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -37,7 +37,7 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ? IconButton(
                         onPressed: () => Get.back(),
                         icon: Icon(
-                          Iconsax.arrow_left,
+                          Iconsax.arrow_left_outline,
                           color: dark ? TColors.light : TColors.dark,
                         ),
                       )
@@ -63,7 +63,7 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ? IconButton(
                       onPressed: () => Get.back(),
                       icon: Icon(
-                        Iconsax.arrow_left,
+                        Iconsax.arrow_left_outline,
                         color: dark ? TColors.light : TColors.dark,
                       ),
                     )

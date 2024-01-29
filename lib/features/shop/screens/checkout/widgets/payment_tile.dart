@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import '../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -34,7 +34,7 @@ class TPaymentTile extends StatelessWidget {
             Image(image: AssetImage(paymentMethod.image), fit: BoxFit.contain),
       ),
       title: Text(paymentMethod.name),
-      trailing: const Icon(Iconsax.arrow_right_34),
+      trailing: const Icon(Iconsax.arrow_right_3_outline),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/shimmer/shimmer.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
@@ -39,7 +39,7 @@ class TUserProfileTile extends GetView<UserController> {
         } else {
           return ListTile(
             leading: const TCircularIcon(
-              icon: Iconsax.user,
+              icon: Iconsax.user_outline,
               size: 30,
               width: 50,
               height: 50,
@@ -61,7 +61,7 @@ class TUserProfileTile extends GetView<UserController> {
             trailing: IconButton(
               onPressed: onPressed,
               icon: const Icon(
-                Iconsax.edit,
+                Iconsax.edit_outline,
                 color: TColors.white,
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
@@ -37,7 +37,7 @@ class TBottomAddToCart extends GetView<CartController> {
               Row(
                 children: [
                   TCircularIcon(
-                    icon: Iconsax.minus,
+                    icon: Iconsax.minus_outline,
                     backgroundColor: TColors.darkGrey,
                     width: 40,
                     height: 40,
@@ -48,7 +48,7 @@ class TBottomAddToCart extends GetView<CartController> {
                   Text(controller.productQuantityInCart.value.toString(), style: Theme.of(context).textTheme.titleSmall),
                   SizedBox(width: TSizes.spaceBtwItems),
                   TCircularIcon(
-                    icon: Iconsax.add,
+                    icon: Iconsax.add_outline,
                     backgroundColor: TColors.black,
                     width: 40,
                     height: 40,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
@@ -10,6 +10,7 @@ import 'package:t_store/features/personalization/controllers/user_controller.dar
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
+import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -28,10 +29,7 @@ class SettingsScreen extends GetView<UserController> {
                   TAppBar(
                     title: Text(
                       'Профиль',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
-                          .apply(color: TColors.white),
+                      style: Theme.of(context).textTheme.headlineMedium!.apply(color: TColors.white),
                     ),
                   ),
                   SizedBox(height: TSizes.spaceBtwSections),
@@ -46,73 +44,73 @@ class SettingsScreen extends GetView<UserController> {
               padding: EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  const TSectionHeading(
-                      title: 'Аккаунт баптаулары', showActionButton: false),
+                  const TSectionHeading(title: 'Аккаунт баптаулары', showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwItems),
                   TSettingsMenuTile(
-                    icon: Iconsax.safe_home,
+                    icon: Iconsax.safe_home_outline,
                     title: 'Менің мекенжайларым',
                     subTitle: 'Жеткізу мекенжайын орнатыңыз',
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
-                  const TSettingsMenuTile(
-                    icon: Iconsax.shopping_cart,
-                    title: 'Менің қоржыным',
-                    subTitle:
-                        'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
+                  TSettingsMenuTile(
+                    icon: Iconsax.shopping_cart_outline,
+                    title: 'Менің себетім',
+                    subTitle: 'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
+                    onTap: () => NavigationController.instance.selectedIndex.value = 2,
                   ),
                   TSettingsMenuTile(
-                    icon: Iconsax.bag_tick,
+                    icon: Iconsax.bag_tick_outline,
                     title: 'Менің тапсырыстарым',
                     subTitle: 'Аяқталмаған және орындалған тапсырыстар',
                     onTap: () => Get.to(() => const OrderScreen()),
                   ),
+                  // const TSettingsMenuTile(
+                  //   icon: Iconsax.bank,
+                  //   title: 'Менің банк карталарым',
+                  //   subTitle: 'Тіркелген банк шотынан төлем жасау',
+                  // ),
+                  // const TSettingsMenuTile(
+                  //   icon: Iconsax.discount_shape,
+                  //   title: 'Менің купондарым',
+                  //   subTitle: 'Барлық жеңілдік купондарының тізімі',
+                  // ),
                   const TSettingsMenuTile(
-                    icon: Iconsax.bank,
-                    title: 'Менің банк карталарым',
-                    subTitle: 'Тіркелген банк шотынан төлем жасау',
-                  ),
-                  const TSettingsMenuTile(
-                    icon: Iconsax.discount_shape,
-                    title: 'Менің купондарым',
-                    subTitle: 'Барлық жеңілдік купондарының тізімі',
-                  ),
-                  const TSettingsMenuTile(
-                    icon: Iconsax.notification,
+                    icon: Iconsax.notification_1_outline,
                     title: 'Хабарландырулар',
                     subTitle: 'Кез келген хабарландырулар немесе ескертулер',
                   ),
                   const TSettingsMenuTile(
-                    icon: Iconsax.security_card,
+                    icon: Iconsax.security_card_outline,
                     title: 'Құпиялық саясаты & Пайдаланушы келісімі',
-                    subTitle:
-                        'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
+                    subTitle: 'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
                   ),
 
                   /// --- App Settings
                   SizedBox(height: TSizes.spaceBtwSections),
                   const TSectionHeading(
-                    title: 'Қолданба баптаулары',
+                    title: 'Байланыс',
                     showActionButton: false,
                   ),
                   SizedBox(height: TSizes.spaceBtwItems),
                   const TSettingsMenuTile(
-                    icon: Iconsax.document_upload,
-                    title: 'Деректерді жүктеу',
-                    subTitle: 'Деректерді бұлтқа жүктеп салыңыз',
+                    icon: EvaIcons.email,
+                    title: 'zhet_market@support.kz',
+                    subTitle: 'Байланыс үшін почтаға жазыңыз',
                   ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.location,
-                    title: 'Геолокация',
-                    subTitle: 'Орналасқан жеріңізді анықтауға рұқсат беріңіз',
-                    trailing: Switch(value: true, onChanged: (value) {}),
+                  const TSettingsMenuTile(
+                    icon: Icons.call,
+                    title: '+7747 555 0000',
+                    subTitle: 'Байланыс үшін хабарласыңыз',
                   ),
-                  TSettingsMenuTile(
-                    icon: Iconsax.image,
-                    title: 'HD сурет сапасы',
-                    subTitle:
-                        'Көрінетін сурет сапасын орнатыңыз, бұл қосулы болса жүктелуде кідіріс болуы мүмкін',
-                    trailing: Switch(value: false, onChanged: (value) {}),
+                  const TSettingsMenuTile(
+                    icon: Bootstrap.whatsapp,
+                    title: '+7747 555 0000',
+                    subTitle: 'Байланыс үшін whatsapp-қа жазыңыз',
+                  ),
+                  const TSettingsMenuTile(
+                    icon: Bootstrap.telegram,
+                    title: '+7747 555 0000',
+                    subTitle: 'Байланыс үшін telegram-ға жазыңыз',
                   ),
 
                   /// --- Logout Button
