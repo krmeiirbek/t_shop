@@ -31,7 +31,12 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('Products').orderBy('Title').startAt([query]).endAt(["$query\uf8ff"]).snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('Products')
+          .orderBy('TitleLowerCase')
+          .where('TitleLowerCase', isGreaterThanOrEqualTo: query.toLowerCase().trim())
+          .where('TitleLowerCase', isLessThanOrEqualTo: '${query.toLowerCase().trim()}\uf8ff')
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(child: Text('Бірдеңе дұрыс болмады'));
