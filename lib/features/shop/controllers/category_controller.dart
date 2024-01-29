@@ -3,7 +3,10 @@ import 'package:t_store/data/repository/categories/category_repository.dart';
 import 'package:t_store/data/repository/products/product_repository.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/features/shop/screens/all_products/all_products.dart';
+import 'package:t_store/features/shop/screens/sub_catalog/sub_catalog.dart';
 import 'package:t_store/utils/popups/loaders.dart';
+
 
 class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();
@@ -47,5 +50,29 @@ class CategoryController extends GetxController {
     // Fetch limited (4) products against each subCategory;
     final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
     return products;
+  }
+
+  Future<void> goToSubCategoryOrProductsScreen(String categoryId) async {
+    try {
+      isLoading.value = true;
+      final subCategories = await getSubCategories(categoryId);
+      if (subCategories.isNotEmpty) {
+        Get.to(
+          () => SubCatalogScreen(categoryId: categoryId, subCategories: subCategories),
+          preventDuplicates: false,
+        );
+      } else {
+        Get.to(
+          () => AllProducts(
+            title: categoryId,
+            futureMethod: ProductRepository.instance.getProductsWithCategoryId(categoryId),
+          ),
+        );
+      }
+    } catch (e) {
+      TLoaders.warningSnackBar(title: e.toString());
+    } finally {
+      isLoading.value = false;
+    }
   }
 }

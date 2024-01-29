@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/products/ratings/rating_indicator.dart';
+import 'package:t_store/features/shop/models/product_review_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class UserReviewCard extends StatelessWidget {
-  const UserReviewCard({Key? key}) : super(key: key);
+  const UserReviewCard({Key? key, required this.review}) : super(key: key);
+
+  final ProductReviewModel review;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,9 @@ class UserReviewCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(
-                    backgroundImage: AssetImage(TImages.userProfileImage1)),
+                if (review.userImageUrl != null && review.userImageUrl != '') const CircleAvatar(backgroundImage: AssetImage(TImages.userProfileImage1)),
                 SizedBox(width: TSizes.spaceBtwItems),
-                Text('John Doe', style: Theme.of(context).textTheme.titleLarge),
+                Text(review.userName ?? '', style: Theme.of(context).textTheme.titleLarge),
               ],
             ),
             IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
@@ -35,31 +37,26 @@ class UserReviewCard extends StatelessWidget {
         /// Review
         Row(
           children: [
-            const TRatingBarIndicator(rating: 4),
+            TRatingBarIndicator(rating: review.rating),
             SizedBox(width: TSizes.spaceBtwItems),
-            Text('01 қараша, 2023 жыл', style: Theme.of(context).textTheme.bodyMedium),
+            Text(THelperFunctions.getFormattedDate(review.timestamp), style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems),
-        const ReadMoreText(
-          'Қолданбаның пайдаланушы интерфейсі өте интуитивті. Мен шарлауды және сатып алуларды кедергісіз жасай алдым. тамаша жұмыс!!',
+        ReadMoreText(
+          review.comment ?? '',
           trimLines: 2,
           trimMode: TrimMode.Line,
           trimExpandedText: ' Аз көрсету',
           trimCollapsedText: ' Толығырақ көрсету',
-          moreStyle: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: TColors.primary),
-          lessStyle: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: TColors.primary),
+          moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
+          lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
         ),
         SizedBox(height: TSizes.spaceBtwItems),
 
         /// Company Review
-        TRoundedContainer(
+        if (review.companyComment != null && review.companyTimestamp != null)
+          TRoundedContainer(
             backgroundColor: dark ? TColors.darkerGrey : TColors.grey,
             child: Padding(
               padding: EdgeInsets.all(TSizes.md),
@@ -68,31 +65,24 @@ class UserReviewCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("ZHET MARKET",
-                          style: Theme.of(context).textTheme.titleMedium),
-                      Text("02 қараша, 2023 жыл",
-                          style: Theme.of(context).textTheme.bodyMedium),
+                      Text("ZHET MARKET", style: Theme.of(context).textTheme.titleMedium),
+                      Text(THelperFunctions.getFormattedDate(review.companyTimestamp!), style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
                   SizedBox(height: TSizes.spaceBtwItems),
-                  const ReadMoreText(
-                    'Қолданбаның пайдаланушы интерфейсі өте интуитивті. Мен шарлауды және сатып алуларды кедергісіз жасай алдым. тамаша жұмыс!!',
+                  ReadMoreText(
+                    review.companyComment ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimExpandedText: ' Аз көрсету',
                     trimCollapsedText: ' Толығырақ көрсету',
-                    moreStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: TColors.primary),
-                    lessStyle: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: TColors.primary),
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
                   ),
                 ],
               ),
-            )),
+            ),
+          ),
         SizedBox(height: TSizes.spaceBtwSections),
       ],
     );

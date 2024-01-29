@@ -64,19 +64,6 @@ class AllProductsController extends GetxController {
           }
         });
         break;
-      case 'Ең жаңасы':
-        products.sort((a, b) => a.date!.compareTo(b.date!));
-        break;
-      case 'Сатылым саны':
-        products.sort((a, b) {
-          if (b.salePrice > 0) {
-            return b.salePrice.compareTo(a.salePrice);
-          } else if (a.salePrice > 0) {
-            return -1;
-          }
-          return 1;
-        });
-        break;
       default:
         // Default sorting option: Name
         products.sort((a, b) => a.title.compareTo(b.title));

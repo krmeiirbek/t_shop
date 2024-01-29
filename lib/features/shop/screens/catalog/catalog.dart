@@ -4,7 +4,6 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:t_store/common/widgets/catalog/catalog_item.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
-import 'package:t_store/features/shop/screens/sub_catalog/sub_catalog.dart';
 import 'package:t_store/utils/constants/colors.dart';
 
 class CatalogScreen extends GetView<CategoryController> {
@@ -38,7 +37,7 @@ class CatalogScreen extends GetView<CategoryController> {
                   itemCount: categories.length,
                   itemBuilder: (_, index) => CatalogItem(
                     category: categories[index],
-                    onTap: () => Get.to(() => SubCatalogScreen(categoryId: categories[index].id)),
+                    onTap: () => controller.goToSubCategoryOrProductsScreen(categories[index].id),
                   ),
                   separatorBuilder: (_, index) => const Divider(indent: 35),
                 ),

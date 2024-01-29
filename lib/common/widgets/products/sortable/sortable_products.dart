@@ -27,9 +27,6 @@ class TSortableProducts extends StatelessWidget {
             'Аты',
             'Ең қымбаты',
             'Ең арзаны',
-            'Сатылым саны',
-            'Ең жаңасы',
-            'Танымалдығы',
           ]
               .map((option) =>
                   DropdownMenuItem(value: option, child: Text(option)))

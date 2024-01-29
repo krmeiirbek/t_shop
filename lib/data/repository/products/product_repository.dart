@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/services/firebase_storage_service.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/features/shop/models/product_review_model.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/utils/exceptions/format_exceptions.dart';
@@ -31,6 +32,21 @@ class ProductRepository extends GetxController {
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Products').where('IsFeatured', isEqualTo: true).limit(4).get();
+      return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<List<ProductModel>> getProductsWithCategoryId(String categoryId) async {
+    try {
+      final snapshot = await _db.collection('Products').where('CategoryId', isEqualTo: categoryId).get();
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
@@ -125,10 +141,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getProductsForBrand({
-    required String brandId,
-    int limit = -1,
-  }) async {
+  Future<List<ProductModel>> getProductsForBrand({required String brandId, int limit = -1}) async {
     try {
       final querySnapshot = limit == -1
           ? await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).get()
@@ -145,10 +158,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getProductsForCategory({
-    required String categoryId,
-    int limit = -1,
-  }) async {
+  Future<List<ProductModel>> getProductsForCategory({required String categoryId, int limit = -1}) async {
     try {
       final querySnapshot = limit == -1
           ? await _db.collection('ProductCategory').where('CategoryId', isEqualTo: categoryId).get()
@@ -156,6 +166,21 @@ class ProductRepository extends GetxController {
       List<String> productIds = querySnapshot.docs.map((doc) => doc['ProductId'] as String).toList();
       final productsQuery = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
       return productsQuery.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatExceptions();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<List<ProductReviewModel>> getProductReviews(String productId) async {
+    try {
+      final snapshot = await _db.collection('Products').doc(productId).collection('ProductReviews').get();
+      return snapshot.docs.map((doc) => ProductReviewModel.fromSnapshot(doc)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {

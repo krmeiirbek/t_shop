@@ -19,8 +19,7 @@ class TProductMetaData extends GetView<ProductController> {
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
-    final salePercentage =
-        controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,36 +27,26 @@ class TProductMetaData extends GetView<ProductController> {
         Row(
           children: [
             /// -- Sale Tag
-            TRoundedContainer(
-              radius: TSizes.sm,
-              backgroundColor: TColors.secondary.withOpacity(0.8),
-              padding: EdgeInsets.symmetric(
-                  horizontal: TSizes.sm, vertical: TSizes.xs),
-              child: Text(
-                '$salePercentage%',
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .apply(color: TColors.black),
+            if (salePercentage != null)
+              TRoundedContainer(
+                radius: TSizes.sm,
+                backgroundColor: TColors.secondary.withOpacity(0.8),
+                padding: EdgeInsets.symmetric(horizontal: TSizes.sm, vertical: TSizes.xs),
+                child: Text(
+                  '$salePercentage%',
+                  style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),
+                ),
               ),
-            ),
-            SizedBox(width: TSizes.spaceBtwItems),
+            if (salePercentage != null) SizedBox(width: TSizes.spaceBtwItems),
 
             /// -- Price
-            if (product.productType == ProductType.single.toString() &&
-                product.salePrice > 0)
+            if (product.productType == ProductType.single.toString() && product.salePrice > 0)
               Text(
                 '${product.salePrice} ₸',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall!
-                    .apply(decoration: TextDecoration.lineThrough),
+                style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),
               ),
-            if (product.productType == ProductType.single.toString() &&
-                product.salePrice > 0)
-              SizedBox(width: TSizes.spaceBtwItems),
-            TProductPriceText(
-                price: controller.getProductPrice(product), isLarge: true),
+            if (product.productType == ProductType.single.toString() && product.salePrice > 0) SizedBox(width: TSizes.spaceBtwItems),
+            TProductPriceText(price: controller.getProductPrice(product), isLarge: true),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems / 1.5),
@@ -71,13 +60,13 @@ class TProductMetaData extends GetView<ProductController> {
           children: [
             const TProductTitleText(title: 'Статус:'),
             SizedBox(width: TSizes.spaceBtwItems),
-            Text(controller.getProductStockStatus(product),
-                style: Theme.of(context).textTheme.titleMedium),
+            Text(controller.getProductStockStatus(product), style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
         SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
         /// Brand
+        if(product.brand != null)
         Row(
           children: [
             TCircularImage(
@@ -93,6 +82,7 @@ class TProductMetaData extends GetView<ProductController> {
             ),
           ],
         ),
+
       ],
     );
   }

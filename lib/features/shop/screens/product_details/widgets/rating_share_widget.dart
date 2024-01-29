@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-class TRatingAndShare extends StatelessWidget {
+class TRatingAndShare extends GetView<ReviewsController> {
   const TRatingAndShare({
     super.key,
   });
@@ -21,10 +23,10 @@ class TRatingAndShare extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '5.0',
+                    text: '${controller.averageRating()}',
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  const TextSpan(text: '(199)'),
+                  TextSpan(text: '(${controller.productReviews.length})'),
                 ],
               ),
             ),

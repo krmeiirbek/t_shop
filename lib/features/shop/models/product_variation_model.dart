@@ -31,8 +31,7 @@ class ProductVariationModel {
       };
 
   /// Create Empty func for clean code
-  static ProductVariationModel empty() =>
-      ProductVariationModel(id: '', attributeValues: {});
+  static ProductVariationModel empty() => ProductVariationModel(id: '', attributeValues: {});
 
   /// Map Json oriented document snapshot from Firebase to Model
   factory ProductVariationModel.fromJson(Map<String, dynamic> json) {

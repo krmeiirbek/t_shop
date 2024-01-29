@@ -11,6 +11,7 @@ import 'package:t_store/features/shop/controllers/home_controller.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
     Get.put(HomeController());
     Get.put(BannerController());
     Get.put(ProductController());
+    Get.put(ReviewsController());
     Get.put(CartController());
     Get.put(CategoryController());
     Get.put(FavouritesController());

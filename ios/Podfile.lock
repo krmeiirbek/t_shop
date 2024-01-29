@@ -819,6 +819,8 @@ PODS:
   - PromisesObjC (2.3.1)
   - ReachabilitySwift (5.0.0)
   - RecaptchaInterop (100.0.0)
+  - share_plus (0.0.1):
+    - Flutter
   - smart_auth (0.0.1):
     - Flutter
   - sqflite (0.0.3):
@@ -837,6 +839,7 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - smart_auth (from `.symlinks/plugins/smart_auth/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -889,6 +892,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/darwin"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   smart_auth:
     :path: ".symlinks/plugins/smart_auth/ios"
   sqflite:
@@ -932,6 +937,7 @@ SPEC CHECKSUMS:
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
   smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812

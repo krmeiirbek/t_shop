@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
 import 'package:t_store/features/shop/screens/product_reviews/widgets/progress_indicator_and_rating.dart';
 
-class TOverallProductRating extends StatelessWidget {
+class TOverallProductRating extends GetView<ReviewsController> {
   const TOverallProductRating({
     super.key,
   });
@@ -13,19 +15,19 @@ class TOverallProductRating extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Text(
-            '4.8',
+            controller.averageRating().toString(),
             style: Theme.of(context).textTheme.displayLarge,
           ),
         ),
-        const Expanded(
+        Expanded(
           flex: 7,
           child: Column(
             children: [
-              TRatingProgressIndicator(text: '5', value: 1.0),
-              TRatingProgressIndicator(text: '4', value: 0.8),
-              TRatingProgressIndicator(text: '3', value: 0.6),
-              TRatingProgressIndicator(text: '2', value: 0.4),
-              TRatingProgressIndicator(text: '1', value: 0.2),
+              TRatingProgressIndicator(text: '5', value: controller.getAveragePercentForEachStar(5)),
+              TRatingProgressIndicator(text: '4', value: controller.getAveragePercentForEachStar(4)),
+              TRatingProgressIndicator(text: '3', value: controller.getAveragePercentForEachStar(3)),
+              TRatingProgressIndicator(text: '2', value: controller.getAveragePercentForEachStar(2)),
+              TRatingProgressIndicator(text: '1', value: controller.getAveragePercentForEachStar(1)),
             ],
           ),
         ),

@@ -4,12 +4,16 @@ import 'package:t_store/common/widgets/catalog/catalog_item.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
-import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 
 class SubCatalogScreen extends GetView<CategoryController> {
-  const SubCatalogScreen({Key? key, required this.categoryId}) : super(key: key);
+  const SubCatalogScreen({
+    Key? key,
+    required this.categoryId,
+    required this.subCategories,
+  }) : super(key: key);
 
   final String categoryId;
+  final List<CategoryModel> subCategories;
 
   @override
   Widget build(BuildContext context) {
@@ -22,27 +26,29 @@ class SubCatalogScreen extends GetView<CategoryController> {
           padding: EdgeInsets.zero,
         ),
       ),
-      body: FutureBuilder<List<CategoryModel>>(
-          future: controller.getSubCategories(categoryId),
-          initialData: const [],
-          builder: (context, snapshot) {
-            final widget = TCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-            if (widget != null) return widget;
-            final subCategories = snapshot.data!;
-            return Column(
-              children: [
-                const SizedBox(height: 20),
-                Expanded(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: subCategories.length,
-                    itemBuilder: (_, index) => CatalogItem(category: subCategories[index]),
-                    separatorBuilder: (_, index) => const Divider(indent: 35),
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Column(
+            children: [
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: subCategories.length,
+                  itemBuilder: (_, index) => CatalogItem(
+                    category: subCategories[index],
+                    onTap: () => controller.goToSubCategoryOrProductsScreen(subCategories[index].id),
                   ),
+                  separatorBuilder: (_, index) => const Divider(indent: 35),
                 ),
-              ],
-            );
-          }),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
