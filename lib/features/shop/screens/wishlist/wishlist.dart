@@ -9,6 +9,7 @@ import 'package:t_store/common/widgets/products/product_cards/product_card_verti
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -23,7 +24,7 @@ class FavouriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: TAppBar(
         title: Text(
-          'Қалаулар тізімі',
+          wishList.tr,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         actions: [
@@ -36,22 +37,23 @@ class FavouriteScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(TSizes.defaultSpace),
-          child: Obx(() => FutureBuilder(
+          child: Obx(
+            () => FutureBuilder(
               future: controller.favouriteProducts(),
               initialData: const <ProductModel>[],
               builder: (context, snapshot) {
                 const loader = TVerticalProductShimmer(itemCount: 6);
                 final emptyWidget = TAnimationLoaderWidget(
-                  text: 'Упс, таңдаулылар тізімі бос екен',
+                  text: emptyWishList.tr,
                   animation: TImages.shoppingOptions,
                   showAction: true,
-                  actionText: 'Кеттік бірнәрсе қосайық',
+                  actionText: addSomething.tr,
                   onActionPressed: () => NavigationController.instance.selectedIndex.value = 0,
                 );
                 final widget = TCloudHelperFunctions.checkMultiRecordState(
                   snapshot: snapshot,
                   loader: loader,
-                  nothingFound: emptyWidget,
+                  nothingFoundWidget: emptyWidget,
                 );
                 if (widget != null) {
                   return widget;
@@ -61,7 +63,9 @@ class FavouriteScreen extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (_, index) => TProductCardVertical(product: products[index]),
                 );
-              })),
+              },
+            ),
+          ),
         ),
       ),
     );

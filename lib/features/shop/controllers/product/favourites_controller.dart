@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/products/product_repository.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
@@ -35,11 +36,11 @@ class FavouritesController extends GetxController {
       favourites.remove(productId);
       saveFavouritesToStorage();
       favourites.refresh();
-      TLoaders.customToast(message: 'Тауар таңдаулылар тізімінен жойылды');
+      TLoaders.customToast(message: removeFromFavourites.tr);
     } else {
       favourites[productId] = true;
       saveFavouritesToStorage();
-      TLoaders.customToast(message: 'Тауар таңдаулылар тізіміне қосылды');
+      TLoaders.customToast(message: addToFavourites.tr);
     }
   }
 

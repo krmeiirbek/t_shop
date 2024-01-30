@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/update_name_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/validators/validation.dart';
 
 class ChangeName extends StatelessWidget {
@@ -20,7 +20,7 @@ class ChangeName extends StatelessWidget {
         title: SizedBox(
           width: double.infinity,
           child: Text(
-            'Атын өзгерту',
+            changeNameText.tr,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
@@ -31,7 +31,7 @@ class ChangeName extends StatelessWidget {
           children: [
             ///Headings
             Text(
-              'Оңай растау үшін нақты атауды пайдаланыңыз. Бұл атау бірнеше бетте пайда болады.',
+              changeNameMessageText.tr,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             SizedBox(height: TSizes.spaceBtwSections),
@@ -43,12 +43,11 @@ class ChangeName extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: controller.nameController,
-                      validator: (value) =>
-                          TValidator.validateEmptyText('Аты', value),
+                      validator: (value) => TValidator.validateEmptyText(nameText.tr, value),
                       expands: false,
-                      decoration: const InputDecoration(
-                        labelText: TTexts.firstName,
-                        prefixIcon: Icon(Iconsax.user_outline),
+                      decoration: InputDecoration(
+                        labelText: nameText.tr,
+                        prefixIcon: const Icon(Iconsax.user_outline),
                       ),
                     ),
                   ],
@@ -61,7 +60,7 @@ class ChangeName extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () => controller.updateUserName(),
-                child: const Text('Сақтау'),
+                child: Text(saveText.tr),
               ),
             ),
           ],

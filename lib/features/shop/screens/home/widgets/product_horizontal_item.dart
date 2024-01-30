@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
@@ -44,7 +45,7 @@ class ProductHorizontalItem extends StatelessWidget {
               const loader = TVerticalProductShimmer();
               final empty = Center(
                 child: Text(
-                  'Ешнәрсе табылмады',
+                  nothingFound.tr,
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
                         color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.dark,
                       ),
@@ -53,7 +54,7 @@ class ProductHorizontalItem extends StatelessWidget {
               final widget = TCloudHelperFunctions.checkMultiRecordState(
                 snapshot: snapshot,
                 loader: loader,
-                nothingFound: empty,
+                nothingFoundWidget: empty,
               );
               if (widget != null) return widget;
 

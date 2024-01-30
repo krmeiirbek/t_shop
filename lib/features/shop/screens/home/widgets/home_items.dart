@@ -9,7 +9,7 @@ class HomeItems extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        if(controller.loading.value){
+        if (controller.loading.value) {
           return const Center(child: CircularProgressIndicator());
         }
         return Column(

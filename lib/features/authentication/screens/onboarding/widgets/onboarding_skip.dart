@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/authentication/controllers/onboarding/onboarding_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/device/device_utility.dart';
 
 class OnBoardingSkip extends GetView<OnBoardingController> {
@@ -17,7 +17,7 @@ class OnBoardingSkip extends GetView<OnBoardingController> {
       right: TSizes.defaultSpace,
       child: TextButton(
         onPressed: controller.skipPage,
-        child: const Text(TTexts.skip),
+        child: Text(skipText.tr),
       ),
     );
   }

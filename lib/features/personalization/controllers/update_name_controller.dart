@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/user/user_repository.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 
 import '../../../utils/constants/image_strings.dart';
 import '../../../utils/helpers/network_manager.dart';
@@ -35,7 +36,7 @@ class UpdateNameController extends GetxController {
     try {
       //Start Loading
       TFullScreenLoader.openLoadingDialog(
-        'Өңделуде...',
+        processingText.tr,
         TImages.loading,
       );
 
@@ -69,12 +70,12 @@ class UpdateNameController extends GetxController {
       Get.back();
 
       TLoaders.successSnackBar(
-        title: "Жаңартылды",
+        title: updatedText.tr,
       );
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(
-        title: 'О, Жоқ',
+        title: ohSnapText.tr,
         message: e.toString(),
       );
     }

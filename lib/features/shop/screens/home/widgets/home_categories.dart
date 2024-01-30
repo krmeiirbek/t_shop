@@ -4,6 +4,7 @@ import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.da
 import 'package:t_store/common/widgets/shimmer/category_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -20,8 +21,8 @@ class THomeCategories extends StatelessWidget {
       padding: EdgeInsets.only(left: TSizes.defaultSpace),
       child: Column(
         children: [
-          const TSectionHeading(
-            title: 'Танымал категориялар',
+          TSectionHeading(
+            title: popularCategories.tr,
             showActionButton: false,
             textColor: TColors.white,
           ),
@@ -33,11 +34,9 @@ class THomeCategories extends StatelessWidget {
             if (controller.featuredCategories.isEmpty) {
               return Center(
                 child: Text(
-                  'Ешнәрсе табылмады',
+                  nothingFound.tr,
                   style: Theme.of(context).textTheme.bodyMedium!.apply(
-                        color: THelperFunctions.isDarkMode(context)
-                            ? TColors.light
-                            : TColors.dark,
+                        color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.dark,
                       ),
                 ),
               );

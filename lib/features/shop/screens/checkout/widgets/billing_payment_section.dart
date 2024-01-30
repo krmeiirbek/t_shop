@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/product/checkout_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -17,8 +18,8 @@ class TBillingPaymentSection extends StatelessWidget {
     return Column(
       children: [
         TSectionHeading(
-          title: 'Төлем тәсілі',
-          buttonTitle: 'Өзгерту',
+          title: paymentType.tr,
+          buttonTitle: change.tr,
           onPressed: () => checkoutController.selectPaymentMethod(context),
         ),
         SizedBox(height: TSizes.spaceBtwItems / 2),

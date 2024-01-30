@@ -46,17 +46,11 @@ class TUserProfileTile extends GetView<UserController> {
             ),
             title: Text(
               controller.user.value.name,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .apply(color: TColors.white),
+              style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white),
             ),
             subtitle: Text(
               TFormatter.formatPhoneNumber(controller.user.value.phoneNumber),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .apply(color: TColors.white),
+              style: Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
             ),
             trailing: IconButton(
               onPressed: onPressed,

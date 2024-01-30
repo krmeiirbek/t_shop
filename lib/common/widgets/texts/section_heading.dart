@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 
 class TSectionHeading extends StatelessWidget {
   const TSectionHeading({
@@ -6,13 +8,14 @@ class TSectionHeading extends StatelessWidget {
     this.textColor,
     this.showActionButton = true,
     required this.title,
-    this.buttonTitle = 'Барлығын көру',
+    this.buttonTitle,
     this.onPressed,
   });
 
   final Color? textColor;
   final bool showActionButton;
-  final String title, buttonTitle;
+  final String title;
+  final String? buttonTitle;
   final void Function()? onPressed;
 
   @override
@@ -22,13 +25,9 @@ class TSectionHeading extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .apply(color: textColor),
+          style: Theme.of(context).textTheme.headlineSmall!.apply(color: textColor),
         ),
-        if (showActionButton)
-          TextButton(onPressed: onPressed, child: Text(buttonTitle)),
+        if (showActionButton) TextButton(onPressed: onPressed, child: Text(buttonTitle ?? seeAllText.tr)),
       ],
     );
   }

@@ -33,25 +33,25 @@ class NavigationMenu extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: Obx(
         () => CurvedNavigationBar(
-            index: controller.selectedIndex.value,
-            height: 75.0,
-            items: const <Widget>[
-              Icon(Iconsax.home_outline),
-              Icon(Iconsax.shop_outline),
-              Icon(Iconsax.shopping_cart_outline),
-              Icon(Iconsax.heart_outline),
-              Icon(Iconsax.user_outline),
-            ],
-            color: dark ? TColors.black : TColors.white,
-            buttonBackgroundColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
-            backgroundColor: Colors.transparent,
-            animationCurve: Curves.easeOut,
-            animationDuration: const Duration(milliseconds: 400),
-            onTap: (index) {
-              controller.selectedIndex.value = index;
-            },
-            letIndexChange: (index) => true,
-          ),
+          index: controller.selectedIndex.value,
+          height: 75.0,
+          items: const <Widget>[
+            Icon(Iconsax.home_outline),
+            Icon(Iconsax.shop_outline),
+            Icon(Iconsax.shopping_cart_outline),
+            Icon(Iconsax.heart_outline),
+            Icon(Iconsax.user_outline),
+          ],
+          color: dark ? TColors.black : TColors.white,
+          buttonBackgroundColor: dark ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
+          backgroundColor: Colors.transparent,
+          animationCurve: Curves.easeOut,
+          animationDuration: const Duration(milliseconds: 400),
+          onTap: (index) {
+            controller.selectedIndex.value = index;
+          },
+          letIndexChange: (index) => true,
+        ),
       ),
       body: Obx(() => controller.screens[controller.selectedIndex.value]),
     );

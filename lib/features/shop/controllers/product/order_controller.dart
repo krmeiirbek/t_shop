@@ -7,6 +7,7 @@ import 'package:t_store/features/personalization/controllers/address_controller.
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:t_store/features/shop/models/order_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -27,14 +28,14 @@ class OrderController extends GetxController {
     try {
       return await orderRepository.fetchUserOrders();
     } catch (e) {
-      TLoaders.warningSnackBar(title: 'Oh Snap!', message: e.toString());
+      TLoaders.warningSnackBar(title: ohSnapText.tr, message: e.toString());
       return [];
     }
   }
 
   void processOrder(double totalAmount) async {
     try {
-      TFullScreenLoader.openLoadingDialog('Processing your order', TImages.loading);
+      TFullScreenLoader.openLoadingDialog(processingOrder.tr, TImages.loading);
       final userId = AuthenticationRepository.instance.authUser!.uid;
       if (userId.isEmpty) return;
       final order = OrderModel(
@@ -55,14 +56,13 @@ class OrderController extends GetxController {
 🔐: $userId
 📍: ${order.address.toString()}
 🕒: ${order.formattedOrderDate}
-📦:\n ${order.items.map((e) => '\nАты: ${e.title} Бағасы: ${e.price}₸ x ${e.quantity} = ${e.price * e.quantity}₸\n')}
+📦:\n ${order.items.map((e) => '\n${nameText.tr}: ${e.title} ${zhetPrice.tr}: ${e.price}₸ x ${e.quantity} = ${e.price * e.quantity}₸\n')}
 💰: ${order.totalAmount}₸
 💳: ${order.paymentMethod}
-Чэкті жібергеннен соң тапсырыс қабылданады
+${whenSendCheck.tr}
 """;
-      print(text);
       final link = WhatsAppUnilink(
-        phoneNumber: '+77071610092',
+        phoneNumber: sendCheckPhoneNumber.tr,
         text: text,
       );
       await launchUrl(link.asUri());
@@ -70,8 +70,8 @@ class OrderController extends GetxController {
       Get.to(
         () => SuccessScreen(
           image: TImages.successfulPaymentIcon,
-          title: 'Төлем сәтті болды!',
-          subtitle: 'Тауарыңыз жақын арада жөнелтіледі!',
+          title: successPayment.tr,
+          subtitle: successPaymentMessage.tr,
           onPressed: () => Get.offAll(() => const NavigationMenu()),
         ),
       );

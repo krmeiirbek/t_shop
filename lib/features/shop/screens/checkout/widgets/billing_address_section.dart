@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class TBillingAddressSection extends GetView<AddressController> {
@@ -13,8 +14,8 @@ class TBillingAddressSection extends GetView<AddressController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TSectionHeading(
-              title: 'Жеткізу мекенжайы',
-              buttonTitle: 'Өзгерту',
+              title: deliveryAddress.tr,
+              buttonTitle: change.tr,
               onPressed: () => controller.selectNewAddressPopup(context),
             ),
             controller.selectedAddress.value.id.isNotEmpty
@@ -49,7 +50,7 @@ class TBillingAddressSection extends GetView<AddressController> {
                       ),
                     ],
                   )
-                : Text('Жеткізу мекенжайын таңдаңыз', style: Theme.of(context).textTheme.bodyMedium),
+                : Text(selectDeliveryAddress.tr, style: Theme.of(context).textTheme.bodyMedium),
           ],
         ));
   }

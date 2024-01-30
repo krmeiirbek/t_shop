@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/products/ratings/rating_indicator.dart';
 import 'package:t_store/features/shop/models/product_review_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -47,8 +49,8 @@ class UserReviewCard extends StatelessWidget {
           review.comment ?? '',
           trimLines: 2,
           trimMode: TrimMode.Line,
-          trimExpandedText: ' Аз көрсету',
-          trimCollapsedText: ' Толығырақ көрсету',
+          trimExpandedText: showLess.tr,
+          trimCollapsedText: showMoreDetails.tr,
           moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
           lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
         ),
@@ -65,7 +67,7 @@ class UserReviewCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("ZHET MARKET", style: Theme.of(context).textTheme.titleMedium),
+                      Text(appName.tr, style: Theme.of(context).textTheme.titleMedium),
                       Text(THelperFunctions.getFormattedDate(review.companyTimestamp!), style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
@@ -74,8 +76,8 @@ class UserReviewCard extends StatelessWidget {
                     review.companyComment ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
-                    trimExpandedText: ' Аз көрсету',
-                    trimCollapsedText: ' Толығырақ көрсету',
+                    trimExpandedText: showLess.tr,
+                    trimCollapsedText: showMoreDetails.tr,
                     moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
                     lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: TColors.primary),
                   ),

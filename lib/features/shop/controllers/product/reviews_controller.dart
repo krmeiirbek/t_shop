@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/products/product_repository.dart';
 import 'package:t_store/features/shop/models/product_review_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
 class ReviewsController extends GetxController {
@@ -16,7 +17,7 @@ class ReviewsController extends GetxController {
       final productReviews = await productRepository.getProductReviews(productId);
       this.productReviews.assignAll(productReviews);
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
     } finally {
       reviewsLoading.value = false;
     }

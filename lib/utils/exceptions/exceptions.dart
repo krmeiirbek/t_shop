@@ -5,9 +5,6 @@ class TExceptions implements Exception {
 
   String get message {
     switch (code) {
-
-    ///
-    ///
       default:
         return 'біршама қате';
     }

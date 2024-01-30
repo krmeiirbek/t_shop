@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/t_circular_image.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/features/shop/models/brand_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -34,9 +36,7 @@ class TBrandCard extends StatelessWidget {
               child: TCircularImage(
                 image: brand.image,
                 backgroundColor: Colors.transparent,
-                overlayColor: THelperFunctions.isDarkMode(context)
-                    ? TColors.white
-                    : TColors.dark,
+                overlayColor: THelperFunctions.isDarkMode(context) ? TColors.white : TColors.dark,
                 isNetworkImage: true,
               ),
             ),
@@ -51,7 +51,7 @@ class TBrandCard extends StatelessWidget {
                     brandTextSize: TextSizes.large,
                   ),
                   Text(
-                    '${brand.productsCount ?? 0} өнімдер',
+                    '${brand.productsCount ?? 0} ${productsLowerCaseText.tr}',
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),

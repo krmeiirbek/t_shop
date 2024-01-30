@@ -24,10 +24,8 @@ class BrandProducts extends GetView<BrandController> {
           padding: EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              /// Brand Detail
               TBrandCard(showBorder: true, brand: brand),
               SizedBox(height: TSizes.spaceBtwSections),
-
               FutureBuilder(
                 future: controller.getBrandProducts(brand.id),
                 initialData: const <ProductModel>[],

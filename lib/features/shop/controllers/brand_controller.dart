@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/brands/brand_repository.dart';
 import 'package:t_store/data/repository/products/product_repository.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
 import '../models/brand_model.dart';
@@ -25,34 +26,30 @@ class BrandController extends GetxController {
       isLoading.value = true;
       final brands = await _brandRepository.getAllBrands();
       allBrands.assignAll(brands);
-      featuredBrands.assignAll(
-          brands.where((brand) => brand.isFeatured ?? false).take(4));
+      featuredBrands.assignAll(brands.where((brand) => brand.isFeatured ?? false).take(4));
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
     } finally {
       isLoading.value = false;
     }
   }
 
-  Future<List<ProductModel>> getBrandProducts(String brandId,
-      {int limit = -1}) async {
+  Future<List<ProductModel>> getBrandProducts(String brandId, {int limit = -1}) async {
     try {
-      final products = await ProductRepository.instance
-          .getProductsForBrand(brandId: brandId, limit: limit);
+      final products = await ProductRepository.instance.getProductsForBrand(brandId: brandId, limit: limit);
       return products;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
       return [];
     }
   }
 
   Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
     try {
-      final brands =
-          await _brandRepository.getBrandsForCategory(categoryId: categoryId);
+      final brands = await _brandRepository.getBrandsForCategory(categoryId: categoryId);
       return brands;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
       return [];
     }
   }

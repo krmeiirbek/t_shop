@@ -7,55 +7,48 @@ import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class TCartItems extends GetView<CartController> {
-  const TCartItems({
-    Key? key,
-    this.showAddRemoveButton = true,
-  }) : super(key: key);
+  const TCartItems({Key? key, this.showAddRemoveButton = true}) : super(key: key);
 
   final bool showAddRemoveButton;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return ListView.separated(
-        shrinkWrap: true,
-        separatorBuilder: (_, __) => SizedBox(height: TSizes.spaceBtwSections),
-        itemCount: controller.cartItems.length,
-        itemBuilder: (_, index) => Obx(() {
-          final item = controller.cartItems[index];
-          return Column(
-            children: [
-              /// Cart Item
-              TCartItem(cartItem: item),
-              if (showAddRemoveButton) SizedBox(height: TSizes.spaceBtwItems),
-
-              /// Add Remove Button Row with total Price
-              if (showAddRemoveButton)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+    return Obx(
+      () {
+        return ListView.separated(
+          shrinkWrap: true,
+          separatorBuilder: (_, __) => SizedBox(height: TSizes.spaceBtwSections),
+          itemCount: controller.cartItems.length,
+          itemBuilder: (_, index) => Obx(
+            () {
+              final item = controller.cartItems[index];
+              return Column(
+                children: [
+                  TCartItem(cartItem: item),
+                  if (showAddRemoveButton) SizedBox(height: TSizes.spaceBtwItems),
+                  if (showAddRemoveButton)
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        /// (for the extra space)
-                        const SizedBox(width: 70),
-
-                        /// Add Remove Buttons
-                        TProductQuantityWithAddRemoveButton(
-                          quantity: item.quantity,
-                          add: () => controller.addOneToCart(item),
-                          remove: () => controller.removeOneFromCart(item),
+                        Row(
+                          children: [
+                            const SizedBox(width: 70),
+                            TProductQuantityWithAddRemoveButton(
+                              quantity: item.quantity,
+                              add: () => controller.addOneToCart(item),
+                              remove: () => controller.removeOneFromCart(item),
+                            ),
+                          ],
                         ),
+                        TProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
                       ],
                     ),
-
-                    /// -- Product Total Price
-                    TProductPriceText(price: (item.price * item.quantity).toStringAsFixed(1)),
-                  ],
-                ),
-            ],
-          );
-        }),
-      );
-    });
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:t_store/features/shop/controllers/product/variation_controller.dart';
 import 'package:t_store/features/shop/models/cart_item_model.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/local_storage/storage_utility.dart';
 import 'package:t_store/utils/popups/loaders.dart';
@@ -21,23 +22,23 @@ class CartController extends GetxController {
 
   void addToCart(ProductModel product) {
     if (productQuantityInCart.value < 1) {
-      TLoaders.customToast(message: 'Select Quantity');
+      TLoaders.customToast(message: cartControllerSelectQuantity.tr);
       return;
     }
 
     if (product.productType == ProductType.variable.toString() && variationController.selectedVariation.value.id.isEmpty) {
-      TLoaders.customToast(message: 'Select Variation');
+      TLoaders.customToast(message: cartControllerSelectVariation.tr);
       return;
     }
 
     if (product.productType == ProductType.variable.toString()) {
       if (variationController.selectedVariation.value.stock < 1) {
-        TLoaders.warningSnackBar(title: 'Әттегең ай!', message: 'Selected variation is out of stock');
+        TLoaders.warningSnackBar(title: ohSnapText.tr, message: cartControllerSelectQuantityWarning.tr);
         return;
       }
     } else {
       if (product.stock < 1) {
-        TLoaders.warningSnackBar(title: 'Әттегең ай!', message: 'Selected variation is out of stock');
+        TLoaders.warningSnackBar(title: ohSnapText.tr, message: cartControllerSelectQuantityWarning.tr);
         return;
       }
     }
@@ -53,7 +54,7 @@ class CartController extends GetxController {
     }
 
     updateCart();
-    TLoaders.customToast(message: 'Your product has been added to the Cart.');
+    TLoaders.customToast(message: cartControllerProductAddCart.tr);
   }
 
   void removeOneFromCart(CartItemModel item) {
@@ -62,8 +63,7 @@ class CartController extends GetxController {
       if (cartItems[index].quantity > 1) {
         cartItems[index].quantity--;
       } else {
-        cartItems[index].quantity == 1 ? removeFromCartDialog(index)
-        : cartItems.removeAt(index);
+        cartItems[index].quantity == 1 ? removeFromCartDialog(index) : cartItems.removeAt(index);
       }
     }
     updateCart();
@@ -81,24 +81,24 @@ class CartController extends GetxController {
 
   void removeFromCartDialog(int index) {
     Get.defaultDialog(
-      title: 'Remove Product',
-      middleText: 'Are you sure you want to remove this product?',
+      title: removeProduct.tr,
+      middleText: removeProductMiddleText.tr,
       onConfirm: () {
         cartItems.removeAt(index);
         updateCart();
-        TLoaders.customToast(message: 'Product removed from the Cart.');
+        TLoaders.customToast(message: cartControllerProductRemoveCart.tr);
         Get.back();
       },
       onCancel: () => () => Get.back(),
     );
   }
 
-  void updateAlreadyAddedProductCount(ProductModel product){
-    if(product.productType == ProductType.single.toString()){
+  void updateAlreadyAddedProductCount(ProductModel product) {
+    if (product.productType == ProductType.single.toString()) {
       productQuantityInCart.value = getProductQuantityInCart(product.id);
-    }else{
+    } else {
       final variationId = variationController.selectedVariation.value.id;
-      if(variationId.isNotEmpty){
+      if (variationId.isNotEmpty) {
         productQuantityInCart.value = getVariationQuantityInCart(product.id, variationId);
       } else {
         productQuantityInCart.value = 0;

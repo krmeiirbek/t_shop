@@ -36,8 +36,7 @@ class BrandModel {
     );
   }
 
-  factory BrandModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+  factory BrandModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() == null) return BrandModel.empty();
     final data = document.data()!;
     return BrandModel(

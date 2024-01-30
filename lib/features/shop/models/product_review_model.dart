@@ -23,10 +23,8 @@ class ProductReviewModel {
     this.companyTimestamp,
   });
 
-  /// Create Empty func for clean code
   static ProductReviewModel empty() => ProductReviewModel(id: '', userId: '', rating: 5, timestamp: DateTime.now());
 
-  /// Map Json oriented document snapshot from Firebase to Model
   factory ProductReviewModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() == null) return ProductReviewModel.empty();
     final data = document.data()!;

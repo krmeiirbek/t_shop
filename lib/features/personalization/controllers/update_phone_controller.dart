@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/user/user_repository.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/helpers/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
@@ -29,7 +30,7 @@ class UpdatePhoneController extends GetxController {
   Future<void> updatePhoneNumber() async {
     try {
       TFullScreenLoader.openLoadingDialog(
-        "Өңделуде... ",
+        processingText.tr,
         TImages.loading,
       );
 
@@ -46,8 +47,7 @@ class UpdatePhoneController extends GetxController {
       await userRepository.updateSingleField(phone);
 
       userController.user(
-        userController.user.value
-            .copyWith(phoneNumber: phoneNumber.text.trim()),
+        userController.user.value.copyWith(phoneNumber: phoneNumber.text.trim()),
       );
 
       TFullScreenLoader.stopLoading();
@@ -55,12 +55,12 @@ class UpdatePhoneController extends GetxController {
       Get.back();
 
       TLoaders.successSnackBar(
-        title: "Жаңартылды",
+        title: updatedText.tr,
       );
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(
-        title: 'О, Жоқ',
+        title: ohSnapText.tr,
         message: e.toString(),
       );
     }

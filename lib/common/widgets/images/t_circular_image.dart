@@ -30,10 +30,7 @@ class TCircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color: backgroundColor ??
-            (THelperFunctions.isDarkMode(context)
-                ? TColors.black
-                : TColors.white),
+        color: backgroundColor ?? (THelperFunctions.isDarkMode(context) ? TColors.black : TColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
       child: ClipRRect(
@@ -44,8 +41,7 @@ class TCircularImage extends StatelessWidget {
                   imageUrl: image,
                   fit: fit,
                   color: overlayColor,
-                  progressIndicatorBuilder: (_, __, ___) =>
-                      TShimmerEffect(
+                  progressIndicatorBuilder: (_, __, ___) => TShimmerEffect(
                     width: width,
                     height: height,
                     radius: 100,

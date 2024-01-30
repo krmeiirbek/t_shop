@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/images/t_circular_image.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
+import 'package:t_store/localization/tr_constants.dart';
 
 class CustomSearchDelegate extends SearchDelegate<String> {
   @override
@@ -39,13 +40,13 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(child: Text('Бірдеңе дұрыс болмады'));
+          return Center(child: Text(somethingWasWrongText.tr));
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: Text("Жүктелуде"));
+          return Center(child: Text(loadingText.tr));
         }
         if (snapshot.data!.docs.isEmpty) {
-          return const Center(child: Text('Ештеңе табылмады'));
+          return Center(child: Text(nothingFound.tr));
         }
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {

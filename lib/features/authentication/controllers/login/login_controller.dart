@@ -27,8 +27,7 @@ class LoginController extends GetxController {
         return;
       }
 
-      final userCredentials =
-          await AuthenticationRepository.instance.signInWithGoogle();
+      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
 
       await userController.saveUserRecord(userCredentials);
 

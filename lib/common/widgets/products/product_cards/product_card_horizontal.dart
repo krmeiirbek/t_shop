@@ -83,8 +83,7 @@ class TProductCardHorizontal extends GetView<ProductController> {
                     smallSize: true,
                   ),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
-                  if(product.brand != null)
-                  TBrandTitleWithVerifiedIcon(title: '${product.brand?.name}'),
+                  if (product.brand != null) TBrandTitleWithVerifiedIcon(title: '${product.brand?.name}'),
                 ],
               ),
             ),

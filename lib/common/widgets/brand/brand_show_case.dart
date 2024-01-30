@@ -39,9 +39,7 @@ class TBrandShowcase extends StatelessWidget {
 
             /// Brand Top 3 Product Images
             Row(
-              children: images
-                  .map((image) => brandTopProductImageWidget(image, context))
-                  .toList(),
+              children: images.map((image) => brandTopProductImageWidget(image, context)).toList(),
             ),
           ],
         ),
@@ -53,16 +51,13 @@ class TBrandShowcase extends StatelessWidget {
     return Expanded(
       child: TRoundedContainer(
         height: 100,
-        backgroundColor: THelperFunctions.isDarkMode(context)
-            ? TColors.darkerGrey
-            : TColors.light,
+        backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.darkerGrey : TColors.light,
         margin: EdgeInsets.only(right: TSizes.sm),
         padding: EdgeInsets.all(TSizes.md),
         child: CachedNetworkImage(
           fit: BoxFit.contain,
           imageUrl: image,
-          progressIndicatorBuilder: (_, __, ___) =>
-              const TShimmerEffect(width: 100, height: 100),
+          progressIndicatorBuilder: (_, __, ___) => const TShimmerEffect(width: 100, height: 100),
           errorWidget: (_, __, ___) => const Icon(Icons.error),
         ),
       ),

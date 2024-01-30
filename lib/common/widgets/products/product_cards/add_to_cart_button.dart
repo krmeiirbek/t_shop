@@ -28,27 +28,29 @@ class ProductCardAddToCartButton extends StatelessWidget {
           Get.to(() => ProductDetailScreen(product: product));
         }
       },
-      child: Obx(() {
-        final productQuantityInCart = cartController.getProductQuantityInCart(product.id);
-        return Container(
-          decoration: BoxDecoration(
-            color: productQuantityInCart > 0 ? TColors.primary : TColors.dark,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(TSizes.cardRadiusMd),
-              bottomRight: Radius.circular(TSizes.productImageRadius),
+      child: Obx(
+        () {
+          final productQuantityInCart = cartController.getProductQuantityInCart(product.id);
+          return Container(
+            decoration: BoxDecoration(
+              color: productQuantityInCart > 0 ? TColors.primary : TColors.dark,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(TSizes.cardRadiusMd),
+                bottomRight: Radius.circular(TSizes.productImageRadius),
+              ),
             ),
-          ),
-          child: SizedBox(
-            width: TSizes.iconLg * 1.2,
-            height: TSizes.iconLg * 1.2,
-            child: Center(
-              child: productQuantityInCart > 0
-                  ? Text(productQuantityInCart.toString(), style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.white))
-                  : const Icon(Iconsax.add_outline, color: TColors.white),
+            child: SizedBox(
+              width: TSizes.iconLg * 1.2,
+              height: TSizes.iconLg * 1.2,
+              child: Center(
+                child: productQuantityInCart > 0
+                    ? Text(productQuantityInCart.toString(), style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.white))
+                    : const Icon(Iconsax.add_outline, color: TColors.white),
+              ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

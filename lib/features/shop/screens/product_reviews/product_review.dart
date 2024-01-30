@@ -5,6 +5,7 @@ import 'package:t_store/common/widgets/products/ratings/rating_indicator.dart';
 import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
 import 'package:t_store/features/shop/screens/product_reviews/widgets/rating_progress_indicator.dart';
 import 'package:t_store/features/shop/screens/product_reviews/widgets/user_review_card.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class ProductReviewsScreen extends GetView<ReviewsController> {
@@ -14,8 +15,8 @@ class ProductReviewsScreen extends GetView<ReviewsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       /// -- Appbar
-      appBar: const TAppBar(
-        title: Text('Пікірлер & Рейтингтер'),
+      appBar: TAppBar(
+        title: Text(commentsAndRatings.tr),
         showBackArrow: true,
       ),
 
@@ -26,7 +27,7 @@ class ProductReviewsScreen extends GetView<ReviewsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Бағалар мен пікірлер расталған және сіз пайдаланатын құрылғы түрін пайдаланатын адамдардан алынған'),
+              Text(productReviewsTitle.tr),
               SizedBox(height: TSizes.spaceBtwItems),
 
               /// Overall Product Ratings

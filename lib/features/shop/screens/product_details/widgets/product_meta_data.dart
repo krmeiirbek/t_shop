@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -58,7 +59,7 @@ class TProductMetaData extends GetView<ProductController> {
         /// Stock Status
         Row(
           children: [
-            const TProductTitleText(title: 'Статус:'),
+            TProductTitleText(title: '${status.tr} :'),
             SizedBox(width: TSizes.spaceBtwItems),
             Text(controller.getProductStockStatus(product), style: Theme.of(context).textTheme.titleMedium),
           ],
@@ -66,23 +67,22 @@ class TProductMetaData extends GetView<ProductController> {
         SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
         /// Brand
-        if(product.brand != null)
-        Row(
-          children: [
-            TCircularImage(
-              image: product.brand?.image ?? '',
-              width: 32,
-              height: 32,
-              overlayColor: darkMode ? TColors.white : TColors.black,
-              isNetworkImage: false,
-            ),
-            TBrandTitleWithVerifiedIcon(
-              title: product.brand?.name ?? '',
-              brandTextSize: TextSizes.medium,
-            ),
-          ],
-        ),
-
+        if (product.brand != null)
+          Row(
+            children: [
+              TCircularImage(
+                image: product.brand?.image ?? '',
+                width: 32,
+                height: 32,
+                overlayColor: darkMode ? TColors.white : TColors.black,
+                isNetworkImage: false,
+              ),
+              TBrandTitleWithVerifiedIcon(
+                title: product.brand?.name ?? '',
+                brandTextSize: TextSizes.medium,
+              ),
+            ],
+          ),
       ],
     );
   }

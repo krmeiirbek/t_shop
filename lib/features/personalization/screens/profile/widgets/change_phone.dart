@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/update_phone_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/validators/validation.dart';
 
@@ -16,8 +17,7 @@ class ChangePhone extends StatelessWidget {
       /// Custom Appbar
       appBar: TAppBar(
         showBackArrow: true,
-        title: Text('Телефон нөмерін өзгерту',
-            style: Theme.of(context).textTheme.headlineSmall),
+        title: Text(changePhoneText.tr, style: Theme.of(context).textTheme.headlineSmall),
       ),
       body: Padding(
         padding: EdgeInsets.all(TSizes.defaultSpace),
@@ -26,7 +26,7 @@ class ChangePhone extends StatelessWidget {
           children: [
             /// Headings
             Text(
-              'Телефон нөмеріңізді +71234567890 форматында енгізіңіз',
+              changePhoneMessageText.tr,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             SizedBox(height: TSizes.spaceBtwSections),
@@ -41,10 +41,10 @@ class ChangePhone extends StatelessWidget {
                     expands: false,
                     controller: controller.phoneNumber,
                     keyboardType: TextInputType.phone,
-                    decoration: const InputDecoration(
-                      labelText: 'Телефон нөмері',
-                      prefixIcon: Icon(Iconsax.user_edit_outline),
-                      prefixText: '+7',
+                    decoration: InputDecoration(
+                      labelText: phoneNumberText.tr,
+                      prefixIcon: const Icon(Iconsax.user_edit_outline),
+                      prefixText: phoneNumberPrefixText.tr,
                     ),
                   ),
                 ],
@@ -56,12 +56,11 @@ class ChangePhone extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (controller.updateUserPhoneNumberFormKey.currentState!
-                      .validate()) {
+                  if (controller.updateUserPhoneNumberFormKey.currentState!.validate()) {
                     controller.updatePhoneNumber();
                   }
                 },
-                child: const Text('Сақтау'),
+                child: Text(saveText.tr),
               ),
             ),
           ],

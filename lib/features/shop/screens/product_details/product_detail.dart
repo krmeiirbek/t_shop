@@ -11,6 +11,7 @@ import 'package:t_store/features/shop/screens/product_details/widgets/product_de
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:t_store/features/shop/screens/product_reviews/product_review.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -62,20 +63,20 @@ class ProductDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text('Төлем'),
+                      child: Text(payment.tr),
                     ),
                   ),
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   /// -- Description
-                  const TSectionHeading(title: 'Сипаттамасы', showActionButton: false),
+                  TSectionHeading(title: description.tr, showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwSections),
                   ReadMoreText(
                     product.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: ' Толығырақ көрсету',
-                    trimExpandedText: ' Аз көрсету',
+                    trimCollapsedText: showMoreDetails.tr,
+                    trimExpandedText: showLess.tr,
                     moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                     lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
@@ -105,21 +106,23 @@ class ProductDetailScreen extends StatelessWidget {
                   /// -- Reviews
                   const Divider(),
                   SizedBox(height: TSizes.spaceBtwItems),
-                  Obx(() {
-                    if (ReviewsController.instance.reviewsLoading.value) {
-                      return const SizedBox(height: 5, child: LinearProgressIndicator(color: TColors.primary));
-                    }
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TSectionHeading(title: 'Пікірлер(${reviewsController.productReviews.length})', showActionButton: false),
-                        IconButton(
-                          icon: const Icon(Iconsax.arrow_right_3_outline, size: 18),
-                          onPressed: () => Get.to(() => const ProductReviewsScreen()),
-                        ),
-                      ],
-                    );
-                  }),
+                  Obx(
+                    () {
+                      if (ReviewsController.instance.reviewsLoading.value) {
+                        return const SizedBox(height: 5, child: LinearProgressIndicator(color: TColors.primary));
+                      }
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TSectionHeading(title: '${comments.tr}(${reviewsController.productReviews.length})', showActionButton: false),
+                          IconButton(
+                            icon: const Icon(Iconsax.arrow_right_3_outline, size: 18),
+                            onPressed: () => Get.to(() => const ProductReviewsScreen()),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                   SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),

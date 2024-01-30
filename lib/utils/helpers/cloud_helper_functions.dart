@@ -1,6 +1,8 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/exceptions/firebase_exceptions.dart';
 import 'package:t_store/utils/exceptions/format_exceptions.dart';
 import 'package:t_store/utils/exceptions/platform_exceptions.dart';
@@ -12,19 +14,11 @@ class TCloudHelperFunctions {
       return loader;
     }
     if (!snapshot.hasData || snapshot.data == null) {
-      return const Center(
-        child: Text(
-          'Ешнәрсе табылмады',
-        ),
-      );
+      return Center(child: Text(nothingFound.tr));
     }
 
     if (snapshot.hasError) {
-      return const Center(
-        child: Text(
-          'Бірнәрсе дұрыс болмады',
-        ),
-      );
+      return Center(child: Text(somethingError.tr));
     }
 
     return null;
@@ -34,27 +28,17 @@ class TCloudHelperFunctions {
     required AsyncSnapshot<List<T>> snapshot,
     Widget? loader,
     Widget? error,
-    Widget? nothingFound,
+    Widget? nothingFoundWidget,
   }) {
     if (snapshot.connectionState == ConnectionState.waiting) {
       return loader ?? const Center(child: CircularProgressIndicator());
     }
     if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
-      return nothingFound ??
-          const Center(
-            child: Text(
-              'Ешнәрсе табылмады',
-            ),
-          );
+      return nothingFoundWidget ?? Center(child: Text(nothingFound.tr));
     }
 
     if (snapshot.hasError) {
-      return error ??
-          const Center(
-            child: Text(
-              'Бірнәрсе дұрыс болмады',
-            ),
-          );
+      return error ?? Center(child: Text(somethingError.tr));
     }
 
     return null;
@@ -73,7 +57,7 @@ class TCloudHelperFunctions {
     } on PlatformException catch (e) {
       throw TPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Бірдеңе дұрыс болмады: $e';
+      throw '${somethingError.tr}: $e';
     }
   }
 }

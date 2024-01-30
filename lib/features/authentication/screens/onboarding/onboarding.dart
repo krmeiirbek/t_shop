@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 
 import '../../controllers/onboarding/onboarding_controller.dart';
 import 'widgets/onboarding_dot_navigation.dart';
@@ -22,21 +22,21 @@ class OnBoardingScreen extends StatelessWidget {
           PageView(
             controller: controller.pageController,
             onPageChanged: controller.updatePageIndicator,
-            children: const [
+            children: [
               OnBoardingPage(
                 image: TImages.onBoardingImage1,
-                title: TTexts.onBoardingTitle1,
-                subtitle: TTexts.onBoardingSubTitle1,
+                title: onBoardingTitle1.tr,
+                subtitle: onBoardingSubTitle1.tr,
               ),
               OnBoardingPage(
                 image: TImages.onBoardingImage2,
-                title: TTexts.onBoardingTitle2,
-                subtitle: TTexts.onBoardingSubTitle2,
+                title: onBoardingTitle2.tr,
+                subtitle: onBoardingSubTitle2.tr,
               ),
               OnBoardingPage(
                 image: TImages.onBoardingImage3,
-                title: TTexts.onBoardingTitle3,
-                subtitle: TTexts.onBoardingSubTitle3,
+                title: onBoardingTitle3.tr,
+                subtitle: onBoardingSubTitle3.tr,
               ),
             ],
           ),

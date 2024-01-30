@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
 class NetworkManager extends GetxController {
@@ -14,14 +15,13 @@ class NetworkManager extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     _connectionStatus.value = result;
     if (_connectionStatus.value == ConnectivityResult.none) {
-      TLoaders.warningSnackBar(title: 'Интернет байланысы жоқ');
+      TLoaders.warningSnackBar(title: connectivityResultNone.tr);
     }
   }
 

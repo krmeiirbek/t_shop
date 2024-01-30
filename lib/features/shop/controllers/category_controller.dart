@@ -5,6 +5,7 @@ import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/sub_catalog/sub_catalog.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
 class CategoryController extends GetxController {
@@ -28,7 +29,7 @@ class CategoryController extends GetxController {
       allCategories.assignAll(categories);
       featuredCategories.assignAll(allCategories.where((category) => category.isFeatured && category.parentId.isEmpty).take(8).toList());
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
+      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
     } finally {
       isLoading.value = false;
     }
@@ -39,14 +40,11 @@ class CategoryController extends GetxController {
       final subCategories = await _categoryRepository.getSubCategories(categoryId);
       return subCategories;
     } catch (e) {
-      // TLoaders.errorSnackBar(title: 'Әттегең ай!', message: e.toString());
       return [];
     }
   }
 
-  /// -- Get Sub-Category Products
   Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async {
-    // Fetch limited (4) products against each subCategory;
     final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
     return products;
   }

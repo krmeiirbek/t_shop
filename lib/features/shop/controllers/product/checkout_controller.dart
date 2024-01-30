@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -26,7 +27,7 @@ class CheckoutController extends GetxController {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TSectionHeading(title: 'Select Payment Method'),
+              TSectionHeading(title: selectPaymentMethodText.tr),
               SizedBox(height: TSizes.spaceBtwSections),
               TPaymentTile(paymentMethod: PaymentMethodModel(name: 'Paypal', image: TImages.paypal)),
               SizedBox(height: TSizes.spaceBtwItems / 2),

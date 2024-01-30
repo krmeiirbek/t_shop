@@ -8,8 +8,10 @@ import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
+import 'package:t_store/features/personalization/screens/languages/language.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -28,7 +30,7 @@ class SettingsScreen extends GetView<UserController> {
                 children: [
                   TAppBar(
                     title: Text(
-                      'Профиль',
+                      profileText.tr,
                       style: Theme.of(context).textTheme.headlineMedium!.apply(color: TColors.white),
                     ),
                   ),
@@ -44,73 +46,64 @@ class SettingsScreen extends GetView<UserController> {
               padding: EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  const TSectionHeading(title: 'Аккаунт баптаулары', showActionButton: false),
+                  TSectionHeading(title: accountSettingsText.tr, showActionButton: false),
                   SizedBox(height: TSizes.spaceBtwItems),
                   TSettingsMenuTile(
                     icon: Iconsax.safe_home_outline,
-                    title: 'Менің мекенжайларым',
-                    subTitle: 'Жеткізу мекенжайын орнатыңыз',
+                    title: myAddressesText.tr,
+                    subTitle: setDeliveryAddressText.tr,
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart_outline,
-                    title: 'Менің себетім',
-                    subTitle: 'Өнімдерді қосыңыз, өшіріңіз және төлемге көшіңіз',
+                    title: myCartText.tr,
+                    subTitle: myCartMessageText.tr,
                     onTap: () => NavigationController.instance.selectedIndex.value = 2,
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick_outline,
-                    title: 'Менің тапсырыстарым',
-                    subTitle: 'Аяқталмаған және орындалған тапсырыстар',
+                    title: myOrdersText.tr,
+                    subTitle: myOrdersMessageText.tr,
                     onTap: () => Get.to(() => const OrderScreen()),
                   ),
-                  // const TSettingsMenuTile(
-                  //   icon: Iconsax.bank,
-                  //   title: 'Менің банк карталарым',
-                  //   subTitle: 'Тіркелген банк шотынан төлем жасау',
-                  // ),
-                  // const TSettingsMenuTile(
-                  //   icon: Iconsax.discount_shape,
-                  //   title: 'Менің купондарым',
-                  //   subTitle: 'Барлық жеңілдік купондарының тізімі',
-                  // ),
-                  const TSettingsMenuTile(
-                    icon: Iconsax.notification_1_outline,
-                    title: 'Хабарландырулар',
-                    subTitle: 'Кез келген хабарландырулар немесе ескертулер',
+                  TSettingsMenuTile(
+                    icon: Bootstrap.globe,
+                    title: languageText.tr,
+                    subTitle: changeLanguageText.tr,
+                    onTap: () => Get.to(() => const LanguageScreen()),
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Iconsax.security_card_outline,
-                    title: 'Құпиялық саясаты & Пайдаланушы келісімі',
-                    subTitle: 'Деректерді пайдалануды және олардың құпиялылығы туралы ақпараттар',
+                    title: privacyPolicyText.tr,
+                    subTitle: privacyPolicyMessageText.tr,
                   ),
 
                   /// --- App Settings
                   SizedBox(height: TSizes.spaceBtwSections),
-                  const TSectionHeading(
-                    title: 'Байланыс',
+                  TSectionHeading(
+                    title: contactText.tr,
                     showActionButton: false,
                   ),
                   SizedBox(height: TSizes.spaceBtwItems),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: EvaIcons.email,
-                    title: 'zhet_market@support.kz',
-                    subTitle: 'Байланыс үшін почтаға жазыңыз',
+                    title: emailText.tr,
+                    subTitle: emailMessageText.tr,
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Icons.call,
-                    title: '+7747 555 0000',
-                    subTitle: 'Байланыс үшін хабарласыңыз',
+                    title: contactPhone.tr,
+                    subTitle: contactPhoneSubTitle.tr,
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Bootstrap.whatsapp,
-                    title: '+7747 555 0000',
-                    subTitle: 'Байланыс үшін whatsapp-қа жазыңыз',
+                    title: contactWhatsapp.tr,
+                    subTitle: contactWhatsappSubTitle.tr,
                   ),
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Bootstrap.telegram,
-                    title: '+7747 555 0000',
-                    subTitle: 'Байланыс үшін telegram-ға жазыңыз',
+                    title: contactTelegram.tr,
+                    subTitle: contactTelegramSubTitle.tr,
                   ),
 
                   /// --- Logout Button
@@ -119,7 +112,7 @@ class SettingsScreen extends GetView<UserController> {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () => controller.logoutAccount(),
-                      child: const Text('Шығу'),
+                      child: Text(exitText.tr),
                     ),
                   ),
                   SizedBox(height: TSizes.spaceBtwSections * 2.5),

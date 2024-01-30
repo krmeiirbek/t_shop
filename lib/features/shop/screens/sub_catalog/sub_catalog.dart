@@ -4,6 +4,7 @@ import 'package:t_store/common/widgets/catalog/catalog_item.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 
 class SubCatalogScreen extends GetView<CategoryController> {
   const SubCatalogScreen({
@@ -20,8 +21,8 @@ class SubCatalogScreen extends GetView<CategoryController> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: const TSearchContainer(
-          text: 'Дүкеннен іздеу',
+        title: TSearchContainer(
+          text: searchFromStore.tr,
           showBackGround: false,
           padding: EdgeInsets.zero,
         ),

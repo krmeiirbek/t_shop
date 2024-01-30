@@ -5,6 +5,7 @@ import 'package:t_store/data/repository/address/address_repository.dart';
 import 'package:t_store/features/personalization/models/address_model.dart';
 import 'package:t_store/features/personalization/screens/address/add_new_address.dart';
 import 'package:t_store/features/personalization/screens/address/widgets/single_address.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
@@ -39,7 +40,7 @@ class AddressController extends GetxController {
       selectedAddress.value = addresses.firstWhere((element) => element.selectedAddress, orElse: () => AddressModel.empty());
       return addresses;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Address not found', message: e.toString());
+      TLoaders.errorSnackBar(title: addressNotFoundText.tr, message: e.toString());
       return [];
     }
   }
@@ -64,13 +65,13 @@ class AddressController extends GetxController {
       await addressRepository.updateSelectedField(selectedAddress.value.id, true);
       Get.back();
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Error in selection', message: e.toString());
+      TLoaders.errorSnackBar(title: errorInSelectionText.tr, message: e.toString());
     }
   }
 
   Future<void> addNewAddresses() async {
     try {
-      TFullScreenLoader.openLoadingDialog('Storing address...', TImages.loading);
+      TFullScreenLoader.openLoadingDialog(storingAddressText.tr, TImages.loading);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -100,10 +101,10 @@ class AddressController extends GetxController {
       refreshData.toggle();
       resetFormFields();
       Navigator.of(Get.overlayContext!).pop();
-      TLoaders.successSnackBar(title: 'Құттықтаймыз', message: 'Сіздің мекен-жайыңыз сәтті сақталды.');
+      TLoaders.successSnackBar(title: congratulationsText.tr, message: yourAddressHasBeenSuccessfullySavedText.tr);
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Address not found!', message: e.toString());
+      TLoaders.errorSnackBar(title: addressNotFoundText.tr, message: e.toString());
     }
   }
 
@@ -112,7 +113,7 @@ class AddressController extends GetxController {
       await addressRepository.deleteAddress(addressId);
       refreshData.toggle();
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Address not found!', message: e.toString());
+      TLoaders.errorSnackBar(title: addressNotFoundText.tr, message: e.toString());
     }
   }
 
@@ -126,7 +127,7 @@ class AddressController extends GetxController {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TSectionHeading(title: 'Select Address', showActionButton: false),
+              TSectionHeading(title: selectAddressText.tr, showActionButton: false),
               Expanded(
                 child: Obx(
                   () => FutureBuilder(
@@ -156,7 +157,7 @@ class AddressController extends GetxController {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () => Get.to(() => const AddNewAddressScreen()),
-              child: const Text('Add new address'),
+              child: Text(addNewAddressText.tr),
             ),
           ),
         ),

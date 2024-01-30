@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:t_store/features/personalization/models/address_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 
 import '../../../utils/constants/enums.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -33,10 +35,10 @@ class OrderModel {
   String get formattedDeliveryDate => deliveryDate != null ? THelperFunctions.getFormattedDate(deliveryDate!) : '';
 
   String get orderStatusText => status == OrderStatus.delivered
-      ? 'Delivered'
+      ? delivered.tr
       : status == OrderStatus.shipped
-          ? 'Shipment on the way'
-          : 'Processing';
+          ? shipmentOnTheWay.tr
+          : processingOrder.tr;
 
   Map<String, dynamic> toJson() => {
         'id': id,

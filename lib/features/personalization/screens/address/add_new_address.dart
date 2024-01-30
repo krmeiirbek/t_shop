@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/validators/validation.dart';
 
@@ -12,9 +13,9 @@ class AddNewAddressScreen extends GetView<AddressController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TAppBar(
+      appBar: TAppBar(
         showBackArrow: true,
-        title: Text('Жаңа мекенжай қосу'),
+        title: Text(addNewAddress2Text.tr),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -24,11 +25,11 @@ class AddNewAddressScreen extends GetView<AddressController> {
             child: Column(
               children: [
                 TextFormField(
-                  validator: (value) => TValidator.validateEmptyText('Name', value),
+                  validator: (value) => TValidator.validateEmptyText(nameText.tr, value),
                   controller: controller.name,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.user_outline),
-                    labelText: 'Аты',
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.user_outline),
+                    labelText: nameText.tr,
                   ),
                 ),
                 SizedBox(height: TSizes.spaceBtwInputFields),
@@ -36,10 +37,10 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   validator: TValidator.validatePhoneNumber,
                   controller: controller.phoneNumber,
                   keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Iconsax.mobile_outline),
-                    labelText: 'Телефон нөмірі',
-                    prefixText: '+7',
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.mobile_outline),
+                    labelText: phoneNumberText.tr,
+                    prefixText: phoneNumberPrefixText.tr,
                   ),
                 ),
                 SizedBox(height: TSizes.spaceBtwInputFields),
@@ -47,22 +48,22 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   children: [
                     Expanded(
                       child: TextFormField(
-                        validator: (value) => TValidator.validateEmptyText('Street', value),
+                        validator: (value) => TValidator.validateEmptyText(streetText.tr, value),
                         controller: controller.street,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.building_3_outline),
-                          labelText: 'Көше',
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Iconsax.building_3_outline),
+                          labelText: streetText.tr,
                         ),
                       ),
                     ),
                     SizedBox(width: TSizes.spaceBtwInputFields),
                     Expanded(
                       child: TextFormField(
-                        validator: (value) => TValidator.validateEmptyText('HouseNumber', value),
+                        validator: (value) => TValidator.validateEmptyText(houseNumberText.tr, value),
                         controller: controller.houseNumber,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.code_outline),
-                          labelText: 'Үй нөмері',
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Iconsax.code_outline),
+                          labelText: houseNumberText.tr,
                         ),
                       ),
                     ),
@@ -73,22 +74,22 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   children: [
                     Expanded(
                       child: TextFormField(
-                        validator: (value) => TValidator.validateEmptyText('CityOrVillage', value),
+                        validator: (value) => TValidator.validateEmptyText(cityOrVillageText.tr, value),
                         controller: controller.cityOrVillage,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.building_outline),
-                          labelText: 'Қала н/е ауыл',
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Iconsax.building_outline),
+                          labelText: cityOrVillageText.tr,
                         ),
                       ),
                     ),
                     SizedBox(width: TSizes.spaceBtwInputFields),
                     Expanded(
                       child: TextFormField(
-                        validator: (value) => TValidator.validateEmptyText('District', value),
+                        validator: (value) => TValidator.validateEmptyText(districtText.tr, value),
                         controller: controller.district,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.activity_outline),
-                          labelText: 'Аудан',
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Iconsax.activity_outline),
+                          labelText: districtText.tr,
                         ),
                       ),
                     ),
@@ -99,7 +100,7 @@ class AddNewAddressScreen extends GetView<AddressController> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () => controller.addNewAddresses(),
-                    child: const Text('Сақтау'),
+                    child: Text(saveText.tr),
                   ),
                 )
               ],

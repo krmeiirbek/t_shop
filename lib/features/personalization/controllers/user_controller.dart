@@ -5,6 +5,7 @@ import 'package:t_store/data/repository/authentication/authentication_repository
 import 'package:t_store/data/repository/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/personalization/models/user_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
 import 'package:t_store/utils/popups/loaders.dart';
@@ -50,37 +51,28 @@ class UserController extends GetxController {
       }
     } catch (e) {
       TLoaders.warningSnackBar(
-        title: 'Деректер сақталмады',
-        message: "Ақпаратыңызды сақтау кезінде бірдеңе дұрыс болмады. "
-            "Деректерді профильде қайта сақтауға болады",
+        title: noDataSavedText.tr,
+        message: errorInNoDataSavedText.tr,
       );
     }
   }
 
   void logoutAccount() {
-    ShowDialogs.logoutShowDialog(
-        title: "Шығу",
-        onPressed: () async => AuthenticationRepository.instance.logout(),
-        middleText: "Есептік жазбадан шыққыңыз келетініне сенімдісіз бе?");
+    ShowDialogs.logoutShowDialog(title: exitText.tr, onPressed: () async => AuthenticationRepository.instance.logout(), middleText: exitMessageText.tr);
   }
 
   void deleteAccountWarningPopup() {
-    ShowDialogs.deleteShowDialog(
-        title: "Есептік жазбаны жою",
-        onPressed: () async => deleteUserAccount(),
-        middleText: 'Есептік жазбаны біржола жойғыңыз келетініне сенімдісіз бе?'
-            ' Бұл әрекетті қайтару мүмкін емес және барлық деректеріңіз біржола жойылады.');
+    ShowDialogs.deleteShowDialog(title: deleteAccountText.tr, onPressed: () async => deleteUserAccount(), middleText: deleteAccountMessageText.tr);
   }
 
   void deleteUserAccount() async {
     try {
       TFullScreenLoader.openLoadingDialog(
-        'Өңделуде',
+        processingText.tr,
         TImages.loading,
       );
       final auth = AuthenticationRepository.instance;
-      final provider =
-          auth.authUser!.providerData.map((e) => e.providerId).first;
+      final provider = auth.authUser!.providerData.map((e) => e.providerId).first;
       if (provider.isNotEmpty) {
         if (provider == 'google.com') {
           await auth.signInWithGoogle();
@@ -91,7 +83,7 @@ class UserController extends GetxController {
       }
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.warningSnackBar(title: 'О, Жоқ', message: e.toString());
+      TLoaders.warningSnackBar(title: ohSnapText.tr, message: e.toString());
     }
   }
 }

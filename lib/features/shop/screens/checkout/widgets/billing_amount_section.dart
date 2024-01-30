@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/pricing_calculator.dart';
 
@@ -16,7 +17,7 @@ class TBillingAmountSection extends GetView<CartController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Жиынтық', style: Theme.of(context).textTheme.bodyMedium),
+            Text(set.tr, style: Theme.of(context).textTheme.bodyMedium),
             Text('$subTotal ₸', style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
@@ -26,7 +27,7 @@ class TBillingAmountSection extends GetView<CartController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Жеткізу ақысы', style: Theme.of(context).textTheme.bodyMedium),
+            Text(deliveryCache.tr, style: Theme.of(context).textTheme.bodyMedium),
             Text('${TPricingCalculator.calculateShippingCost(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
@@ -36,7 +37,7 @@ class TBillingAmountSection extends GetView<CartController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Салық алымы', style: Theme.of(context).textTheme.bodyMedium),
+            Text(taxLevy.tr, style: Theme.of(context).textTheme.bodyMedium),
             Text('${TPricingCalculator.calculateTax(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
@@ -46,7 +47,7 @@ class TBillingAmountSection extends GetView<CartController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Тапсырыс жиынтығы', style: Theme.of(context).textTheme.bodyMedium),
+            Text(setOrder.tr, style: Theme.of(context).textTheme.bodyMedium),
             Text('${TPricingCalculator.calculateTotalPrice(subTotal, 'KZ')} ₸', style: Theme.of(context).textTheme.titleMedium),
           ],
         ),

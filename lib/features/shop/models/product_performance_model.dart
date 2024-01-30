@@ -6,7 +6,6 @@ class ProductPerformanceModel {
 
   toJson() => {'Name': name, 'Value': value};
 
-  /// Map Json oriented document snapshot from Firebase to Model
   factory ProductPerformanceModel.fromJson(Map<String, dynamic> json) {
     if (json.isEmpty) return ProductPerformanceModel();
     return ProductPerformanceModel(

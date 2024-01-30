@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/product/variation_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -34,8 +35,8 @@ class TProductAttributes extends StatelessWidget {
                   /// Title, Price, & Stock Status
                   Row(
                     children: [
-                      const TSectionHeading(
-                        title: 'Өзгеріс',
+                      TSectionHeading(
+                        title: aChange.tr,
                         showActionButton: false,
                       ),
                       SizedBox(width: TSizes.spaceBtwItems),
@@ -44,8 +45,8 @@ class TProductAttributes extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const TProductTitleText(
-                                title: 'Бағасы : ',
+                              TProductTitleText(
+                                title: '${zhetPrice.tr} : ',
                                 smallSize: true,
                               ),
 
@@ -65,8 +66,8 @@ class TProductAttributes extends StatelessWidget {
                           /// Stock
                           Row(
                             children: [
-                              const TProductTitleText(
-                                title: 'Статус : ',
+                              TProductTitleText(
+                                title: '${status.tr} : ',
                                 smallSize: true,
                               ),
                               Text(

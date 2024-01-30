@@ -36,8 +36,7 @@ class TLoginForm extends StatelessWidget {
               return Row(
                 children: [
                   SizedBox(width: TSizes.spaceBtwItems),
-                  const TCircularImage(
-                      image: TImages.google),
+                  const TCircularImage(image: TImages.google),
                   SizedBox(width: TSizes.spaceBtwItems),
                   Text(
                     'Google-мен кіру',

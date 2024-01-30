@@ -46,27 +46,26 @@ class ProductModel {
     this.productVariations,
   });
 
-  /// Create Empty func for clean code
   static ProductModel empty() => ProductModel(id: '', title: '', stock: 0, price: 0, thumbnail: '', productType: '', companyId: '');
 
   toJson() => {
-    'Title': title,
-    'CompanyId': companyId,
-    'Stock': stock,
-    'Price': price,
-    'Thumbnail': thumbnail,
-    'Sku': sku,
-    'Brand': brand?.toJson(),
-    'Images': images ?? [],
-    'SalePrice': salePrice,
-    'IsFeatured': isFeatured,
-    'CategoryId': categoryId,
-    'ProductType': productType,
-    'Description': description,
-    'ProductPerformances': productPerformances?.map((e) => e.toJson()).toList() ?? [],
-    'ProductAttributes': productAttributes?.map((e) => e.toJson()).toList() ?? [],
-    'ProductVariations': productVariations?.map((e) => e.toJson()).toList() ?? [],
-  };
+        'Title': title,
+        'CompanyId': companyId,
+        'Stock': stock,
+        'Price': price,
+        'Thumbnail': thumbnail,
+        'Sku': sku,
+        'Brand': brand?.toJson(),
+        'Images': images ?? [],
+        'SalePrice': salePrice,
+        'IsFeatured': isFeatured,
+        'CategoryId': categoryId,
+        'ProductType': productType,
+        'Description': description,
+        'ProductPerformances': productPerformances?.map((e) => e.toJson()).toList() ?? [],
+        'ProductAttributes': productAttributes?.map((e) => e.toJson()).toList() ?? [],
+        'ProductVariations': productVariations?.map((e) => e.toJson()).toList() ?? [],
+      };
 
   factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() == null) return ProductModel.empty();

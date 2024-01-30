@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class ImagesController extends GetxController {
@@ -41,7 +42,7 @@ class ImagesController extends GetxController {
                 width: 150,
                 child: OutlinedButton(
                   onPressed: () => Get.back(),
-                  child: const Text('Жабу'),
+                  child: Text(zhetClose.tr),
                 ),
               ),
             ),

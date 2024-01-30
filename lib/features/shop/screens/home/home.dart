@@ -12,9 +12,9 @@ import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 
 import 'widgets/home_items.dart';
 
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       )
                     : Text(
-                        TTexts.homeAppbarSubTitle,
+                        enterYourShippingAddressText.tr,
                         style: Theme.of(context).textTheme.titleMedium!.apply(color: TColors.white),
                       ),
               ],
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: TSizes.spaceBtwSections),
-                  const TSearchContainer(text: 'Дүкеннен іздеу'),
+                  TSearchContainer(text: searchFromStore.tr),
                   SizedBox(height: TSizes.spaceBtwSections),
                   // const THomeCategories(),
                   SizedBox(height: TSizes.spaceBtwSections),

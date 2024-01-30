@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class TLoginHeader extends StatelessWidget {
@@ -22,12 +23,12 @@ class TLoginHeader extends StatelessWidget {
           ),
         ),
         Text(
-          TTexts.loginTitle,
+          welcomeText.tr,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         SizedBox(height: TSizes.sm),
         Text(
-          TTexts.loginSubTitle,
+          discoverEndlessChoicesText.tr,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],

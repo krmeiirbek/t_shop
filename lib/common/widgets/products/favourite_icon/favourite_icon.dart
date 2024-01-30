@@ -14,7 +14,7 @@ class TFavouriteIcon extends GetView<FavouritesController> {
   Widget build(BuildContext context) {
     return Obx(
       () => TCircularIcon(
-        icon: controller.isFavourite(productId) ? Iconsax.heart_outline : Iconsax.heart_outline,
+        icon: controller.isFavourite(productId) ? Iconsax.heart_bold : Iconsax.heart_outline,
         color: controller.isFavourite(productId) ? TColors.error : null,
         onPressed: () => controller.toggleFavouriteProduct(productId),
       ),

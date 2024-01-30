@@ -5,6 +5,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/circular_contain
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/shimmer/shimmer.dart';
 import 'package:t_store/features/shop/models/banner_model.dart';
+import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
@@ -25,7 +26,7 @@ class TPromoSlider extends StatelessWidget {
         const loader = TShimmerEffect(width: double.infinity, height: 190);
         final empty = Center(
           child: Text(
-            'Ешнәрсе табылмады',
+            nothingFound.tr,
             style: Theme.of(context).textTheme.bodyMedium!.apply(
                   color: THelperFunctions.isDarkMode(context) ? TColors.light : TColors.dark,
                 ),
@@ -34,7 +35,7 @@ class TPromoSlider extends StatelessWidget {
         final widget = TCloudHelperFunctions.checkMultiRecordState(
           snapshot: snapshot,
           loader: loader,
-          nothingFound: empty,
+          nothingFoundWidget: empty,
         );
         if (widget != null) return widget;
 

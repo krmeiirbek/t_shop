@@ -5,14 +5,12 @@ class TCustomCurvedEdges extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, size.height);
-
     path.quadraticBezierTo(
       0,
       size.height - 20,
       30,
       size.height - 20,
     );
-
     path.quadraticBezierTo(
       30,
       size.height - 20,
@@ -25,25 +23,12 @@ class TCustomCurvedEdges extends CustomClipper<Path> {
       size.width - 30,
       size.height - 20,
     );
-    // path.quadraticBezierTo(
-    //   size.width / 2 + 60,
-    //   size.height + 10,
-    //   size.width / 2 + 60,
-    //   size.height - 20,
-    // );
-    // path.quadraticBezierTo(
-    //   size.width / 2 + 60,
-    //   size.height - 20,
-    //   size.width - 60,
-    //   size.height - 20,
-    // );
     path.quadraticBezierTo(
       size.width,
       size.height - 20,
       size.width,
       size.height,
     );
-
     path.lineTo(size.width, 0);
     path.close();
     return path;
