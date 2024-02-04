@@ -25,12 +25,15 @@ class AddressController extends GetxController {
   final addressFormKey = GlobalKey<FormState>();
 
   final refreshData = true.obs;
+  final isLoading = false.obs;
   final addressRepository = Get.put(AddressRepository());
   final selectedAddress = AddressModel.empty().obs;
 
   @override
   void onInit() async {
+    isLoading.value = true;
     await getAllUserAddresses();
+    isLoading.value = false;
     super.onInit();
   }
 

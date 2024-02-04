@@ -8,6 +8,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:t_store/data/repository/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:t_store/features/personalization/controllers/address_controller.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
+import 'package:t_store/features/shop/controllers/banner_controller.dart';
+import 'package:t_store/features/shop/controllers/category_controller.dart';
+import 'package:t_store/features/shop/controllers/home_controller.dart';
+import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
+import 'package:t_store/features/shop/controllers/product/favourites_controller.dart';
+import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/controllers/product/reviews_controller.dart';
 import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/utils/exceptions/firebase_exceptions.dart';
@@ -35,6 +44,15 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       await TLocalStorage.init(user.uid);
+      Get.put(AddressController());
+      Get.put(HomeController());
+      Get.put(BannerController());
+      Get.put(ProductController());
+      Get.put(ReviewsController());
+      Get.put(CartController());
+      Get.put(CategoryController());
+      Get.put(FavouritesController());
+      Get.put(UserController());
       Get.offAll(() => const NavigationMenu());
     } else {
       deviceStorage.writeIfNull('IsFirstTime', true);

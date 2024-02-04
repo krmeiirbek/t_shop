@@ -10,6 +10,7 @@ class TCircularImage extends StatelessWidget {
     this.fit = BoxFit.cover,
     required this.image,
     this.isNetworkImage = false,
+    this.borderLight = false,
     this.overlayColor,
     this.backgroundColor,
     this.width = 56,
@@ -19,7 +20,7 @@ class TCircularImage extends StatelessWidget {
 
   final BoxFit? fit;
   final String image;
-  final bool isNetworkImage;
+  final bool isNetworkImage, borderLight;
   final Color? overlayColor, backgroundColor;
   final double width, height, padding;
 
@@ -32,6 +33,10 @@ class TCircularImage extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? (THelperFunctions.isDarkMode(context) ? TColors.black : TColors.white),
         borderRadius: BorderRadius.circular(100),
+        border: borderLight ? Border.all(
+          color: TColors.secondary.withOpacity(0.7),
+          width: 3,
+        ) : null,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100),

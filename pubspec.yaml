@@ -51,6 +51,7 @@ dependencies:
   telegram: ^0.0.3
   whatsapp_unilink: ^2.1.0
   share_plus: ^7.2.1
+  percent_indicator: ^4.2.3
 
 
 

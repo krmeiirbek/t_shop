@@ -31,30 +31,33 @@ class TCartItem extends StatelessWidget {
         SizedBox(width: TSizes.spaceBtwItems),
 
         /// Title, Price, & Size
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TBrandTitleWithVerifiedIcon(title: cartItem.brandName ?? ''),
-            Flexible(child: TProductTitleText(title: cartItem.title, maxLines: 1)),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TBrandTitleWithVerifiedIcon(title: cartItem.brandName ?? ''),
+              Flexible(child: SizedBox(child: TProductTitleText(title: cartItem.title, maxLines: 1))),
 
-            /// Attributes
-            Text.rich(
-              TextSpan(
-                children: (cartItem.selectedVariation ?? {})
-                    .entries
-                    .map(
-                      (e) => TextSpan(
-                        children: [
-                          TextSpan(text: ' ${e.key} ', style: Theme.of(context).textTheme.bodySmall),
-                          TextSpan(text: '${e.value} ', style: Theme.of(context).textTheme.bodyLarge),
-                        ],
-                      ),
-                    )
-                    .toList(),
+              /// Attributes
+              Text.rich(
+                TextSpan(
+                  children: (cartItem.selectedVariation ?? {})
+                      .entries
+                      .map(
+                        (e) => TextSpan(
+                          children: [
+                            TextSpan(text: ' ${e.key} ', style: Theme.of(context).textTheme.bodySmall),
+                            TextSpan(text: '${e.value} ', style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
