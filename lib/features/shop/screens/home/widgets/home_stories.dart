@@ -27,8 +27,8 @@ class THomeStories extends StatelessWidget {
               width: 80,
               child: StoryCircle(
                 onTap: () => controller.openStory(index),
-                image: controller.stories[index].mediaUrl,
-                title: controller.stories[index].title,
+                image: controller.homeStories[index].image,
+                title: controller.homeStories[index].title,
               ),
             ),
           ),

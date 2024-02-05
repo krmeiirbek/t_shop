@@ -35,7 +35,7 @@ class StoryCircle extends StatelessWidget {
             const SizedBox(height: 3),
             Text(
               title,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: TColors.white),
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: TColors.white),
               overflow: TextOverflow.ellipsis,
             ),
           ],

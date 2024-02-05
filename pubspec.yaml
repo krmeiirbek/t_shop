@@ -52,6 +52,8 @@ dependencies:
   whatsapp_unilink: ^2.1.0
   share_plus: ^7.2.1
   percent_indicator: ^4.2.3
+  story: ^1.1.0
+  story_view: ^0.16.0
 
 
 
