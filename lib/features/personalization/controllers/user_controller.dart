@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:t_store/data/repository/authentication/authentication_repository.dart';
 import 'package:t_store/data/repository/user/user_repository.dart';
@@ -14,7 +12,7 @@ import 'package:t_store/utils/popups/show_dialogs.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   final user = UserModel.empty().obs;
   final profileLoading = false.obs;
 
@@ -30,39 +28,34 @@ class UserController extends GetxController {
       final user = await userRepository.fetchUserDetails();
       this.user(user);
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      TLoaders.warningSnackBar(title: ohSnapText.tr, message: e.toString());
     } finally {
       profileLoading.value = false;
     }
   }
 
-  Future<void> saveUserRecord(UserCredential? userCredentials) async {
+  void logoutAccount() {
     try {
-      if (userCredentials != null) {
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          name: userCredentials.user!.displayName ?? '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-        );
-
-        await userRepository.saveUserRecord(user);
-      }
-    } catch (e) {
-      TLoaders.warningSnackBar(
-        title: noDataSavedText.tr,
-        message: errorInNoDataSavedText.tr,
+      ShowDialogs.logoutShowDialog(
+        title: exitText.tr,
+        onPressed: () async => AuthenticationRepository.instance.logout(),
+        middleText: exitMessageText.tr,
       );
+    } catch (e) {
+      TLoaders.warningSnackBar(title: ohSnapText.tr, message: e.toString());
     }
   }
 
-  void logoutAccount() {
-    ShowDialogs.logoutShowDialog(title: exitText.tr, onPressed: () async => AuthenticationRepository.instance.logout(), middleText: exitMessageText.tr);
-  }
-
   void deleteAccountWarningPopup() {
-    ShowDialogs.deleteShowDialog(title: deleteAccountText.tr, onPressed: () async => deleteUserAccount(), middleText: deleteAccountMessageText.tr);
+    try {
+      ShowDialogs.deleteShowDialog(
+        title: deleteAccountText.tr,
+        onPressed: () async => deleteUserAccount(),
+        middleText: deleteAccountMessageText.tr,
+      );
+    } catch (e) {
+      TLoaders.warningSnackBar(title: ohSnapText.tr, message: e.toString());
+    }
   }
 
   void deleteUserAccount() async {

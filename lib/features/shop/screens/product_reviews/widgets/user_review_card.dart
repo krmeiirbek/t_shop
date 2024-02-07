@@ -26,7 +26,7 @@ class UserReviewCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                if (review.userImageUrl != null && review.userImageUrl != '') const CircleAvatar(backgroundImage: AssetImage(TImages.userProfileImage1)),
+                if (review.userImageUrl != null && review.userImageUrl != '') const CircleAvatar(backgroundImage: AssetImage(TImages.kaspi)),
                 SizedBox(width: TSizes.spaceBtwItems),
                 Text(review.userName ?? '', style: Theme.of(context).textTheme.titleLarge),
               ],

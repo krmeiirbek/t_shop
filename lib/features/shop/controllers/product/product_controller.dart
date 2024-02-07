@@ -9,7 +9,7 @@ class ProductController extends GetxController {
   static ProductController get instance => Get.find();
 
   final isLoading = false.obs;
-  final productRepository = Get.put(ProductRepository());
+  final productRepository = ProductRepository.instance;
   final featuredProducts = <ProductModel>[].obs;
 
   @override
@@ -76,7 +76,6 @@ class ProductController extends GetxController {
     }
   }
 
-  /// -- Calculate Discount Percentage
   String? calculateSalePercentage(double originalPrice, double? salePrice) {
     if (salePrice == null) return null;
     if (originalPrice <= 0 || salePrice <= 0) return null;
@@ -85,8 +84,7 @@ class ProductController extends GetxController {
     return percentage.toStringAsFixed(0);
   }
 
-  /// -- Check Product Stock Status
   String getProductStockStatus(ProductModel product) {
-    return product.stock > 0 ? 'Қоймада бар' : 'Қоймада жоқ';
+    return product.stock > 0 ? inStock.tr : outOfStock.tr;
   }
 }

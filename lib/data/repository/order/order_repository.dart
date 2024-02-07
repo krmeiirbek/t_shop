@@ -15,7 +15,7 @@ class OrderRepository extends GetxController {
       final result = await _db.collection('Users').doc(userId).collection('Orders').get();
       return result.docs.map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot)).toList();
     } catch (e) {
-      throw 'something went wrong';
+      throw e.toString();
     }
   }
 
@@ -23,7 +23,7 @@ class OrderRepository extends GetxController {
     try {
       await _db.collection('Users').doc(userId).collection('Orders').add(order.toJson());
     } catch (e) {
-      throw 'something went wrong';
+      throw e.toString();
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:t_store/data/services/translation_service.dart';
 class LanguageController extends GetxController {
   static LanguageController get instance => Get.find();
   final currentLanguage = 'kz_KZ'.obs;
+  final languageStore = LanguageStore.instance;
 
   @override
   void onReady() {
@@ -22,7 +23,7 @@ class LanguageController extends GetxController {
   void changeLocale(String locale) async {
     var code = locale.split('_');
     Get.updateLocale(Locale(code[0], code[1]));
-    await LanguageStore.instance.setLanguage(Locale(code[0], code[1]));
+    await languageStore.setLanguage(Locale(code[0], code[1]));
     currentLanguage.value = locale;
   }
 }

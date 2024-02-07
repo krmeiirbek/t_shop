@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/products/sortable/sortable_products.dart';
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
@@ -23,7 +22,7 @@ class AllProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AllProductsController());
+    final controller = AllProductsController.instance;
     return Scaffold(
       appBar: TAppBar(title: Text(title), showBackArrow: true),
       body: SingleChildScrollView(

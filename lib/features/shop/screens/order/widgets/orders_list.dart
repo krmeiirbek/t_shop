@@ -18,7 +18,7 @@ class TOrderListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    final controller = Get.put(OrderController());
+    final controller = OrderController.instance;
     return FutureBuilder(
       future: controller.fetchUserOrders(),
       builder: (context, snapshot) {

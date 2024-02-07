@@ -11,20 +11,9 @@ class CategoryRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
-  // @override
-  // void onInit() async {
-  //   super.onInit();
-  //   print('start');
-  //   await uploadDummyData(TDummyData.categories);
-  //   print('end');
-  // }
-
   Future<List<CategoryModel>> getCategories() async {
     try {
-      final snapshot = await _db
-          .collection('Categories')
-          .where('IsFeatured', isEqualTo: true)
-          .get();
+      final snapshot = await _db.collection('Categories').where('IsFeatured', isEqualTo: true).get();
       return snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
@@ -39,10 +28,7 @@ class CategoryRepository extends GetxController {
 
   Future<List<CategoryModel>> getSubCategories(String categoryId) async {
     try {
-      final snapshot = await _db
-          .collection('Categories')
-          .where('ParentId', isEqualTo: categoryId)
-          .get();
+      final snapshot = await _db.collection('Categories').where('ParentId', isEqualTo: categoryId).get();
       return snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
@@ -64,8 +50,7 @@ class CategoryRepository extends GetxController {
         // final url =
         //     await storage.uploadImageData('Categories', file, category.nameRU);
         // category.image = url;
-        batch.set(
-            _db.collection('Categories').doc(category.id), category.toJson());
+        batch.set(_db.collection('Categories').doc(category.id), category.toJson());
       }
       await batch.commit();
     } on FirebaseException catch (e) {

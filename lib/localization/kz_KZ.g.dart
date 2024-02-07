@@ -141,4 +141,10 @@ const Map<String, String> kzKZ = {
   needText: 'қажет',
   needPhoneNumber: 'Телефон нөмірі қажет.',
   errorFormatPhoneNumber: 'Жарамсыз телефон нөмірінің форматы. +77xxxxxxxxx пайдаланыңыз',
+  homeBottomText: 'Басты',
+  categoryBottomText: 'Каталог',
+  cartBottomText: 'Себет',
+  favoriteBottomText: 'Таңдаулылар',
+  profileBottomText: 'Профиль',
+  inCartText : 'Себетте',
 };

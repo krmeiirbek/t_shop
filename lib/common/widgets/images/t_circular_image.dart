@@ -34,7 +34,7 @@ class TCircularImage extends StatelessWidget {
         color: backgroundColor ?? (THelperFunctions.isDarkMode(context) ? TColors.black : TColors.white),
         borderRadius: BorderRadius.circular(100),
         border: borderLight ? Border.all(
-          color: TColors.secondary.withOpacity(0.7),
+          color: TColors.primary.withOpacity(0.7),
           width: 3,
         ) : null,
       ),

@@ -10,12 +10,11 @@ import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 
-class UserAddressScreen extends StatelessWidget {
+class UserAddressScreen extends GetView<AddressController> {
   const UserAddressScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AddressController());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.to(() => const AddNewAddressScreen()),

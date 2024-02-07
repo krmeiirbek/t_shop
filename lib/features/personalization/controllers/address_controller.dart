@@ -26,7 +26,7 @@ class AddressController extends GetxController {
 
   final refreshData = true.obs;
   final isLoading = false.obs;
-  final addressRepository = Get.put(AddressRepository());
+  final addressRepository = AddressRepository.instance;
   final selectedAddress = AddressModel.empty().obs;
 
   @override

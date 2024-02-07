@@ -12,7 +12,8 @@ class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();
 
   final isLoading = false.obs;
-  final _categoryRepository = Get.put(CategoryRepository());
+  final _categoryRepository = CategoryRepository.instance;
+  final _productRepository = ProductRepository.instance;
   final allCategories = <CategoryModel>[].obs;
   final featuredCategories = <CategoryModel>[].obs;
 
@@ -45,7 +46,7 @@ class CategoryController extends GetxController {
   }
 
   Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async {
-    final products = await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
+    final products = await _productRepository.getProductsForCategory(categoryId: categoryId, limit: limit);
     return products;
   }
 
@@ -62,7 +63,7 @@ class CategoryController extends GetxController {
         Get.to(
           () => AllProducts(
             title: category.nameKZ,
-            futureMethod: ProductRepository.instance.getProductsWithCategoryId(category.id),
+            futureMethod: _productRepository.getProductsWithCategoryId(category.id),
           ),
         );
       }

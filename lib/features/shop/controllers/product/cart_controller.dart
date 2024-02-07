@@ -15,6 +15,7 @@ class CartController extends GetxController {
   final productQuantityInCart = 0.obs;
   final cartItems = <CartItemModel>[].obs;
   final variationController = VariationController.instance;
+  final localStorage = TLocalStorage.instance();
 
   CartController() {
     loadCartItems();
@@ -152,11 +153,11 @@ class CartController extends GetxController {
 
   void saveCartItems() {
     final cartItemStrings = cartItems.map((item) => item.toJson()).toList();
-    TLocalStorage.instance().writeData('cartItems', cartItemStrings);
+    localStorage.writeData('cartItems', cartItemStrings);
   }
 
   void loadCartItems() {
-    final cartItemStrings = TLocalStorage.instance().readData<List<dynamic>>('cartItems');
+    final cartItemStrings = localStorage.readData<List<dynamic>>('cartItems');
     if (cartItemStrings != null) {
       cartItems.assignAll(cartItemStrings.map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
       updateCartTotals();

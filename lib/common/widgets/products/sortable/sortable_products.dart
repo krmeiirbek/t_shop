@@ -18,7 +18,7 @@ class TSortableProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AllProductsController());
+    final controller = AllProductsController.instance;
     controller.assignProducts(products);
     return Column(
       children: [

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:t_store/data/repository/home/home_repository.dart';
 import 'package:t_store/features/shop/controllers/banner_controller.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/screens/home/widgets/home_stories.dart';
 import 'package:t_store/features/shop/screens/home/widgets/product_horizontal_item.dart';
 import 'package:t_store/features/shop/screens/home/widgets/product_vertical_item.dart';
 import 'package:t_store/features/shop/screens/home/widgets/promo_slider.dart';
@@ -12,7 +13,9 @@ import 'package:t_store/utils/popups/loaders.dart';
 class HomeController extends GetxController {
   static HomeController get instance => Get.find();
 
-  final homeRepository = Get.put(HomeRepository());
+  final homeRepository = HomeRepository.instance;
+  final bannerController = BannerController.instance;
+  final productController = ProductController.instance;
   final loading = false.obs;
   final homeItems = <Widget>[].obs;
 
@@ -40,7 +43,7 @@ class HomeController extends GetxController {
         return Column(
           children: [
             TPromoSlider(
-              futureMethod: BannerController.instance.fetchBannersWithIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
+              futureMethod: bannerController.fetchBannersWithIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
               carousalCurrentIndex: 0.obs,
             ),
             SizedBox(height: TSizes.spaceBtwSections),
@@ -50,7 +53,7 @@ class HomeController extends GetxController {
         return Column(
           children: [
             ProductVerticalItem(
-              futureMethod: ProductController.instance.fetchAllProductsWithProductIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
+              futureMethod: productController.fetchAllProductsWithProductIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
               title: item['title'].toString(),
             ),
             SizedBox(height: TSizes.spaceBtwSections),
@@ -60,9 +63,17 @@ class HomeController extends GetxController {
         return Column(
           children: [
             ProductHorizontalItem(
-              futureMethod: ProductController.instance.fetchAllProductsWithProductIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
+              futureMethod: productController.fetchAllProductsWithProductIds((item['items'] as List<dynamic>).map((e) => e.toString()).toList()),
               title: item['title'].toString(),
+              autoScrollGrid: true,
             ),
+            SizedBox(height: TSizes.spaceBtwSections),
+          ],
+        );
+      case 'stories':
+        return Column(
+          children: [
+            const THomeStories(),
             SizedBox(height: TSizes.spaceBtwSections),
           ],
         );

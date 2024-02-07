@@ -8,7 +8,7 @@ class BannerController extends GetxController {
   static BannerController get instance => Get.find();
 
   final isLoading = false.obs;
-  final _bannerRepository = Get.put(BannerRepository());
+  final _bannerRepository = BannerRepository.instance;
 
   Future<List<BannerModel>> fetchBannersWithIds(List<String> bannerIds) async {
     try {

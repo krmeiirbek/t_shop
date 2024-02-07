@@ -14,7 +14,7 @@ class UpdatePhoneController extends GetxController {
 
   final phoneNumber = TextEditingController();
   final userController = UserController.instance;
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   GlobalKey<FormState> updateUserPhoneNumberFormKey = GlobalKey<FormState>();
 
   @override

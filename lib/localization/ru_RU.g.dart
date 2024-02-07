@@ -141,4 +141,10 @@ const Map<String, String> ruRU = {
   needText: 'необходимо',
   needPhoneNumber: 'Требуется номер телефона.',
   errorFormatPhoneNumber: 'Неверный формат номера телефона. Используйте +77xxxxxxxxx',
+  homeBottomText: 'Главная',
+  categoryBottomText: 'Категории',
+  cartBottomText: 'Корзина',
+  favoriteBottomText: 'Избранное',
+  profileBottomText: 'Кабинет',
+  inCartText : 'В корзине',
 };

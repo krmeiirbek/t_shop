@@ -11,20 +11,19 @@ class THomeStories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(TStoryController());
+    final controller = TStoryController.instance;
     return Obx(
       () {
         if (controller.isLoading.value) {
           return const TStoryShimmer();
         }
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: 100,
+        return SizedBox(
+          height: 110,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: controller.storyWidgets.length,
             itemBuilder: (context, index) => SizedBox(
-              width: 80,
+              width: 100,
               child: StoryCircle(
                 onTap: () => controller.openStory(index),
                 image: controller.homeStories[index].image,

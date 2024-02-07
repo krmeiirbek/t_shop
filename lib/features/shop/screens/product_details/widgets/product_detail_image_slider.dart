@@ -18,7 +18,7 @@ class TProductImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ImagesController());
+    final controller = ImagesController.instance;
     final images = controller.getAllProductImages(product);
     final dark = THelperFunctions.isDarkMode(context);
     return TCurvedEdgesWidget(

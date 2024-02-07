@@ -9,62 +9,51 @@ import '../../../utils/helpers/network_manager.dart';
 import '../../../utils/popups/full_screen_loader.dart';
 import '../../../utils/popups/loaders.dart';
 
-///Controller to manage user-Related functionality
-
 class UpdateNameController extends GetxController {
   static UpdateNameController get instance => Get.find();
 
-  ///Variables
   final nameController = TextEditingController();
   final userController = UserController.instance;
-  final userRepository = Get.put(UserRepository());
+  final userRepository = UserRepository.instance;
   GlobalKey<FormState> updateUserNameFormKey = GlobalKey<FormState>();
 
-  /// init user data when Home screen appears
   @override
   void onInit() {
     initializeNames();
     super.onInit();
   }
 
-  ///Fetch User Records
   Future<void> initializeNames() async {
     nameController.text = userController.user.value.name;
   }
 
   Future<void> updateUserName() async {
     try {
-      //Start Loading
       TFullScreenLoader.openLoadingDialog(
         processingText.tr,
         TImages.loading,
       );
 
-      //Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      // Form Validation
       if (!updateUserNameFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      // Update User's first & last name in the Firebase Firestore
       Map<String, dynamic> name = {
         'name': nameController.text.trim(),
       };
       await userRepository.updateSingleField(name);
 
-      // Update the Rx User value
       userController.user(
         userController.user.value.copyWith(name: nameController.text.trim()),
       );
 
-      //Remove Loader
       TFullScreenLoader.stopLoading();
 
       Get.back();

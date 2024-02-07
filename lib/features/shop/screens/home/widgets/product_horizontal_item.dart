@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_store/common/widgets/layouts/auto_scroll_grid_layout_horizontal.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout_horizontal.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:t_store/common/widgets/shimmer/vertical_product_shimmer.dart';
@@ -16,11 +17,13 @@ class ProductHorizontalItem extends StatelessWidget {
   const ProductHorizontalItem({
     super.key,
     this.futureMethod,
+    this.autoScrollGrid = false,
     required this.title,
   });
 
   final Future<List<ProductModel>>? futureMethod;
   final String title;
+  final bool autoScrollGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +65,15 @@ class ProductHorizontalItem extends StatelessWidget {
               if (products.length > 4) {
                 products = products.getRange(0, 4).toList();
               }
-              return TGridLayoutHorizontal(
-                itemBuilder: (_, index) => TProductCardHorizontal(product: products[index]),
-                itemCount: products.length,
-              );
+              return autoScrollGrid
+                  ? AutoScrollGridViewHorizontal(
+                      itemCount: products.length,
+                      itemBuilder: (_, index) => TProductCardHorizontal(product: products[index]),
+                    )
+                  : TGridLayoutHorizontal(
+                      itemBuilder: (_, index) => TProductCardHorizontal(product: products[index]),
+                      itemCount: products.length,
+                    );
             },
           ),
         ),

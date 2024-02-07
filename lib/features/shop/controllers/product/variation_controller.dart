@@ -13,6 +13,7 @@ class VariationController extends GetxController {
   final selectedAttributes = {}.obs;
   final selectedVariation = ProductVariationModel.empty().obs;
   final cartQuantity = 0.obs;
+  final imageController = ImagesController.instance;
 
   void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
     final selectedAttributes = Map<String, dynamic>.from(this.selectedAttributes);
@@ -23,7 +24,7 @@ class VariationController extends GetxController {
       orElse: () => ProductVariationModel.empty(),
     );
     if (selectedVariation.image.isNotEmpty) {
-      ImagesController.instance.selectedProductImage.value = selectedVariation.image;
+      imageController.selectedProductImage.value = selectedVariation.image;
     }
     if (selectedVariation.id.isNotEmpty) {
       final cartController = CartController.instance;

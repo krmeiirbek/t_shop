@@ -8,7 +8,7 @@ import 'package:t_store/features/shop/screens/story/story.dart';
 class TStoryController extends GetxController {
   static TStoryController get instance => Get.find();
 
-  final storyRepository = Get.put(StoryRepository());
+  final storyRepository = StoryRepository.instance;
   final storyController = StoryController();
   final isLoading = false.obs;
 

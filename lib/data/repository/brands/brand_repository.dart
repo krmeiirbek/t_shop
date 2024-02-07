@@ -12,45 +12,10 @@ class BrandRepository extends GetxController {
 
   final _db = FirebaseFirestore.instance;
 
-  // @override
-  // void onInit() async {
-  //   print('start');
-  //   await uploadDummyData(TDummyData.brands);
-  //   print('the end');
-  //   super.onInit();
-  // }
-
   Future<List<BrandModel>> getAllBrands() async {
     try {
       final snapshot = await _db.collection('Brands').get();
       return snapshot.docs.map((e) => BrandModel.fromSnapshot(e)).toList();
-    } on FirebaseException catch (e) {
-      throw TFirebaseExceptions(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatExceptions();
-    } on PlatformException catch (e) {
-      throw TPlatformExceptions(e.code).message;
-    } catch (e) {
-      throw e.toString();
-    }
-  }
-
-  Future<List<BrandModel>> getBrandsForCategory(
-      {required String categoryId}) async {
-    try {
-      final brandCategoryQuery = await _db
-          .collection('BrandCategory')
-          .where('CategoryId', isEqualTo: categoryId)
-          .get();
-      List<String> brandsId = brandCategoryQuery.docs
-          .map((doc) => doc['BrandId'] as String)
-          .toList();
-      final brandsQuery = await _db
-          .collection('Brands')
-          .where(FieldPath.documentId, whereIn: brandsId)
-          .limit(2)
-          .get();
-      return brandsQuery.docs.map((e) => BrandModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw TFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {

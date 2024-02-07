@@ -22,7 +22,8 @@ class OrderController extends GetxController {
   final cartController = CartController.instance;
   final addressController = AddressController.instance;
   final checkoutController = CheckoutController.instance;
-  final orderRepository = Get.put(OrderRepository());
+  final orderRepository = OrderRepository.instance;
+  final authRepository = AuthenticationRepository.instance;
 
   Future<List<OrderModel>> fetchUserOrders() async {
     try {
@@ -36,7 +37,7 @@ class OrderController extends GetxController {
   void processOrder(double totalAmount) async {
     try {
       TFullScreenLoader.openLoadingDialog(processingOrder.tr, TImages.loading);
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = authRepository.authUser!.uid;
       if (userId.isEmpty) return;
       final order = OrderModel(
         id: UniqueKey().toString(),

@@ -24,7 +24,7 @@ class CheckoutScreen extends GetView<CartController> {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     final subtotal = controller.totalCartPrice.value;
-    final orderController = Get.put(OrderController());
+    final orderController = OrderController.instance;
     final totalAmount = TPricingCalculator.calculateTotalPrice(subtotal, 'KZ');
     return Scaffold(
       appBar: TAppBar(

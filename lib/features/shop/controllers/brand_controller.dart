@@ -10,7 +10,8 @@ import '../models/product_model.dart';
 class BrandController extends GetxController {
   static BrandController get instance => Get.find();
 
-  final _brandRepository = Get.put(BrandRepository());
+  final _brandRepository = BrandRepository.instance;
+  final _productRepository = ProductRepository.instance;
   final featuredBrands = <BrandModel>[].obs;
   final allBrands = <BrandModel>[].obs;
   final isLoading = false.obs;
@@ -36,18 +37,8 @@ class BrandController extends GetxController {
 
   Future<List<ProductModel>> getBrandProducts(String brandId, {int limit = -1}) async {
     try {
-      final products = await ProductRepository.instance.getProductsForBrand(brandId: brandId, limit: limit);
+      final products = await _productRepository.getProductsForBrand(brandId: brandId, limit: limit);
       return products;
-    } catch (e) {
-      TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
-      return [];
-    }
-  }
-
-  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
-    try {
-      final brands = await _brandRepository.getBrandsForCategory(categoryId: categoryId);
-      return brands;
     } catch (e) {
       TLoaders.errorSnackBar(title: ohSnapText.tr, message: e.toString());
       return [];

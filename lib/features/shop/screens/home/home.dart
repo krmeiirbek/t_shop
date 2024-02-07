@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';
-import 'package:t_store/features/shop/screens/home/widgets/home_stories.dart';
 import 'package:t_store/localization/tr_constants.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -66,8 +65,6 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: TSizes.spaceBtwItems),
                   TSearchContainer(text: searchFromStore.tr),
-                  SizedBox(height: TSizes.spaceBtwSections),
-                  const THomeStories(),
                   SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
